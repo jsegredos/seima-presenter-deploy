@@ -2,10 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- Import map for local development without Vite -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Seima Product Selector</title>
   <link rel="icon" type="image/png" href="/assets/seima-logo-Ij4HpjUg.png">
-  <script type="module" crossorigin src="/assets/main-BRVPiOw-.js"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "@seima/core": "/core/js/index.js"
+    }
+  }
+  </script>
+  <script type="module" crossorigin src="/assets/main-BcSemGKo.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/main-BSZT_cDl.css">
 </head>
 <body>
@@ -384,23 +393,44 @@
 
   <!-- Settings Modal -->
   <div id="settings-modal" class="modal" style="display:none;">
-    <div class="modal-content">
-      <h3>Settings</h3>
+    <div class="modal-content" style="max-width: 500px;">
+      <h3 style="margin: 0 0 20px 0; color: #333;">Settings</h3>
       <div class="settings-section">
-        <h4 class="form-section-title">Staff Contact Details</h4>
-        <p class="section-description">These details will appear on the presentation title page.</p>
+        <p class="section-description" style="margin-bottom: 16px; color: #666; font-size: 0.9rem;">Your contact details will appear on the presentation title page.</p>
         
-        <label for="staff-name">Name</label>
-        <input type="text" id="staff-name" name="staff-name" maxlength="60">
-
-        <label for="staff-position">Position</label>
-        <input type="text" id="staff-position" name="staff-position" maxlength="60">
-
-        <label for="staff-email">Email</label>
-        <input type="email" id="staff-email" name="staff-email" maxlength="100">
+        <!-- Profile section when logged in -->
+        <div id="logged-in-profile-section" style="display: none;">
+          <div class="profile-header" style="margin-bottom: 16px; padding: 12px; background: #f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div id="profile-avatar" style="width: 40px; height: 40px; border-radius: 50%; background: #0284c7; color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px;">JS</div>
+                <div>
+                  <div id="profile-display-name" style="font-weight: 600; color: #0c4a6e;"></div>
+                  <div id="profile-display-email" style="font-size: 0.85rem; color: #0369a1;"></div>
+                </div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 8px; margin-top: 12px;">
+              <button id="edit-profile-btn" class="secondary-btn" style="flex: 1; padding: 8px 12px; font-size: 0.85rem;">Edit Profile</button>
+              <button id="change-password-btn" class="secondary-btn" style="flex: 1; padding: 8px 12px; font-size: 0.85rem;">Change Password</button>
+            </div>
+          </div>
+        </div>
         
-        <label for="staff-telephone">Phone</label>
-        <input type="tel" id="staff-telephone" name="staff-telephone" maxlength="50">
+        <!-- Editable contact fields -->
+        <div id="contact-fields-section">
+          <label for="staff-name">Name *</label>
+          <input type="text" id="staff-name" name="staff-name" maxlength="60" placeholder="Enter your full name">
+
+          <label for="staff-position">Position</label>
+          <input type="text" id="staff-position" name="staff-position" maxlength="60" placeholder="e.g. Sales Representative">
+
+          <label for="staff-email">Email *</label>
+          <input type="email" id="staff-email" name="staff-email" maxlength="100" placeholder="Enter your email address">
+          
+          <label for="staff-telephone">Phone *</label>
+          <input type="tel" id="staff-telephone" name="staff-telephone" maxlength="50" placeholder="Enter your phone number">
+        </div>
       </div>
       <button id="refresh-catalog-btn" class="btn-refresh">🔄 Refresh Product Catalog</button>
       <div class="modal-actions">
