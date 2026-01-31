@@ -164,19 +164,20 @@
     margin: 0 0 16px 0;
   }
   
-  /* Option cards grid */
+  /* Compact option cards - inline style */
   #pdf-wizard .option-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
   }
   
   #pdf-wizard .option-card {
-    padding: 12px 8px;
-    min-height: auto;
-    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
     border: 1px solid var(--border-light, #e5e5e5);
-    border-radius: 8px;
+    border-radius: 6px;
     background: #fff;
     cursor: pointer;
     transition: all 0.15s ease;
@@ -189,16 +190,15 @@
   
   #pdf-wizard .option-card.selected {
     border-color: var(--color-copper, #b87333);
-    background: rgba(184, 115, 51, 0.05);
+    background: rgba(184, 115, 51, 0.08);
   }
   
   #pdf-wizard .option-card-icon {
-    font-size: 1.25rem;
-    margin-bottom: 4px;
+    font-size: 1rem;
   }
   
   #pdf-wizard .option-card-title {
-    font-size: 0.6875rem;
+    font-size: 0.8125rem;
     font-weight: 500;
     color: var(--text-primary, #1a1a1a);
   }
@@ -207,8 +207,8 @@
   #pdf-wizard .option-card::before {
     content: '✓';
     position: absolute;
-    top: 4px;
-    right: 4px;
+    top: -4px;
+    right: -4px;
     width: 14px;
     height: 14px;
     background: var(--color-copper, #b87333);
@@ -358,83 +358,6 @@
     text-decoration: underline;
   }
   
-  /* Collapsible Section */
-  .collapsible-section {
-    padding-bottom: 16px;
-  }
-  
-  .collapsible-header {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 16px;
-    background: var(--bg-tertiary, #f5f5f5);
-    border: 1px solid var(--border-light, #e5e5e5);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.15s ease;
-  }
-  
-  .collapsible-header:hover {
-    background: var(--bg-secondary, #f9fafb);
-    border-color: var(--border-medium, #d4d4d4);
-  }
-  
-  .collapsible-header.expanded {
-    border-radius: 8px 8px 0 0;
-    border-bottom-color: transparent;
-  }
-  
-  .collapsible-title {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 600;
-    color: var(--text-primary, #1a1a1a);
-    font-size: 0.9375rem;
-  }
-  
-  .collapsible-icon {
-    font-size: 0.75rem;
-    transition: transform 0.2s ease;
-  }
-  
-  .collapsible-header.expanded .collapsible-icon {
-    transform: rotate(90deg);
-  }
-  
-  .collapsible-hint {
-    font-size: 0.8125rem;
-    color: var(--text-muted, #a3a3a3);
-  }
-  
-  .collapsible-content {
-    border: 1px solid var(--border-light, #e5e5e5);
-    border-top: none;
-    border-radius: 0 0 8px 8px;
-    padding: 20px;
-    background: #fff;
-  }
-  
-  .sub-section {
-    margin-bottom: 24px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid var(--border-light, #e5e5e5);
-  }
-  
-  .sub-section:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
-  }
-  
-  .sub-section-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-primary, #1a1a1a);
-    margin: 0 0 4px 0;
-  }
 
   /* Logo upload zone */
   .logo-upload-zone {
@@ -628,27 +551,24 @@
         <p class="wizard-section-description">Configure pricing and content display</p>
         
         <div class="form-group">
-          <label class="form-label" style="margin-bottom: 10px;">Pricing Display</label>
-          <div class="option-grid">
-            <label class="option-card selected" data-option="pricing-full">
-              <input type="radio" name="pricingOption" value="full" checked style="display: none;">
-              <div class="option-card-icon">💰</div>
-              <span class="option-card-title">Full Pricing</span>
+          <label class="form-label" style="margin-bottom: 10px;">Pricing</label>
+          <p class="form-hint" style="margin-bottom: 12px;">Default: Shows selection price (ex-GST), quantity, and total</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+            <label class="form-checkbox">
+              <input type="checkbox" id="show-rrp" name="showRrp">
+              <span>Also show RRP</span>
             </label>
-            <label class="option-card" data-option="pricing-gst">
-              <input type="radio" name="pricingOption" value="gst" style="display: none;">
-              <div class="option-card-icon">📊</div>
-              <span class="option-card-title">+ GST</span>
+            <label class="form-checkbox">
+              <input type="checkbox" id="include-gst" name="includeGst">
+              <span>Include GST</span>
             </label>
-            <label class="option-card" data-option="pricing-none">
-              <input type="radio" name="pricingOption" value="none" style="display: none;">
-              <div class="option-card-icon">🔒</div>
-              <span class="option-card-title">Hide Prices</span>
+            <label class="form-checkbox">
+              <input type="checkbox" id="no-pricing" name="noPricing">
+              <span>No Pricing</span>
             </label>
-            <label class="option-card" data-option="pricing-minimal">
-              <input type="radio" name="pricingOption" value="minimal" style="display: none;">
-              <div class="option-card-icon">📋</div>
-              <span class="option-card-title">Products Only</span>
+            <label class="form-checkbox">
+              <input type="checkbox" id="no-qty" name="noQty">
+              <span>No Qty</span>
             </label>
           </div>
         </div>
@@ -664,78 +584,61 @@
               <input type="checkbox" id="include-notes" name="includeNotes" checked>
               <span>Include notes</span>
             </label>
-            <label class="form-checkbox">
-              <input type="checkbox" id="group-by-room" name="groupByRoom" checked>
-              <span>Group by room</span>
-            </label>
           </div>
         </div>
       </section>
 
-      <!-- Section 3: Advanced Options (Collapsible) -->
-      <section class="wizard-section collapsible-section" id="advanced-options-section">
-        <button type="button" class="collapsible-header" id="advanced-toggle">
-          <div class="collapsible-title">
-            <span class="collapsible-icon">▶</span>
-            <span>Advanced Options</span>
-          </div>
-          <span class="collapsible-hint">Cover pages, appendix, and more</span>
-        </button>
+      <!-- Section 3: Cover Pages -->
+      <section class="wizard-section" id="cover-pages-section">
+        <h2 class="wizard-section-title">Cover Pages</h2>
+        <p class="wizard-section-description">Add branded pages at the start of your presentation</p>
+
+        <div class="option-grid" id="tip-pdf-grid">
+          <label class="option-card selected" data-tip="none">
+            <input type="radio" name="tipPdf" value="" checked style="display: none;">
+            <div class="option-card-icon">✕</div>
+            <span class="option-card-title">None</span>
+          </label>
+          <!-- More options added dynamically -->
+        </div>
         
-        <div class="collapsible-content" id="advanced-content" style="display: none;">
-          <!-- Cover Pages -->
-          <div class="sub-section">
-            <h3 class="sub-section-title">Cover Pages</h3>
-            <p class="wizard-section-description">Add branded pages at the start of your presentation</p>
-
-            <div class="option-grid" id="tip-pdf-grid">
-              <label class="option-card selected" data-tip="none">
-                <input type="radio" name="tipPdf" value="" checked style="display: none;">
-                <div class="option-card-icon">✕</div>
-                <span class="option-card-title">None</span>
-              </label>
-              <!-- More options added dynamically -->
-            </div>
-            
-            <input type="file" id="tip-pdf-input" accept="application/pdf" style="display: none;">
-            <a class="upload-link" id="tip-upload-link">↑ Upload custom PDF</a>
-            
-            <div id="tip-custom-preview" class="custom-pdf-selected" style="display: none;">
-              <span class="pdf-icon">📄</span>
-              <div class="pdf-info">
-                <div class="pdf-label">Custom Cover</div>
-                <div class="pdf-name" id="tip-custom-name">document.pdf</div>
-              </div>
-              <button type="button" class="btn-remove" id="remove-tip-btn">Remove</button>
-            </div>
+        <input type="file" id="tip-pdf-input" accept="application/pdf" style="display: none;">
+        <a class="upload-link" id="tip-upload-link">↑ Upload custom PDF</a>
+        
+        <div id="tip-custom-preview" class="custom-pdf-selected" style="display: none;">
+          <span class="pdf-icon">📄</span>
+          <div class="pdf-info">
+            <div class="pdf-label">Custom Cover</div>
+            <div class="pdf-name" id="tip-custom-name">document.pdf</div>
           </div>
+          <button type="button" class="btn-remove" id="remove-tip-btn">Remove</button>
+        </div>
+      </section>
 
-          <!-- Appendix Pages -->
-          <div class="sub-section">
-            <h3 class="sub-section-title">Appendix Pages</h3>
-            <p class="wizard-section-description">Add pages at the end (warranty info, installation guides, etc.)</p>
+      <!-- Section 4: Appendix Pages -->
+      <section class="wizard-section" id="appendix-pages-section">
+        <h2 class="wizard-section-title">Appendix Pages</h2>
+        <p class="wizard-section-description">Add pages at the end (warranty info, installation guides, etc.)</p>
 
-            <div class="option-grid" id="tail-pdf-grid">
-              <label class="option-card selected" data-tail="none">
-                <input type="radio" name="tailPdf" value="" checked style="display: none;">
-                <div class="option-card-icon">✕</div>
-                <span class="option-card-title">None</span>
-              </label>
-              <!-- More options added dynamically -->
-            </div>
-            
-            <input type="file" id="tail-pdf-input" accept="application/pdf" style="display: none;">
-            <a class="upload-link" id="tail-upload-link">↑ Upload custom PDF</a>
-            
-            <div id="tail-custom-preview" class="custom-pdf-selected" style="display: none;">
-              <span class="pdf-icon">📄</span>
-              <div class="pdf-info">
-                <div class="pdf-label">Custom Appendix</div>
-                <div class="pdf-name" id="tail-custom-name">document.pdf</div>
-              </div>
-              <button type="button" class="btn-remove" id="remove-tail-btn">Remove</button>
-            </div>
+        <div class="option-grid" id="tail-pdf-grid">
+          <label class="option-card selected" data-tail="none">
+            <input type="radio" name="tailPdf" value="" checked style="display: none;">
+            <div class="option-card-icon">✕</div>
+            <span class="option-card-title">None</span>
+          </label>
+          <!-- More options added dynamically -->
+        </div>
+        
+        <input type="file" id="tail-pdf-input" accept="application/pdf" style="display: none;">
+        <a class="upload-link" id="tail-upload-link">↑ Upload custom PDF</a>
+        
+        <div id="tail-custom-preview" class="custom-pdf-selected" style="display: none;">
+          <span class="pdf-icon">📄</span>
+          <div class="pdf-info">
+            <div class="pdf-label">Custom Appendix</div>
+            <div class="pdf-name" id="tail-custom-name">document.pdf</div>
           </div>
+          <button type="button" class="btn-remove" id="remove-tail-btn">Remove</button>
         </div>
       </section>
 
