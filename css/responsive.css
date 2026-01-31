@@ -1,0 +1,342 @@
+/**
+ * SEIMA Product Presenter - Responsive Styles
+ * 
+ * Mobile-first responsive design for all screen sizes.
+ */
+
+/* ===== TABLET BREAKPOINT (768px - 1024px) ===== */
+@media (max-width: 1024px) {
+  /* Grid adjustments */
+  .grid-header-row > div,
+  .grid-row > div {
+    padding: 8px 10px;
+  }
+  
+  /* Hide less important columns on tablet */
+  .col-notes {
+    display: none;
+  }
+  
+  /* Wizard sidebar narrower */
+  #pdf-wizard .wizard-sidebar {
+    width: 320px;
+    min-width: 320px;
+    padding: 24px;
+  }
+  
+  /* Header compact */
+  .header-right {
+    gap: 8px;
+  }
+  
+  .header-right .btn-import-quote,
+  .header-right .btn-clear-all,
+  .header-right .btn-settings {
+    padding: 8px 12px;
+    font-size: 0.8125rem;
+  }
+}
+
+/* ===== MOBILE BREAKPOINT (< 768px) ===== */
+@media (max-width: 768px) {
+  /* Header stacking */
+  .header-top {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+  }
+  
+  .header-left {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .header-right {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  
+  .header-right button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Sort controls */
+  .sort-controls {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Grid becomes card layout on mobile */
+  .grid-table-container {
+    border: none;
+    background: none;
+    box-shadow: none;
+  }
+  
+  .grid-header-row {
+    display: none !important;
+  }
+  
+  .grid-row {
+    display: grid !important;
+    grid-template-columns: 80px 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+    background: var(--bg-primary, #ffffff);
+    border: 1px solid var(--border-light, #e5e5e5);
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+  
+  .grid-row.room-header-row {
+    grid-template-columns: 1fr;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+  }
+  
+  .grid-row > div {
+    border: none !important;
+    padding: 0 !important;
+  }
+  
+  /* Image column */
+  .grid-row .col-image {
+    grid-row: 1 / 3;
+    align-self: start;
+  }
+  
+  .grid-row .grid-product-image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+  }
+  
+  /* Product info */
+  .grid-row .col-product {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  
+  .grid-row .col-product .grid-product-name {
+    font-size: 0.9375rem;
+    line-height: 1.4;
+  }
+  
+  /* Room and price on same row */
+  .grid-row .col-room,
+  .grid-row .col-qty,
+  .grid-row .col-price,
+  .grid-row .col-total {
+    grid-column: 2;
+  }
+  
+  .grid-row .col-room {
+    grid-row: 2;
+  }
+  
+  .grid-row .col-room select {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 1rem;
+  }
+  
+  /* Price and qty inline */
+  .grid-row .col-qty,
+  .grid-row .col-price {
+    display: inline-block !important;
+    width: auto !important;
+  }
+  
+  /* Total prominently displayed */
+  .grid-row .col-total {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px !important;
+    margin-top: 8px;
+    border-top: 1px solid var(--border-light, #e5e5e5) !important;
+  }
+  
+  .grid-row .col-total::before {
+    content: 'Total';
+    font-weight: 500;
+    color: var(--text-tertiary, #737373);
+  }
+  
+  /* Actions at bottom */
+  .grid-row .col-actions {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    display: flex !important;
+    justify-content: flex-end;
+    gap: 8px;
+    padding-top: 12px !important;
+  }
+  
+  .grid-row .grid-actions-group {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .grid-row .grid-move-btn,
+  .grid-row .grid-drag-handle,
+  .grid-row .grid-remove-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+  
+  /* Hide notes on mobile */
+  .grid-row .col-notes {
+    display: none !important;
+  }
+  
+  /* Add row button full width */
+  .add-row-btn {
+    width: 100%;
+  }
+  
+  /* Wizard full screen */
+  #pdf-wizard .wizard-content {
+    flex-direction: column;
+  }
+  
+  #pdf-wizard .wizard-sidebar {
+    width: 100%;
+    min-width: 100%;
+    order: -1;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  #pdf-wizard .wizard-main {
+    padding: 20px;
+  }
+  
+  /* Wizard progress compact */
+  .wizard-progress {
+    padding: 12px 16px;
+    overflow-x: auto;
+  }
+  
+  .wizard-step-label {
+    font-size: 0.75rem;
+  }
+  
+  .wizard-step-indicator {
+    width: 28px;
+    height: 28px;
+    font-size: 0.75rem;
+  }
+  
+  /* Modal full screen on mobile */
+  .modal-content {
+    max-width: 100% !important;
+    max-height: 100vh;
+    margin: 0;
+    border-radius: 0;
+  }
+  
+  /* Empty state compact */
+  .empty-state {
+    padding: 48px 24px;
+  }
+  
+  .empty-state-icon svg {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .empty-state-title {
+    font-size: 1.25rem;
+  }
+  
+  .empty-state-hints {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+/* ===== SMALL MOBILE (< 480px) ===== */
+@media (max-width: 480px) {
+  /* Header even more compact */
+  .header-right {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Smaller product cards */
+  .grid-row {
+    grid-template-columns: 60px 1fr;
+    padding: 12px;
+  }
+  
+  .grid-row .grid-product-image {
+    width: 60px;
+    height: 60px;
+  }
+  
+  /* Wizard step labels hidden on very small screens */
+  .wizard-step-label {
+    display: none;
+  }
+  
+  .wizard-step {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+/* ===== TOUCH-FRIENDLY IMPROVEMENTS ===== */
+@media (hover: none) and (pointer: coarse) {
+  /* Larger touch targets */
+  .btn-import-quote,
+  .btn-clear-all,
+  .btn-settings,
+  .btn-create {
+    min-height: 44px;
+  }
+  
+  .grid-move-btn,
+  .grid-drag-handle,
+  .grid-remove-btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  
+  /* Remove hover states on touch */
+  .grid-row:hover {
+    background: inherit;
+  }
+  
+  /* Add active states for touch feedback */
+  .btn-import-quote:active,
+  .btn-clear-all:active,
+  .btn-settings:active,
+  .btn-create:active {
+    transform: scale(0.98);
+  }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .grid-header,
+  .grid-footer,
+  .header-right,
+  .col-actions,
+  .toast-container {
+    display: none !important;
+  }
+  
+  .grid-row {
+    break-inside: avoid;
+  }
+}
+
