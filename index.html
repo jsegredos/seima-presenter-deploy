@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seima Product Selector</title>
+  <link rel="icon" type="image/png" href="/assets/seima-logo-Ij4HpjUg.png">
+  <script type="module" crossorigin src="/assets/main-OjhCqQxu.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-BSZT_cDl.css">
+</head>
+<body>
+  <div class="grid-container">
+    <!-- Navbar - Clean brand header -->
+    <nav class="app-navbar">
+      <div class="navbar-brand">
+        <img src="/assets/seima-logo-Ij4HpjUg.png" alt="SEIMA" class="navbar-logo">
+        <span class="navbar-divider"></span>
+        <span class="navbar-title">Product Presenter</span>
+      </div>
+      <div class="navbar-actions">
+        <!-- User Menu (shown when logged in) -->
+        <div id="user-menu-container" class="user-menu-container" style="display: none; position: relative;">
+          <button id="user-menu-trigger" class="user-menu-trigger">
+            <span id="user-avatar" class="user-avatar">?</span>
+            <span id="user-name-display">User</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div id="user-menu-dropdown" class="user-menu-dropdown" style="display: none;"></div>
+        </div>
+        
+        <!-- Sign In button (shown when logged out) -->
+        <button id="sign-in-btn" class="navbar-link" style="display: none;">Sign In</button>
+        
+        <button id="quick-start-btn" class="navbar-link" title="Show Quick Start Guide">Quick Start</button>
+        <button id="help-btn" class="navbar-link">User Guide</button>
+        <button id="settings-btn" class="navbar-btn" title="Settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </button>
+        <span id="app-version" class="version-text" title="Click to view what's new"></span>
+      </div>
+    </nav>
+
+    <!-- Context Header - Shows current selection info -->
+    <div class="context-header" id="context-header">
+      <div class="context-left">
+        <span class="context-label">Working on:</span>
+        <div class="selection-status" id="selection-status">
+          <span class="status-icon" id="status-icon">○</span>
+          <span class="selection-name" id="selection-name">New Selection</span>
+        </div>
+        <span class="save-indicator" id="save-indicator" style="display: none;">
+          <span class="dot-unsaved"></span> Unsaved
+        </span>
+      </div>
+      <div class="context-right">
+        <button id="load-selection-btn" class="context-btn" title="Browse and open a previously saved selection">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/>
+          </svg>
+          Previous Selections
+        </button>
+        <button id="save-selection-btn" class="context-btn context-btn-primary" title="Save current work for later">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/>
+            <polyline points="17 21 17 13 7 13 7 21"/>
+            <polyline points="7 3 7 8 12 8"/>
+          </svg>
+          Save
+        </button>
+      </div>
+    </div>
+
+    <!-- Toolbar - Actions & Controls -->
+    <div class="app-toolbar">
+      <div class="toolbar-left">
+        <button id="import-file-btn" class="toolbar-btn toolbar-btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Import File
+        </button>
+        <button id="clear-all-btn" class="toolbar-btn toolbar-btn-danger">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+          </svg>
+          Clear All
+        </button>
+      </div>
+      <div class="toolbar-center">
+        <div class="stats-bar">
+          <div class="stat-item">
+            <span class="stat-value" id="total-items">0</span>
+            <span class="stat-label">products</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-value" id="total-rooms">0</span>
+            <span class="stat-label">rooms</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item stat-total">
+            <span class="stat-value" id="total-value">$0</span>
+            <span class="stat-label">total</span>
+          </div>
+        </div>
+      </div>
+      <div class="toolbar-right">
+        <div class="sort-controls">
+          <label for="sort-by">Sort:</label>
+          <select id="sort-by" class="sort-select">
+            <option value="room">Room/Group</option>
+            <option value="order">Entry Order</option>
+            <option value="product">Product Name</option>
+            <option value="code">Product Code</option>
+          </select>
+          <button id="sort-refresh-btn" title="Refresh sort order">⟳</button>
+        </div>
+        <button id="download-btn" class="toolbar-btn toolbar-btn-accent">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          Create PDF
+        </button>
+      </div>
+    </div>
+
+    <!-- Grid Section -->
+    <div class="grid-content">
+      <div id="product-grid-empty" class="empty-state-hero" style="display: none;">
+        <div class="empty-hero-bg"></div>
+        <div class="empty-hero-content">
+          <img src="/assets/seima-logo-Ij4HpjUg.png" alt="" class="empty-hero-logo">
+          <h1 class="empty-hero-title">Build Your Product Presentation</h1>
+          <p class="empty-hero-text">Import a quote, load a saved selection, or add products manually to create a professional PDF presentation.</p>
+          
+          <!-- Smart Entry Points for non-power users -->
+          <div class="entry-options" id="entry-options">
+            <div class="entry-card entry-card-primary" id="entry-continue" style="display: none;">
+              <div class="entry-icon">📂</div>
+              <div class="entry-content">
+                <div class="entry-title">Continue Recent Work</div>
+                <div class="entry-subtitle" id="recent-selection-name">Loading...</div>
+              </div>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </div>
+            
+            <div class="entry-actions">
+              <button class="entry-btn entry-btn-primary" id="entry-import">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Import File
+              </button>
+            <button class="entry-btn" id="entry-load">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/>
+              </svg>
+              Previous Selections
+            </button>
+              <button class="entry-btn" id="entry-new">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                Start Fresh
+              </button>
+            </div>
+          </div>
+          
+          <div class="empty-hero-hints">
+            <span class="hint"><kbd>↵</kbd> Select</span>
+            <span class="hint"><kbd>↑↓</kbd> Navigate</span>
+            <span class="hint"><kbd>Esc</kbd> Close</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="product-grid-container" class="grid-table-container">
+        <div class="grid-table">
+          <div class="grid-header-row">
+            <div class="col-image">Image</div>
+            <div class="col-product">Product</div>
+            <div class="col-room">Room/Group</div>
+            <div class="col-qty">Qty</div>
+            <div class="col-price">Price (EX GST)</div>
+            <div class="col-total">Total (EX GST)</div>
+            <div class="col-notes">Notes</div>
+            <div class="col-actions">Actions</div>
+          </div>
+          <div id="grid-body" class="grid-body">
+            <!-- Grid rows will be dynamically added here -->
+          </div>
+        </div>
+        
+        <div class="grid-footer">
+          <button id="add-row-btn" class="add-row-btn">+ Add Row</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Room Selection Modal for bulk assignment -->
+  <div id="room-assignment-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <h3>Assign to Room</h3>
+      <p>Select a room for the selected products:</p>
+      <select id="bulk-room-select">
+        <option value="Blank">Blank</option>
+      </select>
+      <div class="modal-actions">
+        <button id="room-assign-cancel" class="secondary-btn">Cancel</button>
+        <button id="room-assign-confirm" class="primary-btn">Assign</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- File Import Modal -->
+  <div id="file-import-modal" class="modal" style="display:none;">
+    <div class="modal-content modal-wide">
+      <h3>Import Product File</h3>
+      
+      <!-- Step 1: File Selection -->
+      <div id="file-selection-step">
+        <div id="file-drop-zone" class="file-drop-zone">
+          <p class="drop-zone-text">Drop file here or click to browse</p>
+          <p class="drop-zone-formats">Supported formats: .csv, .xlsx, .xls, .json</p>
+          <input type="file" id="file-input" accept=".csv,.xlsx,.xls,.json" style="display: none;">
+        </div>
+        <div id="selected-file-info" class="file-selected-info" style="display: none;">
+          <strong>Selected:</strong> <span id="selected-file-name"></span>
+        </div>
+        <div class="modal-actions">
+          <button id="import-cancel-btn" class="secondary-btn">Cancel</button>
+          <button id="import-next-btn" class="primary-btn" disabled>Next</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Import Mode Selection -->
+      <div id="import-mode-step" style="display: none;">
+        <p class="step-description">Choose how to import the data:</p>
+        <div class="import-mode-options">
+          <label class="radio-label">
+            <input type="radio" name="import-mode" value="append" checked>
+            <span><strong>Append</strong> - Add to existing selection</span>
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="import-mode" value="override">
+            <span><strong>Override</strong> - Replace all existing selections</span>
+          </label>
+        </div>
+        <div id="override-warning" class="warning-box" style="display: none;">
+          <strong>Warning:</strong> This will delete all your current product selections.
+        </div>
+        <div class="modal-actions">
+          <button id="import-back-btn" class="secondary-btn">Back</button>
+          <button id="import-process-btn" class="primary-btn">Import</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Processing -->
+      <div id="import-processing-step" class="processing-step" style="display: none;">
+        <div class="spinner"></div>
+        <p>Processing file...</p>
+      </div>
+
+      <!-- Step 4: Results -->
+      <div id="import-results-step" style="display: none;">
+        <h4 class="success-title">Import Complete</h4>
+        <div id="import-summary" class="import-summary"></div>
+        <div id="not-found-products" class="not-found-section" style="display: none;">
+          <h5 class="not-found-title">Products added with placeholder information:</h5>
+          <div id="not-found-list" class="not-found-list"></div>
+        </div>
+        <div class="modal-actions">
+          <button id="import-close-btn" class="primary-btn">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PDF Download Modal (Legacy fallback - Wizard is the primary interface) -->
+  <div id="pdf-email-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <form id="pdf-email-form" autocomplete="off">
+        <h3>PDF Report Settings</h3>
+        <h4 class="form-section-title">Title page details</h4>
+        
+        <label for="user-name">Name <span class="label-optional">(optional)</span></label>
+        <input type="text" id="user-name" name="user-name" maxlength="60">
+        
+        <label for="user-project">Project <span class="label-optional">(optional)</span></label>
+        <input type="text" id="user-project" name="user-project" maxlength="60">
+        
+        <label for="user-address">Address <span class="label-optional">(optional)</span></label>
+        <input type="text" id="user-address" name="user-address" maxlength="100">
+        
+        <label for="user-email">Email Address <span class="label-optional">(optional)</span></label>
+        <input type="email" id="user-email" name="user-email" maxlength="100">
+        
+        <label for="user-telephone">Phone <span class="label-optional">(optional)</span></label>
+        <input type="tel" id="user-telephone" name="user-telephone" maxlength="50">
+        
+        <div class="checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="exclude-prices" name="exclude-prices">
+            <span>Exclude prices from PDF</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="exclude-qty" name="exclude-qty">
+            <span>Exclude Price and Qty from PDF</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="exclude-long-description" name="exclude-long-description">
+            <span>Exclude long descriptions from PDF</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="include-gst" name="include-gst">
+            <span>Include GST in pricing (add 10%)</span>
+          </label>
+        </div>
+        
+        <h4 class="form-section-title">Customer Logo</h4>
+        <input type="file" id="customer-logo-upload" accept="image/png, image/jpeg">
+        <button type="button" id="customer-logo-clear" class="secondary-btn btn-sm">Clear Logo</button>
+        <div id="customer-logo-preview" class="logo-preview"></div>
+        
+        <h4 class="form-section-title">Presentation Customisation</h4>
+        <div class="tip-tail-section">
+          <label for="tip-pdf-select">Prepend PDF (Cover Pages):</label>
+          <select id="tip-pdf-select"></select>
+          <input type="file" id="tip-pdf-upload" accept="application/pdf">
+          <button type="button" id="tip-pdf-clear" class="secondary-btn btn-sm">Clear</button>
+          <div id="tip-pdf-selected" class="file-status"></div>
+        </div>
+        <div class="tip-tail-section">
+          <label for="tail-pdf-select">Append PDF (Appendix):</label>
+          <select id="tail-pdf-select"></select>
+          <input type="file" id="tail-pdf-upload" accept="application/pdf">
+          <button type="button" id="tail-pdf-clear" class="secondary-btn btn-sm">Clear</button>
+          <div id="tail-pdf-selected" class="file-status"></div>
+        </div>
+        
+        <div class="modal-actions">
+          <button type="button" id="pdf-email-cancel" class="secondary-btn">Cancel</button>
+          <button type="submit" id="pdf-email-send" class="primary-btn">Download PDF</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Clear All Confirmation Modal -->
+  <div id="clear-all-modal" class="modal" style="display:none;">
+    <div class="modal-content modal-confirm">
+      <h3>Start Fresh?</h3>
+      <p class="confirm-text">This will remove all products from your current selection. This action cannot be undone.</p>
+      <div class="clear-options">
+        <label class="checkbox-label">
+          <input type="checkbox" id="clear-customer-details" checked>
+          <span>Also clear customer details (name, project, address)</span>
+        </label>
+      </div>
+      <div class="modal-actions">
+        <button id="clear-all-cancel" class="secondary-btn">Cancel</button>
+        <button id="clear-all-confirm" class="btn-clear-all">Clear & Start Fresh</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="settings-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <h3>Settings</h3>
+      <div class="settings-section">
+        <h4 class="form-section-title">Staff Contact Details</h4>
+        <p class="section-description">These details will appear on the presentation title page.</p>
+        
+        <label for="staff-name">Name</label>
+        <input type="text" id="staff-name" name="staff-name" maxlength="60">
+
+        <label for="staff-position">Position</label>
+        <input type="text" id="staff-position" name="staff-position" maxlength="60">
+
+        <label for="staff-email">Email</label>
+        <input type="email" id="staff-email" name="staff-email" maxlength="100">
+        
+        <label for="staff-telephone">Phone</label>
+        <input type="tel" id="staff-telephone" name="staff-telephone" maxlength="50">
+      </div>
+      <button id="refresh-catalog-btn" class="btn-refresh">🔄 Refresh Product Catalog</button>
+      <div class="modal-actions">
+        <button id="settings-cancel" class="secondary-btn">Cancel</button>
+        <button id="settings-save" class="primary-btn">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Changelog Modal -->
+  <div id="changelog-modal" class="modal" style="display:none;">
+    <div class="modal-content modal-wide">
+      <h3 class="changelog-title">
+        What's New in <span id="changelog-version" class="version-highlight"></span>
+      </h3>
+      <div id="changelog-content" class="changelog-content">
+        <!-- Changelog content will be populated here -->
+      </div>
+      <div class="modal-actions">
+        <button id="changelog-close" class="primary-btn">Got it!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- User Guide Modal -->
+  <div id="user-guide-modal" class="modal" style="display:none;">
+    <div class="modal-content modal-fullscreen">
+      <div class="user-guide-header">
+        <h2>User Guide</h2>
+        <button id="user-guide-close" class="modal-close-btn" title="Close">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="user-guide-content" id="user-guide-content">
+        <!-- Content will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- PDF Processing Spinner -->
+  <div id="pdf-spinner" class="spinner-overlay" style="display:none;">
+    <div class="spinner-content">
+      <div class="spinner"></div>
+      <p>Generating PDF...</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+     <script>
+     document.addEventListener('DOMContentLoaded', function() {
+       var priceBox = document.getElementById('exclude-prices');
+       var qtyBox = document.getElementById('exclude-qty');
+       var includeGstBox = document.getElementById('include-gst');
+       
+       if (priceBox && qtyBox) {
+         // Mutual exclusion between price and qty options
+         priceBox.addEventListener('change', function() {
+           if (priceBox.checked) {
+             qtyBox.checked = false;
+             // If excluding all prices, can't include GST pricing
+             if (includeGstBox) includeGstBox.checked = false;
+           }
+         });
+         qtyBox.addEventListener('change', function() {
+           if (qtyBox.checked) {
+             priceBox.checked = false;
+             // If excluding all prices, can't include GST pricing
+             if (includeGstBox) includeGstBox.checked = false;
+           }
+         });
+       }
+       
+       // Handle include GST option conflicts
+       if (includeGstBox && priceBox && qtyBox) {
+         includeGstBox.addEventListener('change', function() {
+           if (includeGstBox.checked) {
+             // If including GST prices, can't exclude all prices
+             priceBox.checked = false;
+             qtyBox.checked = false;
+           }
+         });
+       }
+     });
+   </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<div class="product-details-container">
+  <div class="top-bar">
+    <button class="back-btn" id="back-to-grid" aria-label="Back to Grid">&#60;</button>
+    <img src="assets/seima-logo.png" alt="SEIMA Logo" class="page-logo">
+  </div>
+  <div class="product-image-wrap">
+    <img id="product-image" src="" alt="Product Image" onerror="this.src='assets/no-image.png'">
+  </div>
+  <h2 id="product-name"></h2>
+  <div class="product-meta">
+    <span id="product-code"></span>
+    <span id="product-price-inline"></span>
+  </div>
+  <div class="product-description" id="product-description"></div>
+  <div id="variant-select-row" class="variant-select-row" style="width:100%;margin-bottom:8px;display:none;">
+    <label for="variant-select" style="font-size:1.01rem;color:#444;font-weight:500;margin-bottom:4px;display:block;">Other Options:</label>
+    <select id="variant-select" style="width:100%;font-size:1.08rem;padding:12px 16px;border-radius:14px;border:1.5px solid #e0e0e0;background:#f8f8fa;box-sizing:border-box;"></select>
+  </div>
+  <div class="product-details-row">
+    <div class="room-select-field">
+      <label for="room-select">Room:</label>
+      <select id="room-select"></select>
+    </div>
+    <div class="quantity-field">
+      <label for="product-quantity">Qty:</label>
+      <select id="product-quantity">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </select>
+    </div>
+  </div>
+  <div class="annotation-field">
+    <div class="annotation-label-row">
+      <label for="product-annotation">Add Notes (Optional):</label>
+      <span id="annotation-char-count" class="annotation-char-count">0/140</span>
+    </div>
+    <textarea id="product-annotation" rows="3" maxlength="140" placeholder="E.g., Quantity needed, special requirements..." onkeydown="if(event.key==='Enter'){event.preventDefault();}"></textarea>
+  </div>
+  <div class="product-links">
+    <a href="#" id="diagram-link" target="_blank">Diagram</a>
+    <a href="#" id="datasheet-link" target="_blank">Datasheet</a>
+    <a href="#" id="website-link" target="_blank">Web</a>
+  </div>
+  <button class="primary-btn" id="add-to-room-btn">Add to Room</button>
+</div> 
