@@ -1,0 +1,14 @@
+2.3.0 - Enhanced UX: Previous Selections now always fetches fresh data from cloud (no caching), improved reliability for multi-user environments
+2.2.0 - User Authentication & Security: Staff login system with Google Sheets backend, selections filtered by logged-in user, password reset via EmailJS, session management with Remember Me, Standard/Upgrade room defaults
+2.1.0 - Major UX Overhaul: Moved Save/Load to main toolbar, added context header with selection status, smart home view with recent selections and entry points, auto-save after 30s, collapsible advanced PDF options, progress stepper in wizard, first-run onboarding overlay
+2.0.1 - Excel import fix: Added metadata extraction for Excel files, fixed JSON reconstruction when metadata split across cells due to unescaped commas
+2.0.0 - Google Sheets Integration: Save and load selections to Google Sheets, staff-filtered access, Save/Load buttons in PDF wizard, replace/merge load options, save-as-new/update support, soft-delete and restore
+1.11.2 - Search & UX improvements: Prioritised search scoring (code > name > description), multi-word AND search, exact match auto-selection with Enter key, Add Row inherits last room and scrolls to view, drag & drop fixes with cross-room support
+1.11.1 - PDF wizard improvements: Separated Cover and Appendix pages into distinct sections, fixed localStorage quota error for custom PDF uploads by passing data in-memory
+1.11.0 - Import system overhaul: Configurable product code validation (regex), .xls file support, configurable column patterns, file size validation, refactored shared product creation
+1.10.1 - Seima Scanner CSV import: Added metadata parsing to auto-populate customer details, project info, and staff contact from exported CSV files
+1.10.0 - Seima Scanner import: Added support for importing selection records with Products JSON column, auto-populates customer info (name, email, phone, project, address), auto-creates custom rooms from import
+1.9.4 - UI refinements: Reduced product grid row heights for better screen density, increased product image max-height to 60px, reduced spacing between columns on PDF title page
+1.9.3 - Major pricing fixes: User-edited grid prices now correctly appear in PDF/CSV exports, added comma formatting for currency, improved column positioning, fixed GST calculations
+1.9.2 - Cleanup: Removed unused legacy pricelist.csv file, app now uses only live Google Sheets data
+1.9.1 - UI improvements: enhanced PDF cosmetics (room headers, URL links), added staff position field, fixed tip/tail file discovery, removed hardcoded fallbacks
