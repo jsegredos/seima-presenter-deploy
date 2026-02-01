@@ -2674,7 +2674,7 @@ This can be restored later.`))try{const t=await presentationLoader.deleteSelecti
     <div class="guide-footer">
       <div class="guide-footer-brand">
         <img src="assets/seima-logo.png" alt="Seima" class="guide-footer-logo">
-        <span class="guide-footer-tagline">Beautiful bathrooms & kitchens</span>
+        <span class="guide-footer-tagline">Build with Confidence</span>
       </div>
       <p class="guide-footer-copyright">© ${new Date().getFullYear()} Seima. All rights reserved.</p>
     </div>
