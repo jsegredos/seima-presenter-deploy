@@ -1,3 +1,7 @@
+2.4.3 - PDF Refactor: Consolidated PDF rendering into shared @seima/core module, fixed header logo aspect ratio, thinner footer for better layout balance
+2.4.2 - WELS Star Rating: Display WELS star rating in PDF and CSV exports, "Build with Confidence" tagline on cover page, fixed CSV parser for multi-line headers, improved product search for numeric terms
+2.4.1 - Quote import: Unit price from Adjusted Amount ÷ Min Order Quantity (nett of discounts) for quote grid files
+2.4.0 - UX Improvements: Updated tagline to "Build with Confidence", documentation updates, onboarding guide refinements
 2.3.0 - Enhanced UX: Previous Selections now always fetches fresh data from cloud (no caching), improved reliability for multi-user environments
 2.2.0 - User Authentication & Security: Staff login system with Google Sheets backend, selections filtered by logged-in user, password reset via EmailJS, session management with Remember Me, Standard/Upgrade room defaults
 2.1.0 - Major UX Overhaul: Moved Save/Load to main toolbar, added context header with selection status, smart home view with recent selections and entry points, auto-save after 30s, collapsible advanced PDF options, progress stepper in wizard, first-run onboarding overlay
