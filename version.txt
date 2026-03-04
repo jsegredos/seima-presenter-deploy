@@ -1,18 +1,12 @@
-2.4.3 - PDF Refactor: Consolidated PDF rendering into shared @seima/core module, fixed header logo aspect ratio, thinner footer for better layout balance
-2.4.2 - WELS Star Rating: Display WELS star rating in PDF and CSV exports, "Build with Confidence" tagline on cover page, fixed CSV parser for multi-line headers, improved product search for numeric terms
-2.4.1 - Quote import: Unit price from Adjusted Amount ÷ Min Order Quantity (nett of discounts) for quote grid files
-2.4.0 - UX Improvements: Updated tagline to "Build with Confidence", documentation updates, onboarding guide refinements
-2.3.0 - Enhanced UX: Previous Selections now always fetches fresh data from cloud (no caching), improved reliability for multi-user environments
-2.2.0 - User Authentication & Security: Staff login system with Google Sheets backend, selections filtered by logged-in user, password reset via EmailJS, session management with Remember Me, Standard/Upgrade room defaults
-2.1.0 - Major UX Overhaul: Moved Save/Load to main toolbar, added context header with selection status, smart home view with recent selections and entry points, auto-save after 30s, collapsible advanced PDF options, progress stepper in wizard, first-run onboarding overlay
-2.0.1 - Excel import fix: Added metadata extraction for Excel files, fixed JSON reconstruction when metadata split across cells due to unescaped commas
-2.0.0 - Google Sheets Integration: Save and load selections to Google Sheets, staff-filtered access, Save/Load buttons in PDF wizard, replace/merge load options, save-as-new/update support, soft-delete and restore
-1.11.2 - Search & UX improvements: Prioritised search scoring (code > name > description), multi-word AND search, exact match auto-selection with Enter key, Add Row inherits last room and scrolls to view, drag & drop fixes with cross-room support
-1.11.1 - PDF wizard improvements: Separated Cover and Appendix pages into distinct sections, fixed localStorage quota error for custom PDF uploads by passing data in-memory
-1.11.0 - Import system overhaul: Configurable product code validation (regex), .xls file support, configurable column patterns, file size validation, refactored shared product creation
-1.10.1 - Seima Scanner CSV import: Added metadata parsing to auto-populate customer details, project info, and staff contact from exported CSV files
-1.10.0 - Seima Scanner import: Added support for importing selection records with Products JSON column, auto-populates customer info (name, email, phone, project, address), auto-creates custom rooms from import
-1.9.4 - UI refinements: Reduced product grid row heights for better screen density, increased product image max-height to 60px, reduced spacing between columns on PDF title page
-1.9.3 - Major pricing fixes: User-edited grid prices now correctly appear in PDF/CSV exports, added comma formatting for currency, improved column positioning, fixed GST calculations
-1.9.2 - Cleanup: Removed unused legacy pricelist.csv file, app now uses only live Google Sheets data
-1.9.1 - UI improvements: enhanced PDF cosmetics (room headers, URL links), added staff position field, fixed tip/tail file discovery, removed hardcoded fallbacks
+3.0.0 - Unified Platform: Single version across Presenter & Scanner, shared @seima/core PDF rendering, consolidated deployment pipeline
+2.9.0 - Documentation & Guides: Interactive User Guide for Scanner, Presenter onboarding guide, "Build with Confidence" tagline across all outputs
+2.8.0 - Fixes & Polish: WELS star ratings display, CSV parser for multi-line headers, product search scoring, header logo aspect ratio, thinner footer
+2.7.0 - PDF Optimisation: Parallel image preloading, compression, image deduplication, smart PNG/JPEG format selection, faster generation
+2.6.0 - Previous Selections: Load and edit previous customer selections, settings redesign, multi-word search, CSV export with metadata
+2.5.0 - OCR Scanning: Client-side text recognition via Tesseract.js, product label reading, spatial grouping, fuzzy matching, Web Worker support
+2.4.0 - Lead Management: Server-side builder/merchant lists, duplicate prevention, real-time suggestions, lead tracking and form improvements
+2.3.0 - Selection Recording: Comprehensive tracking to Google Sheets, mobile drag & drop reordering, email template redesign
+2.2.0 - Authentication & Security: Staff login with Google Sheets backend, password reset via EmailJS, session management with Remember Me
+2.1.0 - UX Overhaul: Smart home view, auto-save, context header with selection status, progress stepper, first-run onboarding overlay
+2.0.0 - Cloud Integration: Save/load selections to Google Sheets, staff-filtered access, replace/merge options, configurable imports (.xls/.csv)
+1.0.0 - Foundation: Product catalog from Google Sheets, barcode scanning, PDF generation with cover pages, email system, mobile-optimised UI

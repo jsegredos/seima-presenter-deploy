@@ -14,7 +14,7 @@
     }
   }
   </script>
-  <script type="module" crossorigin src="/assets/main-DNo2bIzD.js"></script>
+  <script type="module" crossorigin src="/assets/main-C21wU5gc.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/main-BSZT_cDl.css">
 </head>
 <body>
@@ -441,15 +441,13 @@
 
   <!-- Changelog Modal -->
   <div id="changelog-modal" class="modal" style="display:none;">
-    <div class="modal-content modal-wide">
-      <h3 class="changelog-title">
-        What's New in <span id="changelog-version" class="version-highlight"></span>
+    <div class="modal-content" style="max-width: 600px; max-height: 80vh; overflow-y: auto;">
+      <h3 style="margin: 0 0 20px 0; color: #333; display: flex; justify-content: space-between; align-items: center;">
+        Changelog
+        <button id="changelog-close" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #888;">&times;</button>
       </h3>
-      <div id="changelog-content" class="changelog-content">
-        <!-- Changelog content will be populated here -->
-      </div>
-      <div class="modal-actions">
-        <button id="changelog-close" class="primary-btn">Got it!</button>
+      <div id="changelog-content">
+        <!-- Changelog content will be populated by JavaScript -->
       </div>
     </div>
   </div>
