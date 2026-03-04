@@ -2486,10 +2486,10 @@ This can be restored later.`))try{const t=await presentationLoader.deleteSelecti
     </div>
     
     <div class="guide-section">
-      <h3>Login & Authentication</h3>
-      <p>You can browse products and create PDFs without logging in. However, to <strong>save or load selections</strong> from the cloud, you'll need to log in.</p>
+      <h3>Sign In</h3>
+      <p>You can browse products and create selections without signing in. However, you must sign in to <strong>generate PDFs</strong>, <strong>export CSVs</strong>, or <strong>save/load selections</strong> from the cloud.</p>
       <ul>
-        <li>Click <strong>Login</strong> in the navigation bar to sign in or create an account</li>
+        <li>Click <strong>Sign In</strong> in the navigation bar to sign in or create an account</li>
         <li>Your saved selections are private—only you can see them</li>
         <li>Use <strong>Forgot Password</strong> if you need to reset your password</li>
       </ul>
@@ -2503,7 +2503,7 @@ This can be restored later.`))try{const t=await presentationLoader.deleteSelecti
       <h3>Saving & Loading Selections</h3>
       
       <h4>Saving Your Work</h4>
-      <p>Click the <strong>Save</strong> button in the context bar to save your current selection. You'll be prompted to log in if you haven't already. Saved selections include:</p>
+      <p>Click the <strong>Save</strong> button in the context bar to save your current selection. You'll be prompted to sign in if you haven't already. Saved selections include:</p>
       <ul>
         <li>All products with quantities, prices, and notes</li>
         <li>Customer details (name, project, address)</li>
