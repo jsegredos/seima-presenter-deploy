@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fred - Learning Review</title>
+  <link rel="icon" type="image/png" href="/assets/seima-logo-Ij4HpjUg.png">
+  <script type="importmap">
+  {
+    "imports": {
+      "@seima/core": "/core/js/index.js"
+    }
+  }
+  </script>
+  <script type="module" crossorigin src="/assets/fredReview-CBvJXDe5.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="stylesheet" crossorigin href="/assets/design-system-in-MCC0p.css">
+  <link rel="stylesheet" crossorigin href="/assets/fred-review-BVZUiqJI.css">
+</head>
+<body>
+  <div class="fr-app">
+
+    <nav class="fr-navbar">
+      <div class="fr-navbar-brand">
+        <a href="../index.html" class="fr-navbar-back" title="Back to Presenter">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </a>
+        <span class="fr-navbar-divider"></span>
+        <span class="fr-navbar-title">Fred Learning Review</span>
+      </div>
+      <div class="fr-navbar-actions">
+        <a href="fred-review-guide.html" class="fr-navbar-btn" title="How to review and curate Fred's learning">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          Guide
+        </a>
+        <a href="https://dash.cloudflare.com/6fb5df1b168e2c538fbfc7b6f31b390f/workers/kv/namespaces/4118f16373a244178acd1da59a04e208"
+           target="_blank" rel="noopener" class="fr-navbar-btn" title="Open Cloudflare KV dashboard to edit raw data">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          Cloudflare KV
+        </a>
+        <button class="fr-navbar-btn" id="fr-refresh-btn" title="Refresh data">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+          Refresh
+        </button>
+      </div>
+    </nav>
+
+    <div class="fr-content">
+
+      <!-- Summary cards -->
+      <div class="fr-summary" id="fr-summary">
+        <div class="fr-card fr-card--up">
+          <div class="fr-card-value" id="fr-total-up">--</div>
+          <div class="fr-card-label">Helpful</div>
+        </div>
+        <div class="fr-card fr-card--down">
+          <div class="fr-card-value" id="fr-total-down">--</div>
+          <div class="fr-card-label">Not Helpful</div>
+        </div>
+        <div class="fr-card fr-card--rate">
+          <div class="fr-card-value" id="fr-rate">--%</div>
+          <div class="fr-card-label">Satisfaction</div>
+        </div>
+        <div class="fr-card fr-card--total">
+          <div class="fr-card-value" id="fr-total-feedback">--</div>
+          <div class="fr-card-label">Total Feedback</div>
+        </div>
+      </div>
+
+      <div class="fr-columns">
+
+        <!-- Left: Bad answers -->
+        <div class="fr-panel">
+          <div class="fr-panel-header">
+            <h2>Thumbs-Down Responses</h2>
+            <span class="fr-panel-count" id="fr-down-count"></span>
+          </div>
+          <div class="fr-panel-subtitle">Most recent responses users marked as unhelpful</div>
+          <div class="fr-list" id="fr-down-list">
+            <div class="fr-empty">No feedback yet. Data will appear once users rate Fred's responses.</div>
+          </div>
+        </div>
+
+        <!-- Right column -->
+        <div class="fr-sidebar">
+
+          <!-- Top questions -->
+          <div class="fr-panel">
+            <div class="fr-panel-header">
+              <h2>Top Questions</h2>
+            </div>
+            <div class="fr-panel-subtitle">Most frequently asked questions across all users</div>
+            <div class="fr-list" id="fr-questions-list">
+              <div class="fr-empty">No question data yet.</div>
+            </div>
+          </div>
+
+          <!-- All recent feedback -->
+          <div class="fr-panel">
+            <div class="fr-panel-header">
+              <h2>Recent Feedback</h2>
+              <div class="fr-filter-row">
+                <button class="fr-filter-btn active" data-filter="all">All</button>
+                <button class="fr-filter-btn" data-filter="up">Up</button>
+                <button class="fr-filter-btn" data-filter="down">Down</button>
+              </div>
+            </div>
+            <div class="fr-list" id="fr-all-list">
+              <div class="fr-empty">No feedback entries yet.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="fr-loading" id="fr-loading">
+      <div class="fr-spinner"></div>
+      <span>Loading feedback data...</span>
+    </div>
+
+  </div>
+
+</body>
+</html>

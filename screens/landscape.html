@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landscape - Category Intelligence</title>
+  <link rel="icon" type="image/png" href="/assets/seima-logo-Ij4HpjUg.png">
+  <script type="importmap">
+  {
+    "imports": {
+      "@seima/core": "/core/js/index.js"
+    }
+  }
+  </script>
+  <script type="module" crossorigin src="/assets/landscape-ClTW0MkH.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="/assets/auth-ui-CY54VKXI.js">
+  <link rel="modulepreload" crossorigin href="/assets/competitor-service-CvmwPB8A.js">
+  <link rel="modulepreload" crossorigin href="/assets/product-synonyms-iJFplttQ.js">
+  <link rel="modulepreload" crossorigin href="/assets/data-layer-yXBKX-Af.js">
+  <link rel="modulepreload" crossorigin href="/assets/config-CRMdh1ye.js">
+  <link rel="stylesheet" crossorigin href="/assets/landscape-Blyl45Fs.css">
+  <link rel="stylesheet" crossorigin href="/assets/design-system-in-MCC0p.css">
+</head>
+<body>
+  <div class="ls-app">
+
+    <!-- Navbar -->
+    <nav class="ls-navbar">
+      <div class="ls-navbar-brand">
+        <a href="../index.html" class="ls-navbar-back" title="Back to Presenter">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </a>
+        <span class="ls-navbar-divider"></span>
+        <span class="ls-navbar-title">Landscape</span>
+        <span class="ls-navbar-subtitle">Category Intelligence</span>
+      </div>
+      <div class="ls-navbar-center">
+        <div class="ls-tabs" id="ls-tabs">
+          <button class="ls-tab active" data-view="matrix">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+            Matrix
+          </button>
+          <button class="ls-tab" data-view="gaps">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            Gaps
+          </button>
+          <button class="ls-tab" data-view="constellation">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="2"/><circle cx="6" cy="6" r="1.5"/><circle cx="18" cy="6" r="1.5"/><circle cx="6" cy="18" r="1.5"/><circle cx="18" cy="18" r="1.5"/><line x1="12" y1="10" x2="7" y2="7"/><line x1="12" y1="10" x2="17" y2="7"/><line x1="12" y1="14" x2="7" y2="17"/><line x1="12" y1="14" x2="17" y2="17"/></svg>
+            Constellation
+          </button>
+          <button class="ls-tab" data-view="canvas">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M9 2v20"/><path d="M2 9h20"/></svg>
+            Canvas
+          </button>
+        </div>
+      </div>
+      <div class="ls-navbar-actions">
+        <div class="ls-progress-wrap" id="ls-progress-wrap" style="display:none;">
+          <div class="ls-progress-bar"><div class="ls-progress-fill" id="ls-progress-fill"></div></div>
+          <span class="ls-progress-text" id="ls-progress-text"></span>
+        </div>
+        <button class="ls-navbar-btn ls-navbar-btn--label" id="ls-guide-btn" title="User Guide">User Guide</button>
+      </div>
+    </nav>
+
+    <!-- Toolbar -->
+    <div class="ls-toolbar" id="ls-toolbar">
+      <div class="ls-toolbar-row">
+        <div class="ls-competitor-select" id="ls-competitor-select">
+          <!-- Populated by JS -->
+        </div>
+        <div class="ls-toolbar-spacer"></div>
+        <div class="ls-view-controls" id="ls-view-controls">
+          <!-- View-specific controls injected here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- View containers -->
+    <div class="ls-views">
+      <div class="ls-view active" id="ls-view-matrix">
+        <div class="ls-view-loading" id="ls-matrix-loading">
+          <div class="ls-spinner"></div>
+          <div class="ls-loading-text">Loading category data...</div>
+        </div>
+        <div class="ls-matrix-container" id="ls-matrix-container" style="display:none;"></div>
+      </div>
+
+      <div class="ls-view" id="ls-view-gaps">
+        <div class="ls-gaps-empty" id="ls-gaps-empty">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <div class="ls-empty-title">Select a category to analyze</div>
+          <div class="ls-empty-sub">Click a cell in the Matrix view or choose a category from the toolbar to see side-by-side gap analysis.</div>
+        </div>
+        <div class="ls-gaps-container" id="ls-gaps-container" style="display:none;"></div>
+      </div>
+
+      <div class="ls-view" id="ls-view-constellation">
+        <div class="ls-constellation-container" id="ls-constellation-container"></div>
+      </div>
+
+      <div class="ls-view" id="ls-view-canvas">
+        <div class="ls-canvas-container" id="ls-canvas-container"></div>
+      </div>
+    </div>
+
+    <!-- Toast container for notifications -->
+    <div class="ls-toast-container" id="ls-toast-container"></div>
+
+    <!-- Product Detail Modal -->
+    <div class="ls-modal-overlay" id="ls-product-modal" style="display:none;">
+      <div class="ls-modal-backdrop" id="ls-modal-backdrop"></div>
+      <div class="ls-modal">
+        <button class="ls-modal-close" id="ls-modal-close">&times;</button>
+        <div class="ls-modal-body" id="ls-modal-body"></div>
+      </div>
+    </div>
+
+    <!-- User Guide Panel -->
+    <div class="ls-guide-overlay" id="ls-guide-overlay" style="display:none;">
+      <div class="ls-guide-overlay-bg" id="ls-guide-overlay-bg"></div>
+      <div class="ls-guide-panel" id="ls-guide-panel">
+        <div class="ls-guide-header">
+          <h2>Landscape User Guide</h2>
+          <div class="ls-guide-header-actions">
+            <button class="ls-guide-download-btn" id="ls-guide-download" title="Download as PDF">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download PDF
+            </button>
+            <button class="ls-guide-close" id="ls-guide-close" title="Close">&times;</button>
+          </div>
+        </div>
+        <div class="ls-guide-body" id="ls-guide-body">
+
+          <section class="ls-guide-section">
+            <p><strong>Landscape</strong> is a category intelligence tool for analyzing Seima products against competitors. It has four views, each designed for a different level of analysis.</p>
+          </section>
+
+          <section class="ls-guide-section">
+            <h3>Getting Started</h3>
+            <p>When you open Landscape, it loads the Seima product catalog and all competitor data (products and matches). This takes a few seconds &mdash; you'll see a progress bar in the top right.</p>
+            <p><strong>Competitor chips</strong> appear in the toolbar below the navbar. All competitors are active by default. Click a chip to toggle it off (it dims). Click again to bring it back. At least one competitor must always be active. The active competitors affect all four views.</p>
+          </section>
+
+          <section class="ls-guide-section">
+            <h3>View 1: Matrix</h3>
+            <p>A grid where rows are product categories (Basins, Tapware, Toilets, etc.) and columns are brands (Seima + your selected competitors). Each cell shows product counts and match status.</p>
+
+            <h4>How to read a cell</h4>
+            <ul>
+              <li>The large number is the total product count for that brand in that category</li>
+              <li>Below it: <code>8✓ 5⏳ 15—</code> means 8 verified matches, 5 AI-suggested matches waiting for review, 15 with no match</li>
+              <li>The thin colored bar shows verification progress (green = verified, amber = pending)</li>
+            </ul>
+
+            <h4>Coverage column</h4>
+            <p>The far-right column shows Seima's product count as a percentage of the largest competitor's count in that row. Green = 80%+, amber = 50–79%, red = below 50%.</p>
+
+            <h4>Toggle modes (top right)</h4>
+            <ul>
+              <li><strong>Count</strong> &mdash; default, product counts with match status</li>
+              <li><strong>Coverage</strong> &mdash; counts with verification percentage</li>
+              <li><strong>Avg Price</strong> &mdash; average price per cell with product count</li>
+            </ul>
+
+            <h4>Drill down</h4>
+            <p>Click any cell to jump to the Gap Analysis view, pre-filtered to that category and competitor.</p>
+
+            <h4>What to look for</h4>
+            <ul>
+              <li>Red coverage percentages &mdash; categories where competitors significantly out-range you</li>
+              <li>Cells with many pending (⏳) matches &mdash; validation work that needs doing</li>
+              <li>Categories where Seima has products but competitors show 0 &mdash; your unique strengths</li>
+            </ul>
+          </section>
+
+          <section class="ls-guide-section">
+            <h3>View 2: Gaps</h3>
+            <p>A side-by-side comparison of Seima products versus one or more competitors within a single category. Seima products are on the left rail, competitor products on the right.</p>
+
+            <h4>Getting there</h4>
+            <p>Either click a cell in the Matrix, or select a category from the dropdown in the toolbar.</p>
+
+            <h4>Summary stats</h4>
+            <p>The header shows: total Seima products, matched count, unique count (no competitor equivalent), and gap count (competitor products with no Seima equivalent).</p>
+
+            <h4>Product card badges</h4>
+            <ul>
+              <li><strong style="color:#166534;">Matched</strong> (green) &mdash; this Seima product has a verified competitor match</li>
+              <li><strong style="color:#1e40af;">Unique</strong> (blue) &mdash; no competitor matches this product. This is our differentiator</li>
+              <li><strong style="color:#8b2920;">Gap</strong> (red) &mdash; this competitor product has no Seima match. This is an opportunity</li>
+              <li><strong style="color:#7c4a1e;">AI</strong> (amber) &mdash; AI has suggested a match but it hasn't been verified yet</li>
+            </ul>
+
+            <h4>Price comparison</h4>
+            <p>For matched products, you'll see: <code>Seima: $389 (+12%)</code> &mdash; meaning Seima is 12% more expensive than the competitor product.</p>
+
+            <h4>Inline validation</h4>
+            <p>AI-suggested matches show <strong>Verify</strong> and <strong>Reject</strong> buttons. Click to validate without leaving the page. The view refreshes automatically.</p>
+
+            <h4>What to look for</h4>
+            <ul>
+              <li>Red "Gap" badges on competitor products &mdash; products they offer that we don't</li>
+              <li>Blue "Unique" badges on Seima products &mdash; our competitive advantages</li>
+              <li>Price comparison trends &mdash; are we consistently over or under-priced?</li>
+              <li>Amber AI matches that need verification</li>
+            </ul>
+          </section>
+
+          <section class="ls-guide-section">
+            <h3>View 3: Constellation</h3>
+            <p>A force-directed graph where every product is a dot and matched products are connected by lines. Products cluster by category naturally.</p>
+
+            <h4>Reading the graph</h4>
+            <ul>
+              <li>Each <strong>dot</strong> is a product. Colour = brand (Seima is copper/gold; competitors have distinct colours shown in the legend)</li>
+              <li><strong>Lines</strong> between dots = matches. Solid green = verified. Dashed amber = AI-suggested</li>
+              <li>The physics simulation pulls matched products together and pushes unmatched ones apart</li>
+              <li><strong>Category labels</strong> appear as large faint text in the background</li>
+            </ul>
+
+            <h4>Interactions</h4>
+            <ul>
+              <li><strong>Zoom</strong> &mdash; scroll wheel or +/&minus; buttons (top right)</li>
+              <li><strong>Pan</strong> &mdash; click and drag empty space</li>
+              <li><strong>Drag a node</strong> &mdash; reposition it (it springs back when released)</li>
+              <li><strong>Hover</strong> over a dot to see product details (image, name, brand, code, price)</li>
+              <li><strong>Filter by category</strong> &mdash; use the dropdown in the toolbar</li>
+            </ul>
+
+            <h4>What to look for</h4>
+            <ul>
+              <li><strong>Dense clusters</strong> with mixed brand colours = heavy competition</li>
+              <li><strong>Isolated competitor dots</strong> with no nearby Seima dots = white space (gaps)</li>
+              <li><strong>Seima dots surrounded by competitor colours</strong> = well-covered categories</li>
+              <li><strong>Connected dots far apart</strong> = potentially bad cross-category matches</li>
+            </ul>
+          </section>
+
+          <section class="ls-guide-section">
+            <h3>View 4: Canvas</h3>
+            <p>A freeform workspace where you create named groups and drag products into them. It's a whiteboard for category planning sessions.</p>
+
+            <h4>Product tray (left sidebar)</h4>
+            <ul>
+              <li>Search products by name or code</li>
+              <li>Filter by brand using the filter chips</li>
+              <li>Products show a small brand-coloured dot for identification</li>
+            </ul>
+
+            <h4>Creating groups</h4>
+            <ul>
+              <li>Click <strong>+ New Group</strong> in the toolbar or the floating bar</li>
+              <li>Or <strong>drag a product from the tray onto empty workspace</strong> &mdash; a new group is created automatically at the drop position</li>
+            </ul>
+
+            <h4>Working with groups</h4>
+            <ul>
+              <li><strong>Rename</strong> &mdash; click the group name and type</li>
+              <li><strong>Move</strong> &mdash; drag the group header bar</li>
+              <li><strong>Add products</strong> &mdash; drag from the tray or from another group</li>
+              <li><strong>Remove a product</strong> &mdash; double-click it</li>
+              <li><strong>Delete a group</strong> &mdash; click the &times; button in its header</li>
+            </ul>
+
+            <h4>Saving</h4>
+            <p>Click <strong>Save</strong> in the toolbar or floating bar. Groupings are stored in your browser (device-specific) and persist across sessions.</p>
+
+            <h4>Example uses</h4>
+            <ul>
+              <li>"Good / Better / Best" price tier analysis</li>
+              <li>"Keep / Discontinue / Gap to Fill" for range review</li>
+              <li>"Builder Standard / Designer Premium" customer segmentation</li>
+              <li>"Needs Review" staging area for products to validate later</li>
+            </ul>
+          </section>
+
+          <section class="ls-guide-section">
+            <h3>Tips</h3>
+            <ul>
+              <li><strong>Start with the Matrix</strong> to get the big picture, then drill into categories that need attention</li>
+              <li><strong>Use Gaps to validate</strong> &mdash; it's faster than the standalone Validator because you see matches in category context</li>
+              <li><strong>The Constellation is ideal for presentations</strong> &mdash; it turns abstract data into something visual</li>
+              <li><strong>Canvas groupings don't affect actual data</strong> &mdash; they're your personal workspace for thinking and planning</li>
+            </ul>
+          </section>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

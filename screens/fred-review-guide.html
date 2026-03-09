@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fred Learning - Admin Guide</title>
+  <link rel="icon" type="image/png" href="/assets/seima-logo-Ij4HpjUg.png">
+  <style>
+    .guide-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: var(--space-6) var(--space-5);
+      line-height: 1.7;
+      color: var(--text-primary);
+    }
+
+    .guide-content h1 {
+      font-size: 28px;
+      font-weight: var(--font-bold);
+      margin: 0 0 var(--space-2);
+      color: var(--text-primary);
+    }
+
+    .guide-content .guide-subtitle {
+      font-size: 15px;
+      color: var(--text-tertiary);
+      margin-bottom: var(--space-8);
+    }
+
+    .guide-content h2 {
+      font-size: 20px;
+      font-weight: var(--font-semibold);
+      margin: var(--space-8) 0 var(--space-3);
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--border-primary);
+      color: var(--text-primary);
+    }
+
+    .guide-content h2:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .guide-content h3 {
+      font-size: 16px;
+      font-weight: var(--font-semibold);
+      margin: var(--space-5) 0 var(--space-2);
+      color: var(--text-primary);
+    }
+
+    .guide-content p {
+      font-size: 14px;
+      margin: 0 0 var(--space-3);
+      color: var(--text-secondary);
+    }
+
+    .guide-content ul, .guide-content ol {
+      font-size: 14px;
+      color: var(--text-secondary);
+      padding-left: var(--space-5);
+      margin: 0 0 var(--space-4);
+    }
+
+    .guide-content li {
+      margin-bottom: var(--space-2);
+    }
+
+    .guide-content code {
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 13px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-primary);
+      padding: 1px 6px;
+      border-radius: var(--radius-sm);
+      color: var(--color-copper, #b87333);
+    }
+
+    .guide-content pre {
+      background: var(--color-charcoal, #2d2d2d);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      margin: var(--space-3) 0 var(--space-5);
+      overflow-x: auto;
+    }
+
+    .guide-content pre code {
+      background: none;
+      border: none;
+      padding: 0;
+      color: #e0e0e0;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .guide-callout {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-primary);
+      border-left: 3px solid var(--color-copper, #b87333);
+      border-radius: var(--radius-md);
+      padding: var(--space-4) var(--space-5);
+      margin: var(--space-4) 0;
+    }
+
+    .guide-callout p {
+      margin: 0;
+    }
+
+    .guide-callout strong {
+      color: var(--text-primary);
+    }
+
+    .guide-toc {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      margin-bottom: var(--space-6);
+    }
+
+    .guide-toc h3 {
+      margin: 0 0 var(--space-3);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-tertiary);
+    }
+
+    .guide-toc ol {
+      margin: 0;
+      padding-left: var(--space-5);
+    }
+
+    .guide-toc a {
+      color: var(--color-copper, #b87333);
+      text-decoration: none;
+    }
+
+    .guide-toc a:hover {
+      text-decoration: underline;
+    }
+
+    .guide-kv-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin: var(--space-3) 0 var(--space-5);
+    }
+
+    .guide-kv-table th,
+    .guide-kv-table td {
+      text-align: left;
+      padding: var(--space-2) var(--space-3);
+      border: 1px solid var(--border-primary);
+    }
+
+    .guide-kv-table th {
+      background: var(--bg-secondary);
+      font-weight: var(--font-semibold);
+      color: var(--text-primary);
+    }
+
+    .guide-kv-table td {
+      color: var(--text-secondary);
+    }
+  </style>
+  <link rel="stylesheet" crossorigin href="/assets/design-system-in-MCC0p.css">
+  <link rel="stylesheet" crossorigin href="/assets/fred-review-BVZUiqJI.css">
+</head>
+<body>
+  <div class="fr-app">
+
+    <nav class="fr-navbar">
+      <div class="fr-navbar-brand">
+        <a href="fred-review.html" class="fr-navbar-back" title="Back to Fred Review">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </a>
+        <span class="fr-navbar-divider"></span>
+        <span class="fr-navbar-title">Admin Guide</span>
+      </div>
+    </nav>
+
+    <div class="guide-content">
+
+      <h1>Fred Learning - Admin Guide</h1>
+      <p class="guide-subtitle">How to review, curate, and manage Fred's persistent learning data.</p>
+
+      <div class="guide-toc">
+        <h3>Contents</h3>
+        <ol>
+          <li><a href="#access">Access requirements</a></li>
+          <li><a href="#overview">How learning works</a></li>
+          <li><a href="#dashboard">Using the Review dashboard</a></li>
+          <li><a href="#where-stored">Where data is stored</a></li>
+          <li><a href="#cloudflare-kv">Reviewing data in Cloudflare</a></li>
+          <li><a href="#editing">Editing and deleting data</a></li>
+          <li><a href="#improving">Improving Fred's responses</a></li>
+          <li><a href="#cli">Using the command line</a></li>
+          <li><a href="#keys">KV key reference</a></li>
+        </ol>
+      </div>
+
+      <!-- ─── Section 1 ──────────────────────────────────── -->
+      <h2 id="access">1. Access requirements</h2>
+
+      <p>The Fred Learning Review dashboard is restricted to users with the <strong>Admin</strong> role. The application has three access levels:</p>
+
+      <table class="guide-kv-table">
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>How it's assigned</th>
+            <th>Access</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>User</strong></td>
+            <td>Default for all accounts</td>
+            <td>Product selection, PDF generation, Fred AI chat</td>
+          </tr>
+          <tr>
+            <td><strong>Staff</strong></td>
+            <td>Automatic for <code>@seima.com.au</code> emails, or set explicitly</td>
+            <td>All User features + Validator</td>
+          </tr>
+          <tr>
+            <td><strong>Admin</strong></td>
+            <td>Set explicitly via Google Sheet <code>Role</code> column</td>
+            <td>All Staff features + Fred Learning Review</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Granting Admin access to another user</h3>
+      <ol>
+        <li>Open the <strong>Users</strong> sheet in the Google Apps Script backend spreadsheet.</li>
+        <li>Find the user's row by their email address.</li>
+        <li>In the <strong>Role</strong> column, enter <code>admin</code> (case-insensitive).</li>
+        <li>The user will see the <strong>Fred Review</strong> button in the navigation bar on their next login.</li>
+      </ol>
+
+      <!-- ─── Section 2 ──────────────────────────────────── -->
+      <h2 id="overview">2. How learning works</h2>
+
+      <p>Fred's learning system collects feedback from users to improve response quality over time. Here is the flow:</p>
+
+      <ol>
+        <li><strong>User asks a question</strong> &mdash; the question text is logged locally in the browser.</li>
+        <li><strong>Fred responds</strong> &mdash; thumbs-up / thumbs-down buttons appear below each response.</li>
+        <li><strong>User rates the response</strong> &mdash; the rating (along with the question and answer text) is saved to the browser's <code>localStorage</code>.</li>
+        <li><strong>Sync to cloud</strong> &mdash; the next time the chat panel opens, any unsynced feedback and question counts are sent to the Cloudflare Worker, which stores them in KV (Key-Value) storage.</li>
+        <li><strong>Dynamic suggestions</strong> &mdash; the most frequently asked questions are served back to users as quick-start suggestion buttons in the chat.</li>
+      </ol>
+
+      <div class="guide-callout">
+        <p><strong>Important:</strong> Fred does not currently use feedback to change its actual AI responses. The learning data is informational &mdash; it helps admins identify gaps in Fred's knowledge so you can update the system prompt, add FAQs, or fine-tune behaviour manually.</p>
+      </div>
+
+      <!-- ─── Section 3 ──────────────────────────────────── -->
+      <h2 id="dashboard">3. Using the Review dashboard</h2>
+
+      <p>The <strong>Fred Learning Review</strong> page (the screen you came from) gives you an at-a-glance view of:</p>
+
+      <ul>
+        <li><strong>Summary cards</strong> &mdash; total helpful / not-helpful ratings and overall satisfaction percentage.</li>
+        <li><strong>Thumbs-Down Responses</strong> &mdash; the most recent answers users found unhelpful. Use these to identify where Fred is falling short.</li>
+        <li><strong>Top Questions</strong> &mdash; the most frequently asked questions across all users. These drive the dynamic suggestion buttons in the chat.</li>
+        <li><strong>Recent Feedback</strong> &mdash; a full feed of all feedback entries, filterable by Up / Down.</li>
+      </ul>
+
+      <p>Click the <strong>Refresh</strong> button to reload the latest data from Cloudflare.</p>
+
+      <!-- ─── Section 4 ──────────────────────────────────── -->
+      <h2 id="where-stored">4. Where data is stored</h2>
+
+      <h3>Browser (localStorage) &mdash; per user, per device</h3>
+      <p>Each user's browser holds their own chat history and pending feedback. This data syncs to the cloud automatically and is pruned after 7 days. The keys are:</p>
+      <ul>
+        <li><code>fredChatHistory</code> &mdash; conversation messages (for session restore).</li>
+        <li><code>fredChatMessages</code> &mdash; rendered message HTML (for UI restore).</li>
+        <li><code>fredFeedback</code> &mdash; individual rating entries, each marked <em>synced</em> or <em>unsynced</em>.</li>
+        <li><code>fredQuestionLog</code> &mdash; running tally of questions this user has asked.</li>
+      </ul>
+
+      <h3>Cloudflare KV &mdash; centralised, cross-user</h3>
+      <p>The aggregated learning data lives in a Cloudflare Workers KV namespace called <strong>FRED_LEARNING</strong>. This is the "source of truth" that the Review dashboard reads from.</p>
+
+      <!-- ─── Section 5 ──────────────────────────────────── -->
+      <h2 id="cloudflare-kv">5. Reviewing data in Cloudflare</h2>
+
+      <p>You can browse and edit the raw KV data through the <strong>Cloudflare Dashboard</strong>:</p>
+
+      <ol>
+        <li>Click the <strong>Cloudflare KV</strong> button in the Fred Review navbar (or go to <a href="https://dash.cloudflare.com/6fb5df1b168e2c538fbfc7b6f31b390f/workers/kv/namespaces/4118f16373a244178acd1da59a04e208" target="_blank" rel="noopener">dash.cloudflare.com &rarr; Workers &amp; Pages &rarr; KV</a>).</li>
+        <li>You will see a list of keys. Each key holds a JSON value.</li>
+        <li>Click any key to view its content. Click <strong>Edit</strong> to modify the value directly.</li>
+      </ol>
+
+      <div class="guide-callout">
+        <p><strong>Tip:</strong> You must be logged in to Cloudflare with the account <code>jim@seima.com.au</code> to access the dashboard.</p>
+      </div>
+
+      <!-- ─── Section 6 ──────────────────────────────────── -->
+      <h2 id="editing">6. Editing and deleting data</h2>
+
+      <h3>Curate the top questions list</h3>
+      <p>The <code>stats:topQuestions</code> key holds a JSON array of the top 20 most-asked questions. These are shown to users as suggestion buttons when they open the Fred chat. You can curate this list in several ways:</p>
+
+      <p><strong>Remove a single question:</strong></p>
+      <ol>
+        <li>Open the KV namespace in Cloudflare and find <code>stats:topQuestions</code>.</li>
+        <li>The value is a JSON array like: <code>[{"prompt": "...", "count": 5}, ...]</code></li>
+        <li>Delete the object for the question you want to remove, then save.</li>
+      </ol>
+
+      <p><strong>Reword a question:</strong></p>
+      <ol>
+        <li>Find the entry in the array and edit the <code>"prompt"</code> value to your preferred wording.</li>
+        <li>This changes what users see on the suggestion button without affecting the count.</li>
+      </ol>
+
+      <p><strong>Promote or demote a question:</strong></p>
+      <ol>
+        <li>Change the <code>"count"</code> value. Higher counts appear first. Set a high count to promote a question to the top.</li>
+      </ol>
+
+      <p><strong>Reset all suggestions:</strong></p>
+      <ol>
+        <li>Edit the value to <code>[]</code> (empty array). Suggestions will rebuild organically as users ask questions.</li>
+      </ol>
+
+      <h3>Reset feedback statistics</h3>
+      <ol>
+        <li>Find the key <code>stats:feedbackSummary</code>.</li>
+        <li>Edit the value to reset counters:</li>
+      </ol>
+      <pre><code>{"totalUp": 0, "totalDown": 0, "recentDown": []}</code></pre>
+
+      <h3>Delete an individual feedback entry</h3>
+      <ol>
+        <li>Individual feedback entries are stored with keys like <code>feedback:abc123...</code></li>
+        <li>Find the entry in the key list and click <strong>Delete</strong>.</li>
+      </ol>
+
+      <div class="guide-callout">
+        <p><strong>Note:</strong> Deleting individual <code>feedback:*</code> entries removes them from the "Recent Feedback" list but does not automatically update the summary counters in <code>stats:feedbackSummary</code>. If you delete many entries, consider resetting the summary as well.</p>
+      </div>
+
+      <h3>Automatic cleanup</h3>
+      <p>You do not need to manually delete old feedback entries. Each <code>feedback:{id}</code> entry is stored with a <strong>90-day TTL</strong> (time-to-live) and is automatically removed by Cloudflare after it expires. On the client side, synced feedback entries in <code>localStorage</code> are pruned after <strong>7 days</strong>. The <code>stats:topQuestions</code> and <code>stats:feedbackSummary</code> keys do not expire and must be curated manually if needed.</p>
+
+      <!-- ─── Section 7 ──────────────────────────────────── -->
+      <h2 id="improving">7. Improving Fred's responses</h2>
+
+      <p>When you see patterns in the thumbs-down feedback &mdash; for example, Fred consistently gives wrong answers about a specific product category or misunderstands a type of question &mdash; you can improve his behaviour by updating the <strong>system prompt</strong>.</p>
+
+      <h3>Where the system prompt lives</h3>
+      <p>Fred's instructions are defined in the file:</p>
+      <pre><code>packages/presenter/js/ai-service.js</code></pre>
+      <p>Look for the constant called <code>CATALOG_PROMPT</code>. This is the text that tells Fred who he is, what rules to follow, and how to respond. It is sent with every chat request.</p>
+
+      <h3>What you can change</h3>
+      <ul>
+        <li><strong>Add specific instructions</strong> &mdash; e.g., "When asked about freestanding baths, always mention the weight capacity."</li>
+        <li><strong>Correct common mistakes</strong> &mdash; e.g., "Never recommend discontinued products from the Heritage range."</li>
+        <li><strong>Add FAQ-style answers</strong> &mdash; e.g., "If the user asks about warranty, explain that all Seima products carry a 25-year warranty on..."</li>
+        <li><strong>Adjust tone or formatting</strong> &mdash; e.g., "Always respond in dot points when listing multiple products."</li>
+      </ul>
+
+      <h3>Typical workflow</h3>
+      <ol>
+        <li>Review the thumbs-down feedback on the dashboard to identify recurring issues.</li>
+        <li>Open <code>packages/presenter/js/ai-service.js</code> in your code editor.</li>
+        <li>Edit the <code>CATALOG_PROMPT</code> string to address the issue.</li>
+        <li>Test locally by running the dev server (<code>npm run dev:presenter</code>) and asking Fred the same questions.</li>
+        <li>Commit, push, and deploy when satisfied.</li>
+      </ol>
+
+      <div class="guide-callout">
+        <p><strong>Tip:</strong> Keep the system prompt focused and specific. Broad or vague instructions tend to be ignored by the AI model. Concrete examples work best &mdash; e.g., "When comparing products, always include dimensions and price" is better than "Be helpful."</p>
+      </div>
+
+      <!-- ─── Section 8 ──────────────────────────────────── -->
+      <h2 id="cli">8. Using the command line (advanced)</h2>
+
+      <p>If you prefer the terminal, you can use the <strong>Wrangler CLI</strong> to interact with KV. Run these from the <code>packages/ai-proxy</code> directory.</p>
+
+      <h3>List all keys</h3>
+      <pre><code>npx wrangler kv key list --namespace-id="4118f16373a244178acd1da59a04e208"</code></pre>
+
+      <h3>Read a key</h3>
+      <pre><code>npx wrangler kv key get --namespace-id="4118f16373a244178acd1da59a04e208" "stats:topQuestions"</code></pre>
+
+      <h3>Update a key</h3>
+      <pre><code>npx wrangler kv key put --namespace-id="4118f16373a244178acd1da59a04e208" "stats:topQuestions" "[]"</code></pre>
+
+      <h3>Delete a key</h3>
+      <pre><code>npx wrangler kv key delete --namespace-id="4118f16373a244178acd1da59a04e208" "feedback:some-id-here"</code></pre>
+
+      <!-- ─── Section 9 ──────────────────────────────────── -->
+      <h2 id="keys">9. KV key reference</h2>
+
+      <table class="guide-kv-table">
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>stats:topQuestions</code></td>
+            <td>JSON array</td>
+            <td>Top 20 most asked questions. Each entry: <code>{"prompt": "...", "count": N}</code>. Drives the chat suggestion buttons.</td>
+          </tr>
+          <tr>
+            <td><code>stats:feedbackSummary</code></td>
+            <td>JSON object</td>
+            <td>Aggregate counts: <code>totalUp</code>, <code>totalDown</code>, <code>recentDown</code> (last 20 thumbs-down with question/answer).</td>
+          </tr>
+          <tr>
+            <td><code>feedback:{id}</code></td>
+            <td>JSON object</td>
+            <td>Individual feedback entry. Fields: <code>question</code>, <code>answer</code>, <code>rating</code> (up/down), <code>timestamp</code>. Auto-expires after 90 days.</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+</body>
+</html>

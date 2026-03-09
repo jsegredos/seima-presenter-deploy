@@ -1,3 +1,6 @@
+4.0.0 - Major upgrade, the birth of Fred the AI Bot and the Validator: Browser-side BM25 matching engine (zero-cost, runs in-browser), redesigned Validator UX with perspective switcher (Competitor→Seima / Seima→Competitor), progressive disclosure toolbar, pill-style status filters with live counts, onboarding guide, Seima-view mode for reverse lookup, range hints management, quick-match suggestions, bulk reject, inline progress tracking
+3.2.0 - Landscape & Validator: Category intelligence tool with Matrix, Gaps, Constellation, and Canvas views; validator search fix, unified product detail panels, CORS fix for bulk actions, sticky detail column
+3.1.0 - Fred Learning & Roles: Persistent chat history, thumbs-up/down feedback with Cloudflare KV sync, dynamic FAQ suggestions, Fred Learning Review dashboard, User/Staff/Admin role hierarchy
 3.0.0 - Unified Platform: Single version across Presenter & Scanner, shared @seima/core PDF rendering, consolidated deployment pipeline
 2.9.0 - Documentation & Guides: Interactive User Guide for Scanner, Presenter onboarding guide, "Build with Confidence" tagline across all outputs
 2.8.0 - Fixes & Polish: WELS star ratings display, CSV parser for multi-line headers, product search scoring, header logo aspect ratio, thinner footer

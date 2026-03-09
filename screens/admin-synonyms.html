@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin – Synonyms</title>
+  <link rel="icon" type="image/png" href="/assets/seima-logo-Ij4HpjUg.png">
+  <style>
+    body { font-family: var(--font-primary); color: var(--text-primary, #1a1a1a); background: var(--bg-primary, #fff); }
+    .syn-app { max-width: 960px; margin: 0 auto; padding: 1rem 1.5rem; }
+    .syn-navbar { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--color-mist, #e5e5e5); }
+    .syn-navbar-back { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--color-stone, #737373); text-decoration: none; font-size: var(--text-sm, 0.875rem); }
+    .syn-navbar-back:hover { color: var(--color-copper, #b87333); }
+    .syn-title { font-size: var(--text-lg, 1.125rem); font-weight: 600; margin: 0; color: var(--color-charcoal, #1a1a1a); }
+    .syn-desc { color: var(--color-stone, #737373); font-size: var(--text-sm); margin: 0 0 0.5rem 0; line-height: 1.4; }
+    .syn-toolbar { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+    .syn-btn { padding: 0.35rem 0.75rem; border-radius: 6px; font-size: var(--text-sm); font-family: var(--font-primary); cursor: pointer; border: 1px solid var(--color-mist); background: var(--color-cloud, #f5f5f5); color: var(--color-charcoal); }
+    .syn-btn:hover { background: var(--color-silver, #e5e5e5); border-color: var(--color-pewter); }
+    .syn-btn-primary { background: var(--color-charcoal, #1a1a1a); color: #fff; border-color: var(--color-charcoal); }
+    .syn-btn-primary:hover { background: var(--color-graphite, #2d2d2d); border-color: var(--color-graphite); }
+    .syn-table-wrap { overflow-x: auto; border: 1px solid var(--color-mist); border-radius: 8px; }
+    .syn-table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+    .syn-table th, .syn-table td { padding: 0.25rem 0.5rem; text-align: left; border-bottom: 1px solid var(--color-mist); vertical-align: middle; }
+    .syn-table th { background: var(--color-cloud); font-weight: 600; color: var(--color-charcoal); }
+    .syn-table tr:last-child td { border-bottom: none; }
+    .syn-table input { width: 100%; padding: 0.25rem 0.4rem; border: 1px solid var(--color-mist); border-radius: 4px; font-size: inherit; font-family: inherit; background: var(--color-white); }
+    .syn-table input:focus { outline: none; border-color: var(--color-copper); box-shadow: 0 0 0 1px var(--color-copper); }
+    .syn-remove { padding: 0.2rem 0.4rem; color: var(--color-stone); background: none; border: none; cursor: pointer; font-size: 1rem; line-height: 1; }
+    .syn-remove:hover { color: var(--color-error, #c44536); }
+    .syn-toast { position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%); padding: 0.5rem 1rem; background: var(--color-charcoal); color: #fff; border-radius: 8px; font-size: var(--text-sm); font-family: var(--font-primary); z-index: 1000; opacity: 0; transition: opacity 0.2s; }
+    .syn-toast.show { opacity: 1; }
+    .syn-forbidden { text-align: center; padding: 2rem 1.5rem; color: var(--color-stone); }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "@seima/core": "/core/js/index.js"
+    }
+  }
+  </script>
+  <script type="module" crossorigin src="/assets/adminSynonyms-Bw_SW63A.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="/assets/preload-helper-D7HrI6pR.js">
+  <link rel="modulepreload" crossorigin href="/assets/product-synonyms-iJFplttQ.js">
+  <link rel="modulepreload" crossorigin href="/assets/config-CRMdh1ye.js">
+  <link rel="modulepreload" crossorigin href="/assets/auth-ui-CY54VKXI.js">
+  <link rel="stylesheet" crossorigin href="/assets/design-system-in-MCC0p.css">
+  <link rel="stylesheet" crossorigin href="/assets/fred-review-BVZUiqJI.css">
+</head>
+<body>
+  <div class="syn-app">
+    <nav class="syn-navbar">
+      <a href="admin.html" class="syn-navbar-back" title="Back to Admin">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        Back to Admin
+      </a>
+      <span style="width:1px;height:18px;background:var(--color-mist,#e5e5e5);"></span>
+      <h1 class="syn-title">Product search synonyms</h1>
+    </nav>
+
+    <p class="syn-desc" id="syn-desc">These synonyms are used when users search for products (including Fred). For example, "wall mounted" and "wall hung" are treated as equivalent. Edits are saved in this browser only.</p>
+
+    <div id="syn-content">
+      <div class="syn-toolbar">
+        <button type="button" class="syn-btn" id="syn-add-btn">+ Add row</button>
+        <button type="button" class="syn-btn syn-btn-primary" id="syn-save-btn">Save</button>
+        <button type="button" class="syn-btn" id="syn-reset-btn">Reset to defaults</button>
+      </div>
+      <div class="syn-table-wrap">
+        <table class="syn-table">
+          <thead>
+            <tr>
+              <th style="width: 200px;">Term (e.g. wall-mounted)</th>
+              <th>Equivalents (comma-separated, e.g. wall, wall hung, mounted)</th>
+              <th style="width: 60px;"></th>
+            </tr>
+          </thead>
+          <tbody id="syn-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="syn-forbidden" class="syn-forbidden" style="display: none;">
+      <p>You need Admin access to edit synonyms.</p>
+      <p><a href="admin.html">Back to Admin</a></p>
+    </div>
+  </div>
+
+  <div id="syn-toast" class="syn-toast" aria-live="polite"></div>
+
+</body>
+</html>

@@ -14,10 +14,26 @@
     }
   }
   </script>
-  <script type="module" crossorigin src="/assets/main-CKmbTRIC.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/main-BSZT_cDl.css">
+  <script type="module" crossorigin src="/assets/main-BbPX5kIe.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="/assets/auth-ui-CY54VKXI.js">
+  <link rel="modulepreload" crossorigin href="/assets/product-synonyms-iJFplttQ.js">
+  <link rel="modulepreload" crossorigin href="/assets/data-layer-yXBKX-Af.js">
+  <link rel="modulepreload" crossorigin href="/assets/config-CRMdh1ye.js">
+  <link rel="modulepreload" crossorigin href="/assets/pdf-layouts-8nByhigc.js">
+  <link rel="modulepreload" crossorigin href="/assets/competitor-service-CvmwPB8A.js">
+  <link rel="stylesheet" crossorigin href="/assets/main-DheAbT2v.css">
+  <link rel="stylesheet" crossorigin href="/assets/design-system-in-MCC0p.css">
 </head>
 <body>
+  <!-- Loading overlay - removed by JS once critical init completes -->
+  <div id="app-loading-overlay" class="app-loading-overlay">
+    <div class="app-loading-spinner">
+      <div class="spinner-ring"></div>
+      <div class="spinner-text">Loading Product Presenter…</div>
+    </div>
+  </div>
+
   <div class="grid-container">
     <!-- Navbar - Clean brand header -->
     <nav class="app-navbar">
@@ -42,6 +58,9 @@
         <!-- Sign In button (shown when logged out) -->
         <button id="sign-in-btn" class="navbar-link" style="display: none;">Sign In</button>
         
+        <button id="crosshair-btn" class="navbar-link navbar-link--staff" title="Validate competitor product matches" style="display: none;">Validator</button>
+        <button id="landscape-btn" class="navbar-link navbar-link--staff" title="Category intelligence tool" style="display: none;">Landscape</button>
+        <button id="admin-btn" class="navbar-link navbar-link--staff" title="Admin options" style="display: none;">Admin</button>
         <button id="quick-start-btn" class="navbar-link" title="Show Quick Start Guide">Quick Start</button>
         <button id="help-btn" class="navbar-link">User Guide</button>
         <button id="settings-btn" class="navbar-btn" title="Settings">
@@ -247,8 +266,8 @@
       <div id="file-selection-step">
         <div id="file-drop-zone" class="file-drop-zone">
           <p class="drop-zone-text">Drop file here or click to browse</p>
-          <p class="drop-zone-formats">Supported formats: .csv, .xlsx, .xls, .json</p>
-          <input type="file" id="file-input" accept=".csv,.xlsx,.xls,.json" style="display: none;">
+          <p class="drop-zone-formats">Supported: .csv, .xlsx, .xls, .json, .pdf, .jpg, .png</p>
+          <input type="file" id="file-input" accept=".csv,.xlsx,.xls,.json,.pdf,.jpg,.jpeg,.png" style="display: none;">
         </div>
         <div id="selected-file-info" class="file-selected-info" style="display: none;">
           <strong>Selected:</strong> <span id="selected-file-name"></span>
@@ -287,7 +306,16 @@
         <p>Processing file...</p>
       </div>
 
-      <!-- Step 4: Results -->
+      <!-- Step 4: Spec Analysis Results (PDF/image imports) -->
+      <div id="import-spec-results-step" style="display: none;">
+        <div id="spec-results-content"></div>
+        <div class="modal-actions">
+          <button id="spec-add-all-btn" class="primary-btn" style="display:none">Add All Verified</button>
+          <button id="spec-done-btn" class="primary-btn">Done</button>
+        </div>
+      </div>
+
+      <!-- Step 5: Results -->
       <div id="import-results-step" style="display: none;">
         <h4 class="success-title">Import Complete</h4>
         <div id="import-summary" class="import-summary"></div>
@@ -470,6 +498,13 @@
     </div>
   </div>
 
+  <!-- AI Chat Trigger Button -->
+  <button id="ai-chat-trigger" class="ai-chat-trigger" title="Ask Fred">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+  </button>
+
   <!-- PDF Processing Spinner -->
   <div id="pdf-spinner" class="spinner-overlay" style="display:none;">
     <div class="spinner-content">
@@ -478,7 +513,7 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
      <script>
      document.addEventListener('DOMContentLoaded', function() {
        var priceBox = document.getElementById('exclude-prices');

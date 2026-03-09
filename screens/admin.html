@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin</title>
+  <link rel="icon" type="image/png" href="/assets/seima-logo-Ij4HpjUg.png">
+  <style>
+    .admin-app { max-width: 720px; margin: 0 auto; padding: 2rem; }
+    .admin-navbar { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-primary, #e5e7eb); }
+    .admin-navbar-back { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-secondary, #4b5563); text-decoration: none; font-size: 0.9rem; }
+    .admin-navbar-back:hover { color: var(--text-primary, #111); }
+    .admin-title { font-size: 1.5rem; font-weight: 600; margin: 0; }
+    .admin-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; }
+    .admin-link { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; background: var(--bg-secondary, #f9fafb); border: 1px solid var(--border-primary, #e5e7eb); border-radius: 8px; color: var(--text-primary, #111); text-decoration: none; font-weight: 500; transition: background 0.15s, border-color 0.15s; }
+    .admin-link:hover { background: var(--bg-tertiary, #f3f4f6); border-color: var(--border-secondary, #d1d5db); }
+    .admin-link-desc { font-size: 0.85rem; font-weight: 400; color: var(--text-tertiary, #6b7280); margin-top: 0.25rem; }
+    .admin-link-inner { flex: 1; }
+    .admin-link-arrow { color: var(--text-tertiary); }
+    .admin-forbidden { text-align: center; padding: 3rem 2rem; color: var(--text-tertiary); }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "@seima/core": "/core/js/index.js"
+    }
+  }
+  </script>
+  <script type="module" crossorigin src="/assets/admin-BQWSC5ZL.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="/assets/preload-helper-D7HrI6pR.js">
+  <link rel="stylesheet" crossorigin href="/assets/design-system-in-MCC0p.css">
+  <link rel="stylesheet" crossorigin href="/assets/fred-review-BVZUiqJI.css">
+</head>
+<body>
+  <div class="admin-app">
+    <nav class="admin-navbar">
+      <a href="../index.html" class="admin-navbar-back" title="Back to Presenter">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        Back to Presenter
+      </a>
+      <span class="admin-navbar-divider" style="width:1px;height:20px;background:var(--border-primary,#e5e7eb);"></span>
+      <h1 class="admin-title">Admin</h1>
+    </nav>
+
+    <div id="admin-content">
+      <ul class="admin-list">
+        <li>
+          <a href="fred-review.html" class="admin-link">
+            <span class="admin-link-inner">
+              Fred Review
+              <div class="admin-link-desc">Review Fred's learning data, thumbs-up/down feedback, and top questions</div>
+            </span>
+            <span class="admin-link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="admin-synonyms.html" class="admin-link">
+            <span class="admin-link-inner">
+              Synonyms
+              <div class="admin-link-desc">Edit product search synonyms used by Fred and catalog search (e.g. wall mounted ↔ wall hung)</div>
+            </span>
+            <span class="admin-link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="landscape.html" class="admin-link">
+            <span class="admin-link-inner">
+              Landscape
+              <div class="admin-link-desc">Category intelligence: matrix heatmap, gap analysis, product constellation, and grouping canvas</div>
+            </span>
+            <span class="admin-link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div id="admin-forbidden" class="admin-forbidden" style="display: none;">
+      <p>You need Admin access to view this page.</p>
+      <p><a href="../index.html">Return to Presenter</a></p>
+    </div>
+  </div>
+
+</body>
+</html>

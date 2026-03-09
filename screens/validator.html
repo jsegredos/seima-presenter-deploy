@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crosshair - Match Validator</title>
+  <link rel="icon" type="image/png" href="/assets/seima-logo-Ij4HpjUg.png">
+  <script type="importmap">
+  {
+    "imports": {
+      "@seima/core": "/core/js/index.js"
+    }
+  }
+  </script>
+  <script type="module" crossorigin src="/assets/validator-DjMoWOT1.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="/assets/preload-helper-D7HrI6pR.js">
+  <link rel="modulepreload" crossorigin href="/assets/competitor-service-CvmwPB8A.js">
+  <link rel="modulepreload" crossorigin href="/assets/config-CRMdh1ye.js">
+  <link rel="stylesheet" crossorigin href="/assets/validator-DtdDPnEI.css">
+  <link rel="stylesheet" crossorigin href="/assets/design-system-in-MCC0p.css">
+</head>
+<body>
+  <div class="v-app">
+
+    <!-- Navbar (matches main app) -->
+    <nav class="v-navbar">
+      <div class="v-navbar-brand">
+        <a href="../index.html" class="v-navbar-back" title="Back to Presenter">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </a>
+        <span class="v-navbar-divider"></span>
+        <span class="v-navbar-title">Match Validator</span>
+      </div>
+      <div class="v-navbar-center">
+        <div class="v-progress-wrap" id="v-progress-wrap" style="display:none;">
+          <div class="v-progress-bar"><div class="v-progress-fill" id="v-progress-fill"></div></div>
+          <span class="v-progress-text" id="v-progress-text"></span>
+        </div>
+      </div>
+      <div class="v-navbar-actions">
+        <button class="v-navbar-btn v-run-matching-btn" id="v-run-matching-btn" title="Run Matching for selected competitor" disabled>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          <span>Run Matching</span>
+        </button>
+        <button class="v-navbar-btn" id="v-range-hints-btn" title="Range Hints">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+        </button>
+        <button class="v-navbar-btn" id="v-settings-btn" title="Category Settings">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Perspective bar -->
+    <div class="v-perspective-bar" id="v-perspective-bar" data-mode="competitor">
+      <div class="v-perspective-label">BROWSING</div>
+      <div class="v-perspective-flow">
+        <span class="v-perspective-source" id="v-perspective-source">Competitor Products</span>
+        <svg class="v-perspective-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <span class="v-perspective-target" id="v-perspective-target">Seima Alternatives</span>
+      </div>
+      <button class="v-perspective-flip" id="v-perspective-flip" title="Flip perspective">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>
+        <span>Flip</span>
+      </button>
+    </div>
+
+    <!-- Filter toolbar -->
+    <div class="v-toolbar" id="v-toolbar">
+      <div class="v-toolbar-row">
+        <div class="v-toolbar-field">
+          <label class="v-toolbar-label" for="f-competitor">Competitor</label>
+          <select id="f-competitor" class="v-select">
+            <option value="">Select competitor...</option>
+          </select>
+        </div>
+        <div class="v-toolbar-field v-toolbar-filters-wrap" id="v-filters-wrap" style="display:none;">
+          <label class="v-toolbar-label" for="f-category">Category</label>
+          <select id="f-category" class="v-select">
+            <option value="">All Categories</option>
+          </select>
+        </div>
+        <div class="v-toolbar-inline-stats" id="v-toolbar-stats" style="display:none;">
+          <div class="v-inline-progress-bar"><div class="v-inline-progress-fill" id="v-summary-fill"></div></div>
+          <span class="v-inline-progress-pct" id="v-summary-pct"></span>
+        </div>
+      </div>
+      <div class="v-toolbar-row" id="v-search-row" style="display:none;">
+        <input type="text" id="f-search" class="v-search" placeholder="Search competitor products...">
+        <div class="v-toolbar-separator"></div>
+        <div class="v-filter-pills" id="f-status">
+          <button class="v-filter-pill" data-value="Verified">
+            <span class="v-pill-icon v-pill-verified">&#10003;</span> Verified <span class="v-pill-count" id="pill-count-verified"></span>
+          </button>
+          <button class="v-filter-pill" data-value="Rejected">
+            <span class="v-pill-icon v-pill-rejected">&#10007;</span> Rejected <span class="v-pill-count" id="pill-count-rejected"></span>
+          </button>
+          <button class="v-filter-pill" data-value="AI-Suggested">
+            <span class="v-pill-icon">&#9679;</span> To Review <span class="v-pill-count" id="pill-count-ai"></span>
+          </button>
+          <button class="v-filter-pill" data-value="unmatched">
+            <span class="v-pill-icon">&#8709;</span> No Match <span class="v-pill-count" id="pill-count-unmatched"></span>
+          </button>
+        </div>
+        <span class="v-count" id="v-count"></span>
+      </div>
+    </div>
+
+    <!-- Two-panel layout -->
+    <div class="v-panels">
+      <!-- Left: product list -->
+      <div class="v-list-panel">
+        <div class="v-panel-header" id="v-left-header">
+          <span class="v-panel-header-title" id="v-left-title">Products</span>
+          <span class="v-panel-header-count" id="v-left-count"></span>
+        </div>
+        <div class="v-list" id="v-list">
+          <div class="v-empty" id="v-loading">
+            <div class="v-empty-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+            <div class="v-empty-title">Welcome to Match Validator</div>
+            <div class="v-empty-steps">
+              <div class="v-empty-step"><span class="v-step-num">1</span> Select a competitor above</div>
+              <div class="v-empty-step"><span class="v-step-num">2</span> Browse their products</div>
+              <div class="v-empty-step"><span class="v-step-num">3</span> Review AI-suggested Seima matches</div>
+              <div class="v-empty-step"><span class="v-step-num">4</span> Verify or reject each match</div>
+            </div>
+            <div class="v-empty-tip">Tip: Use the <strong>Flip</strong> button to browse from Seima's perspective instead.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resize handle -->
+      <div class="v-resize-handle" id="v-resize-handle"></div>
+
+      <!-- Right: detail panel -->
+      <div class="v-detail-panel" id="v-detail-panel">
+        <div class="v-panel-header" id="v-right-header">
+          <span class="v-panel-header-title" id="v-right-title">Match Details</span>
+        </div>
+        <div class="v-detail-empty" id="v-detail-empty">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+          <div>Click a product to view match details</div>
+        </div>
+        <div class="v-detail-content" id="v-detail-content" style="display:none;"></div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
