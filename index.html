@@ -14,17 +14,17 @@
     }
   }
   </script>
-  <script type="module" crossorigin src="/assets/main-DSoi4kZ2.js"></script>
+  <script type="module" crossorigin src="/assets/main-DPgZJPAs.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
-  <link rel="modulepreload" crossorigin href="/assets/auth-ui-ByY0cnF8.js">
+  <link rel="modulepreload" crossorigin href="/assets/auth-ui-BChQ8TGM.js">
   <link rel="modulepreload" crossorigin href="/assets/product-search-BkgNvEEc.js">
   <link rel="modulepreload" crossorigin href="/assets/product-synonyms-B8Oy5E4e.js">
-  <link rel="modulepreload" crossorigin href="/assets/data-layer-CEogupy8.js">
+  <link rel="modulepreload" crossorigin href="/assets/data-layer-u45J67p6.js">
   <link rel="modulepreload" crossorigin href="/assets/config-VMpw2Fyh.js">
   <link rel="modulepreload" crossorigin href="/assets/pdf-layouts-B-j0uTYK.js">
   <link rel="modulepreload" crossorigin href="/assets/competitor-service-CvmwPB8A.js">
   <link rel="modulepreload" crossorigin href="/assets/preload-helper-D7HrI6pR.js">
-  <link rel="stylesheet" crossorigin href="/assets/main-b4sPrfSq.css">
+  <link rel="stylesheet" crossorigin href="/assets/main-DiCMYjWc.css">
   <link rel="stylesheet" crossorigin href="/assets/design-system-in-MCC0p.css">
 </head>
 <body>
@@ -45,7 +45,21 @@
         <span class="navbar-title">Product Presenter</span>
       </div>
       <div class="navbar-actions">
-        <!-- User Menu (shown when logged in) -->
+        <!-- Staff tools (visible to staff/admin only) -->
+        <button id="crosshair-btn" class="navbar-link navbar-link--staff" title="Validate competitor product matches" style="display: none;">Validator</button>
+        <button id="landscape-btn" class="navbar-link navbar-link--staff" title="Category intelligence tool" style="display: none;">Landscape</button>
+        <button id="admin-btn" class="navbar-link navbar-link--staff" title="Admin options" style="display: none;">Admin</button>
+        <span id="staff-divider" class="navbar-divider" style="display: none;"></span>
+
+        <!-- Help links -->
+        <button id="quick-start-btn" class="navbar-link" title="Show Quick Start Guide">Quick Start</button>
+        <button id="help-btn" class="navbar-link">User Guide</button>
+        <span class="navbar-divider"></span>
+
+        <!-- Sign In button (shown when logged out) -->
+        <button id="sign-in-btn" class="navbar-link" style="display: none;">Sign In</button>
+
+        <!-- User Menu (shown when logged in, far right) -->
         <div id="user-menu-container" class="user-menu-container" style="display: none; position: relative;">
           <button id="user-menu-trigger" class="user-menu-trigger">
             <span id="user-avatar" class="user-avatar">?</span>
@@ -56,22 +70,7 @@
           </button>
           <div id="user-menu-dropdown" class="user-menu-dropdown" style="display: none;"></div>
         </div>
-        
-        <!-- Sign In button (shown when logged out) -->
-        <button id="sign-in-btn" class="navbar-link" style="display: none;">Sign In</button>
-        
-        <button id="crosshair-btn" class="navbar-link navbar-link--staff" title="Validate competitor product matches" style="display: none;">Validator</button>
-        <button id="landscape-btn" class="navbar-link navbar-link--staff" title="Category intelligence tool" style="display: none;">Landscape</button>
-        <button id="admin-btn" class="navbar-link navbar-link--staff" title="Admin options" style="display: none;">Admin</button>
-        <button id="quick-start-btn" class="navbar-link" title="Show Quick Start Guide">Quick Start</button>
-        <button id="help-btn" class="navbar-link">User Guide</button>
-        <button id="settings-btn" class="navbar-btn" title="Settings">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="3"></circle>
-            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-          </svg>
-        </button>
-        <span id="app-version" class="version-text" title="Click to view what's new"></span>
+
       </div>
     </nav>
 
@@ -420,54 +419,6 @@
     </div>
   </div>
 
-  <!-- Settings Modal -->
-  <div id="settings-modal" class="modal" style="display:none;">
-    <div class="modal-content" style="max-width: 500px;">
-      <h3 style="margin: 0 0 20px 0; color: #333;">Settings</h3>
-      <div class="settings-section">
-        <p class="section-description" style="margin-bottom: 16px; color: #666; font-size: 0.9rem;">Your contact details will appear on the presentation title page.</p>
-        
-        <!-- Profile section when logged in -->
-        <div id="logged-in-profile-section" style="display: none;">
-          <div class="profile-header" style="margin-bottom: 16px; padding: 12px; background: #f0f9ff; border-radius: 8px; border: 1px solid #bae6fd;">
-            <div style="display: flex; align-items: center; justify-content: space-between;">
-              <div style="display: flex; align-items: center; gap: 12px;">
-                <div id="profile-avatar" style="width: 40px; height: 40px; border-radius: 50%; background: #0284c7; color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px;">JS</div>
-                <div>
-                  <div id="profile-display-name" style="font-weight: 600; color: #0c4a6e;"></div>
-                  <div id="profile-display-email" style="font-size: 0.85rem; color: #0369a1;"></div>
-                </div>
-              </div>
-            </div>
-            <div style="display: flex; gap: 8px; margin-top: 12px;">
-              <button id="edit-profile-btn" class="secondary-btn" style="flex: 1; padding: 8px 12px; font-size: 0.85rem;">Edit Profile</button>
-              <button id="change-password-btn" class="secondary-btn" style="flex: 1; padding: 8px 12px; font-size: 0.85rem;">Change Password</button>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Editable contact fields -->
-        <div id="contact-fields-section">
-          <label for="staff-name">Name *</label>
-          <input type="text" id="staff-name" name="staff-name" maxlength="60" placeholder="Enter your full name">
-
-          <label for="staff-position">Position</label>
-          <input type="text" id="staff-position" name="staff-position" maxlength="60" placeholder="e.g. Sales Representative">
-
-          <label for="staff-email">Email *</label>
-          <input type="email" id="staff-email" name="staff-email" maxlength="100" placeholder="Enter your email address">
-          
-          <label for="staff-telephone">Phone *</label>
-          <input type="tel" id="staff-telephone" name="staff-telephone" maxlength="50" placeholder="Enter your phone number">
-        </div>
-      </div>
-      <button id="refresh-catalog-btn" class="btn-refresh">🔄 Refresh All Data</button>
-      <div class="modal-actions">
-        <button id="settings-cancel" class="secondary-btn">Cancel</button>
-        <button id="settings-save" class="primary-btn">Save Settings</button>
-      </div>
-    </div>
-  </div>
 
   <!-- Changelog Modal -->
   <div id="changelog-modal" class="modal" style="display:none;">
