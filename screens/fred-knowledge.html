@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fred - Knowledge Base</title>
+  <link rel="icon" type="image/png" href="/assets/seima-logo-Ij4HpjUg.png">
+  <style>
+    .fk-drop-zone {
+      border: 2px dashed var(--border-primary, #e5e5e5);
+      border-radius: var(--radius-lg, 10px);
+      padding: 40px 20px;
+      text-align: center;
+      transition: border-color 0.15s, background 0.15s;
+      cursor: pointer;
+    }
+    .fk-drop-zone.dragover {
+      border-color: var(--color-copper, #b87333);
+      background: var(--color-warning-light, #fef3e8);
+    }
+    .fk-drop-zone-icon { color: var(--text-tertiary, #9ca3af); margin-bottom: 12px; }
+    .fk-drop-zone h3 { font-size: 15px; margin: 0 0 4px 0; font-weight: 600; }
+    .fk-drop-zone p { font-size: 13px; color: var(--text-tertiary, #9ca3af); margin: 0; }
+    .fk-drop-zone input { display: none; }
+
+    .fk-file-list { display: flex; flex-direction: column; gap: var(--space-2, 8px); }
+    .fk-file-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: var(--space-3, 12px) var(--space-4, 16px);
+      border: 1px solid var(--border-primary, #e5e5e5);
+      border-radius: var(--radius-md, 6px);
+      background: var(--bg-secondary, #f9fafb);
+    }
+    .fk-file-info { flex: 1; min-width: 0; }
+    .fk-file-name { font-size: 14px; font-weight: 600; color: var(--text-primary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .fk-file-meta { font-size: 12px; color: var(--text-tertiary, #9ca3af); margin-top: 2px; }
+    .fk-file-delete {
+      background: transparent; border: none; cursor: pointer; padding: 6px;
+      border-radius: var(--radius-sm, 4px); color: var(--text-tertiary, #9ca3af);
+      transition: color 0.15s, background 0.15s; flex-shrink: 0;
+    }
+    .fk-file-delete:hover { color: var(--color-error, #c44536); background: var(--color-error-light, #fbeae8); }
+    .fk-empty { text-align: center; color: var(--text-tertiary, #9ca3af); font-size: 13px; padding: 20px; }
+
+    .fk-upload-status {
+      padding: var(--space-3, 12px); border-radius: var(--radius-md, 6px);
+      font-size: 13px; display: none;
+    }
+    .fk-upload-status.active { display: flex; align-items: center; gap: 10px; }
+    .fk-upload-status.processing { background: var(--color-warning-light, #fef3e8); color: var(--color-copper, #b87333); }
+    .fk-upload-status.success { background: var(--color-success-light, #e8f0ea); color: var(--color-sage, #7c9082); }
+    .fk-upload-status.error { background: var(--color-error-light, #fbeae8); color: var(--color-error, #c44536); }
+    .fk-upload-spinner {
+      width: 16px; height: 16px; border: 2px solid currentColor; border-top-color: transparent;
+      border-radius: 50%; animation: fi-spin 0.8s linear infinite; flex-shrink: 0;
+    }
+
+    .fk-text-upload { margin-top: var(--space-3, 12px); }
+    .fk-text-upload textarea {
+      width: 100%; border: 1px solid var(--border-primary, #e5e5e5);
+      border-radius: var(--radius-md, 6px); padding: var(--space-3, 12px);
+      font-size: 13px; font-family: inherit; line-height: 1.5;
+      resize: vertical; background: var(--bg-secondary, #f9fafb); box-sizing: border-box;
+    }
+    .fk-text-upload textarea:focus { outline: none; border-color: var(--color-copper, #b87333); }
+    .fk-text-row { display: flex; gap: 8px; margin-top: 8px; align-items: flex-end; }
+    .fk-text-row input {
+      flex: 1; border: 1px solid var(--border-primary, #e5e5e5);
+      border-radius: var(--radius-md, 6px); padding: 8px 12px; font-size: 13px; font-family: inherit;
+    }
+    .fk-text-row input:focus { outline: none; border-color: var(--color-copper, #b87333); }
+    .fk-upload-text-btn {
+      padding: 8px 16px; border-radius: var(--radius-md, 6px); border: none;
+      background: var(--color-charcoal, #1a1a1a); color: #fff; font-size: 13px;
+      font-weight: 600; cursor: pointer; white-space: nowrap; transition: background 0.15s;
+    }
+    .fk-upload-text-btn:hover { background: var(--color-copper, #b87333); }
+    .fk-upload-text-btn:disabled { opacity: 0.5; cursor: default; }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "@seima/core": "/core/js/index.js"
+    }
+  }
+  </script>
+  <script type="module" crossorigin src="/assets/fredKnowledge-BtfIOhlr.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="/assets/preload-helper-D7HrI6pR.js">
+  <link rel="stylesheet" crossorigin href="/assets/design-system-in-MCC0p.css">
+  <link rel="stylesheet" crossorigin href="/assets/fred-instructions-FY8gt7VF.css">
+</head>
+<body>
+  <div class="fi-app">
+    <nav class="fi-navbar">
+      <div class="fi-navbar-brand">
+        <a href="admin.html" class="fi-navbar-back" title="Back to Admin">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </a>
+        <span class="fi-navbar-divider"></span>
+        <span class="fi-navbar-title">Fred Knowledge Base</span>
+      </div>
+    </nav>
+
+    <div class="fi-content" id="fk-content">
+      <section class="fi-section">
+        <div class="fi-section-header">
+          <h2>Upload Document</h2>
+          <p class="fi-section-desc">Upload files or paste text that Fred can reference when answering questions (policies, guides, FAQs, etc.).</p>
+        </div>
+
+        <div class="fk-drop-zone" id="fk-drop-zone">
+          <div class="fk-drop-zone-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+          </div>
+          <h3>Drop file here or click to browse</h3>
+          <p>Supports .txt, .md, .csv, .pdf</p>
+          <input type="file" id="fk-file-input" accept=".txt,.md,.csv,.pdf,.json">
+        </div>
+
+        <div class="fk-text-upload">
+          <label class="fi-section-desc" style="display:block;margin-bottom:6px;">Or paste text directly:</label>
+          <textarea id="fk-text-content" rows="4" placeholder="Paste warranty policy, installation instructions, FAQ content..."></textarea>
+          <div class="fk-text-row">
+            <input type="text" id="fk-text-name" placeholder="Document name (e.g. Warranty Policy)">
+            <button class="fk-upload-text-btn" id="fk-upload-text-btn">Upload Text</button>
+          </div>
+        </div>
+
+        <div class="fk-upload-status" id="fk-upload-status">
+          <div class="fk-upload-spinner"></div>
+          <span id="fk-upload-msg">Processing...</span>
+        </div>
+      </section>
+
+      <section class="fi-section">
+        <div class="fi-section-header">
+          <h2>Documents</h2>
+          <p class="fi-section-desc">Fred will search these documents when answering questions.</p>
+        </div>
+        <div class="fk-file-list" id="fk-file-list">
+          <div class="fk-empty">No documents uploaded yet.</div>
+        </div>
+      </section>
+    </div>
+
+    <div class="fi-loading" id="fi-loading">
+      <div class="fi-spinner"></div>
+      <span>Loading knowledge base...</span>
+    </div>
+
+    <div id="fi-forbidden" class="fi-forbidden" style="display: none;">
+      <p>You need Admin access to view this page.</p>
+      <p><a href="../index.html">Return to Presenter</a></p>
+    </div>
+  </div>
+
+</body>
+</html>

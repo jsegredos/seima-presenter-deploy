@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fred - Instructions</title>
+  <link rel="icon" type="image/png" href="/assets/seima-logo-Ij4HpjUg.png">
+  <script type="importmap">
+  {
+    "imports": {
+      "@seima/core": "/core/js/index.js"
+    }
+  }
+  </script>
+  <script type="module" crossorigin src="/assets/fredInstructions-KqfnT_QJ.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="/assets/preload-helper-D7HrI6pR.js">
+  <link rel="stylesheet" crossorigin href="/assets/design-system-in-MCC0p.css">
+  <link rel="stylesheet" crossorigin href="/assets/fred-instructions-FY8gt7VF.css">
+</head>
+<body>
+  <div class="fi-app">
+    <nav class="fi-navbar">
+      <div class="fi-navbar-brand">
+        <a href="admin.html" class="fi-navbar-back" title="Back to Admin">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </a>
+        <span class="fi-navbar-divider"></span>
+        <span class="fi-navbar-title">Fred Instructions</span>
+      </div>
+      <div class="fi-navbar-actions">
+        <button class="fi-navbar-btn fi-save-btn" id="fi-save-btn" title="Save changes">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+          Save
+        </button>
+        <button class="fi-navbar-btn" id="fi-versions-btn" title="Version history">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          Versions
+        </button>
+        <button class="fi-navbar-btn" id="fi-preview-btn" title="Preview assembled prompt">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          Preview
+        </button>
+      </div>
+    </nav>
+
+    <div class="fi-content" id="fi-content">
+      <section class="fi-section">
+        <div class="fi-section-header">
+          <h2>Personality</h2>
+          <p class="fi-section-desc">Fred's identity, tone, and core purpose. This is the opening of every system prompt.</p>
+        </div>
+        <textarea id="fi-system-prompt" class="fi-textarea" rows="5" placeholder="You are Fred, a product assistant..."></textarea>
+      </section>
+
+      <section class="fi-section">
+        <div class="fi-section-header">
+          <h2>Rules</h2>
+          <p class="fi-section-desc">Critical rules Fred must follow. These are numbered automatically.</p>
+          <button class="fi-add-btn" id="fi-add-rule" title="Add rule">+ Add Rule</button>
+        </div>
+        <div id="fi-rules-list" class="fi-sortable-list"></div>
+      </section>
+
+      <section class="fi-section">
+        <div class="fi-section-header">
+          <h2>Few-Shot Examples</h2>
+          <p class="fi-section-desc">Example Q&amp;A pairs that teach Fred the ideal response style. More examples = more consistent output.</p>
+          <button class="fi-add-btn" id="fi-add-example" title="Add example">+ Add Example</button>
+        </div>
+        <div id="fi-examples-list" class="fi-examples-list"></div>
+      </section>
+
+      <section class="fi-section">
+        <div class="fi-section-header">
+          <h2>Formatting</h2>
+          <p class="fi-section-desc">Instructions for how Fred should format responses and what data fields are available.</p>
+        </div>
+        <textarea id="fi-formatting" class="fi-textarea" rows="5" placeholder="FORMAT: List each product as..."></textarea>
+      </section>
+    </div>
+
+    <div class="fi-versions-overlay" id="fi-versions-overlay">
+      <div class="fi-preview-modal">
+        <div class="fi-preview-header">
+          <h3>Prompt Version History</h3>
+          <button class="fi-preview-close" id="fi-versions-close" title="Close">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="fi-versions-list" id="fi-versions-list" style="padding:20px;overflow-y:auto;flex:1;">
+          <div style="text-align:center;color:var(--text-tertiary);padding:20px;">Loading...</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fi-preview-overlay" id="fi-preview-overlay">
+      <div class="fi-preview-modal">
+        <div class="fi-preview-header">
+          <h3>Assembled System Prompt</h3>
+          <button class="fi-preview-close" id="fi-preview-close" title="Close">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <pre class="fi-preview-content" id="fi-preview-content"></pre>
+        <div class="fi-preview-footer">
+          <span id="fi-preview-tokens">~0 tokens</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fi-loading" id="fi-loading">
+      <div class="fi-spinner"></div>
+      <span>Loading Fred's instructions...</span>
+    </div>
+
+    <div id="fi-forbidden" class="fi-forbidden" style="display: none;">
+      <p>You need Admin access to view this page.</p>
+      <p><a href="../index.html">Return to Presenter</a></p>
+    </div>
+  </div>
+
+</body>
+</html>
