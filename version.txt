@@ -1,3 +1,4 @@
+4.1.1 - Fred embedding search: server-side semantic product search using OpenAI embeddings, Fuse.js matchedTerms bug fix
 4.1.0 - Shared Fuse.js search: Validator and OCR matcher now use shared ProductSearch for consistent, higher-quality results
 4.0.0 - Major upgrade, the birth of Fred the AI Bot and the Validator: Browser-side BM25 matching engine (zero-cost, runs in-browser), redesigned Validator UX with perspective switcher (Competitor→Seima / Seima→Competitor), progressive disclosure toolbar, pill-style status filters with live counts, onboarding guide, Seima-view mode for reverse lookup, range hints management, quick-match suggestions, bulk reject, inline progress tracking
 3.2.0 - Landscape & Validator: Category intelligence tool with Matrix, Gaps, Constellation, and Canvas views; validator search fix, unified product detail panels, CORS fix for bulk actions, sticky detail column
