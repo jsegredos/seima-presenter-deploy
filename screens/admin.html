@@ -19,6 +19,17 @@
     .admin-link-inner { flex: 1; }
     .admin-link-arrow { color: var(--text-tertiary); }
     .admin-forbidden { text-align: center; padding: 3rem 2rem; color: var(--text-tertiary); }
+    .admin-catalog { margin-top: 2rem; padding: 1.25rem; background: var(--bg-secondary, #f9fafb); border: 1px solid var(--border-primary, #e5e7eb); border-radius: 8px; }
+    .admin-catalog h2 { font-size: 1.1rem; font-weight: 600; margin: 0 0 0.75rem; }
+    .admin-catalog-status { font-size: 0.9rem; color: var(--text-secondary, #4b5563); margin-bottom: 1rem; line-height: 1.6; }
+    .admin-catalog-status span { font-weight: 500; color: var(--text-primary, #111); }
+    .admin-catalog-actions { display: flex; gap: 0.75rem; align-items: center; }
+    .admin-catalog-btn { padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 500; border: 1px solid var(--border-primary, #e5e7eb); border-radius: 6px; cursor: pointer; background: white; color: var(--text-primary, #111); transition: background 0.15s; }
+    .admin-catalog-btn:hover { background: var(--bg-tertiary, #f3f4f6); }
+    .admin-catalog-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .admin-catalog-btn--primary { background: var(--accent, #2563eb); color: white; border-color: var(--accent, #2563eb); }
+    .admin-catalog-btn--primary:hover { background: #1d4ed8; }
+    .admin-catalog-msg { font-size: 0.85rem; color: var(--text-tertiary, #6b7280); }
   </style>
   <script type="importmap">
   {
@@ -27,7 +38,7 @@
     }
   }
   </script>
-  <script type="module" crossorigin src="/assets/admin-BKSY3gVC.js"></script>
+  <script type="module" crossorigin src="/assets/admin-BzTKg2C4.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
   <link rel="modulepreload" crossorigin href="/assets/preload-helper-D7HrI6pR.js">
   <link rel="stylesheet" crossorigin href="/assets/design-system-in-MCC0p.css">
@@ -101,6 +112,15 @@
           </a>
         </li>
       </ul>
+
+      <div class="admin-catalog" id="admin-catalog">
+        <h2>Catalog Index</h2>
+        <div class="admin-catalog-status" id="catalog-status">Checking status...</div>
+        <div class="admin-catalog-actions">
+          <button class="admin-catalog-btn admin-catalog-btn--primary" id="catalog-reindex-btn" disabled>Force Re-index</button>
+          <span class="admin-catalog-msg" id="catalog-msg"></span>
+        </div>
+      </div>
     </div>
 
     <div id="admin-forbidden" class="admin-forbidden" style="display: none;">
