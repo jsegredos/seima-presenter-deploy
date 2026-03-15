@@ -1,3 +1,5 @@
+4.3.0 - Security review & session-based authentication: server-validated, conversation ownership enforcement, performance optimisations, documentation overhaul
+4.2.0 - Performance & documentation: resource hints, event delegation, search optimisation, user guides for all 3 operating modes, changelog
 4.1.2 - Fixes & improvements: product detail modal on grid image click, fix missing long descriptions in PDF, fix selection restore (rooms/notes swap), refactor addProductToSelection to named options, competitor RRP in validator modal
 4.1.1 - Fred embedding search: server-side semantic product search using OpenAI embeddings, Fuse.js matchedTerms bug fix
 4.1.0 - Shared Fuse.js search: Validator and OCR matcher now use shared ProductSearch for consistent, higher-quality results

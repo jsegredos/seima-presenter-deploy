@@ -253,21 +253,11 @@ document.addEventListener('DOMContentLoaded', () => {
   window.seimaScanner = new SeimaScanner();
   window.seimaScanner.init();
 
-  // Load version number for menus
-  fetch('./version.txt')
-    .then(resp => resp.text())
-    .then(versionText => {
-      const lines = versionText.trim().split('\n');
-      if (lines.length > 0) {
-        const latestLine = lines[0];
-        const versionNumber = latestLine.split(' - ')[0].trim();
-        window._appVersion = versionNumber;
-        const versionFooter = document.getElementById('menu-version-footer');
-        if (versionFooter) {
-          versionFooter.textContent = `Ver: ${versionNumber}`;
-        }
-      }
-    });
+  window._appVersion = CONFIG.VERSION;
+  const versionFooter = document.getElementById('menu-version-footer');
+  if (versionFooter) {
+    versionFooter.textContent = `Ver: ${CONFIG.VERSION}`;
+  }
 
   setupHelpButton();
   setupUserMenu();
