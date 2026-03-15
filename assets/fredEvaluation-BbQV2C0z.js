@@ -1,0 +1,28 @@
+import{a as q}from"./auth-ui-CKph4Agv.js";/* empty css                      *//* empty css                          */const h="https://seima-ai-proxy.seima.workers.dev";function g(){return q.getAuthHeaders()}let m=!1;async function $(){try{if(!q.isAdmin()){document.getElementById("fe-content").style.display="none",document.querySelector(".fi-navbar-actions").style.display="none",document.getElementById("fi-forbidden").style.display="block",document.getElementById("fi-loading").classList.add("hidden");return}}catch(e){console.warn("Auth check failed:",e)}document.getElementById("fe-save-btn").addEventListener("click",I),document.getElementById("fe-run-btn").addEventListener("click",k),document.getElementById("fe-add-test").addEventListener("click",()=>B({})),await T()}async function T(){const e=document.getElementById("fi-loading");e.classList.remove("hidden");try{const t=`${h}/v1/eval/test-cases`,s=await fetch(t,{headers:g()});if(!s.ok)throw new Error(`Failed (${s.status})`);const a=await s.json();b(a.testCases||[]),m=!1,E()}catch(t){console.error("Failed to load test cases:",t),b([])}finally{e.classList.add("hidden")}}function b(e){const t=document.getElementById("fe-test-list");if(t.innerHTML="",e.length===0){t.innerHTML=`<div class="fe-empty">No test cases yet. Add some to evaluate Fred's quality.</div>`;return}e.forEach(s=>B(s,!0))}function B(e,t=!1){const s=document.getElementById("fe-test-list"),a=s.querySelector(".fe-empty");a&&a.remove();const r=s.children.length+1,n=document.createElement("div");n.className="fe-test-case",n.dataset.id=e.id||"",n.innerHTML=`
+    <div class="fe-test-header">
+      <span class="fe-test-num">Test ${r}</span>
+      <button class="fi-remove-btn" title="Remove test">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="fe-test-field">
+      <label>Question:</label>
+      <input type="text" class="fe-question" value="${S(e.question||"")}" placeholder="What matte black basin mixers do you have?">
+    </div>
+    <div class="fe-test-field">
+      <label>Expected OrderCodes (comma-separated, optional):</label>
+      <input type="text" class="fe-codes" value="${S((e.expectedCodes||[]).join(", "))}" placeholder="123456, 789012">
+    </div>
+    <div class="fe-test-field">
+      <label>Expected behaviour (notes):</label>
+      <textarea class="fe-behavior" rows="2" placeholder="Should recommend products from Ava range...">${L(e.expectedBehavior||"")}</textarea>
+    </div>
+  `,n.querySelector(".fi-remove-btn").addEventListener("click",()=>{n.remove(),v()}),n.querySelectorAll("input, textarea").forEach(i=>i.addEventListener("input",v)),s.appendChild(n),t||v()}function w(){const e=[];return document.querySelectorAll(".fe-test-case").forEach(t=>{const s=t.querySelector(".fe-question").value.trim();if(!s)return;const a=t.querySelector(".fe-codes").value.trim(),r=a?a.split(",").map(i=>i.trim()).filter(Boolean):[],n=t.querySelector(".fe-behavior").value.trim();e.push({id:t.dataset.id||void 0,question:s,expectedCodes:r,expectedBehavior:n})}),e}function v(){m=!0,E()}function E(){document.getElementById("fe-save-btn").classList.toggle("fi-save-dirty",m)}async function I(){const e=w(),t=document.getElementById("fe-save-btn");t.disabled=!0;try{const s=await fetch(`${h}/v1/eval/test-cases`,{method:"PUT",headers:{"Content-Type":"application/json",...g()},body:JSON.stringify({testCases:e})});if(!s.ok)throw new Error(`Save failed (${s.status})`);m=!1,E()}catch(s){console.error("Save failed:",s)}finally{t.disabled=!1}}async function k(){const e=w();if(e.length===0)return;const t=document.getElementById("fe-run-btn");t.disabled=!0;const s=document.getElementById("fe-results-section");s.style.display="";const a=document.getElementById("fe-results"),r=document.getElementById("fe-progress");a.innerHTML="";let n=0,i=0;for(let u=0;u<e.length;u++){const l=e[u];r.textContent=`Running ${u+1} of ${e.length}...`;const o=document.createElement("div");o.className="fe-result pending",o.innerHTML=`
+      <div class="fe-result-header">
+        <span class="fe-result-question">${L(l.question)}</span>
+        <span class="fe-result-status">Running...</span>
+      </div>
+      <div class="fe-result-answer">Waiting for response...</div>
+    `,a.appendChild(o);try{const p=await fetch(`${h}/v1/agent-chat`,{method:"POST",headers:{"Content-Type":"application/json",...g()},body:JSON.stringify({message:l.question,history:[],model:"gpt-4o-mini"})});let d="";const x=await p.json();d=x.content||JSON.stringify(x);let f=!0;if(l.expectedCodes.length>0&&(f=l.expectedCodes.every(c=>d.includes(c))),f?n++:i++,o.className=`fe-result ${f?"pass":"fail"}`,o.querySelector(".fe-result-status").textContent=f?"PASS":"FAIL",o.querySelector(".fe-result-answer").textContent=d.slice(0,500),l.expectedCodes.length>0){const c=document.createElement("div");c.className="fe-result-expected";const A=l.expectedCodes.filter(y=>d.includes(y)),C=l.expectedCodes.filter(y=>!d.includes(y));c.textContent=`Expected: ${l.expectedCodes.join(", ")}`+(C.length>0?` | Missing: ${C.join(", ")}`:" | All found"),o.appendChild(c)}}catch(p){i++,o.className="fe-result fail",o.querySelector(".fe-result-status").textContent="ERROR",o.querySelector(".fe-result-answer").textContent=p.message}}r.textContent=`Done: ${n} passed, ${i} failed out of ${e.length}`,t.disabled=!1}function L(e){const t=document.createElement("div");return t.textContent=e,t.innerHTML}function S(e){return e.replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}document.addEventListener("DOMContentLoaded",$);
