@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fred - Knowledge Base</title>
+  <title>Fred - Knowledge & Indexing</title>
   <link rel="icon" type="image/png" href="/assets/seima-logo-Ij4HpjUg.png">
   <style>
     .fk-drop-zone {
@@ -25,9 +25,34 @@
     .fk-drop-zone input { display: none; }
 
     .fk-file-list { display: flex; flex-direction: column; gap: var(--space-2, 8px); }
+    .fk-file-toolbar {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .fk-file-summary {
+      font-size: 12px;
+      color: var(--text-secondary, #4b5563);
+    }
+    .fk-file-toolbar input,
+    .fk-file-toolbar select {
+      border: 1px solid var(--border-primary, #e5e5e5);
+      border-radius: var(--radius-md, 6px);
+      padding: 7px 10px;
+      font-size: 12px;
+      background: #fff;
+      color: var(--text-primary, #111);
+    }
+    .fk-file-toolbar input:focus,
+    .fk-file-toolbar select:focus {
+      outline: none;
+      border-color: var(--color-copper, #b87333);
+    }
     .fk-file-item {
       display: flex; align-items: center; justify-content: space-between;
-      padding: var(--space-3, 12px) var(--space-4, 16px);
+      padding: 10px 14px;
       border: 1px solid var(--border-primary, #e5e5e5);
       border-radius: var(--radius-md, 6px);
       background: var(--bg-secondary, #f9fafb);
@@ -42,6 +67,44 @@
     }
     .fk-file-delete:hover { color: var(--color-error, #c44536); background: var(--color-error-light, #fbeae8); }
     .fk-empty { text-align: center; color: var(--text-tertiary, #9ca3af); font-size: 13px; padding: 20px; }
+    .fk-file-footer {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--text-secondary, #4b5563);
+    }
+    .fk-pagination {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .fk-pagination button {
+      border: 1px solid var(--border-primary, #e5e5e5);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--text-primary, #111);
+      font-size: 12px;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+    .fk-pagination button:disabled { opacity: 0.45; cursor: default; }
+    .fk-pagination button:not(:disabled):hover {
+      border-color: var(--color-copper, #b87333);
+      color: var(--color-copper, #b87333);
+    }
+    @media (max-width: 980px) {
+      .fk-file-toolbar {
+        grid-template-columns: 1fr;
+      }
+      .fk-file-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
 
     .fk-upload-status {
       padding: var(--space-3, 12px); border-radius: var(--radius-md, 6px);
@@ -77,6 +140,60 @@
     }
     .fk-upload-text-btn:hover { background: var(--color-copper, #b87333); }
     .fk-upload-text-btn:disabled { opacity: 0.5; cursor: default; }
+    .fk-datasheet-row { display: flex; gap: 8px; align-items: center; margin-top: 12px; flex-wrap: wrap; }
+    .fk-datasheet-btn {
+      padding: 8px 14px; border-radius: var(--radius-md, 6px);
+      border: 1px solid var(--border-primary, #e5e5e5); background: #fff;
+      font-size: 13px; font-weight: 600; cursor: pointer; color: var(--text-primary, #1a1a1a);
+    }
+    .fk-datasheet-btn:hover { border-color: var(--color-copper, #b87333); color: var(--color-copper, #b87333); }
+    .fk-datasheet-status { font-size: 12px; color: var(--text-tertiary, #9ca3af); }
+    .fk-index-card {
+      margin-top: var(--space-3, 12px); padding: var(--space-3, 12px) var(--space-4, 16px);
+      border: 1px solid var(--border-primary, #e5e5e5); border-radius: var(--radius-md, 6px); background: var(--bg-secondary, #f9fafb);
+    }
+    .fk-index-status { font-size: 13px; color: var(--text-secondary, #4b5563); line-height: 1.55; margin-bottom: 10px; }
+    .fk-index-status span { font-weight: 600; color: var(--text-primary, #111); }
+    .fk-index-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .fk-index-btn {
+      padding: 8px 14px; border-radius: var(--radius-md, 6px); border: 1px solid var(--border-primary, #e5e5e5);
+      background: #fff; font-size: 13px; font-weight: 600; cursor: pointer;
+    }
+    .fk-index-btn:hover { border-color: var(--color-copper, #b87333); color: var(--color-copper, #b87333); }
+    .fk-index-btn:disabled { opacity: 0.5; cursor: default; }
+    .fk-index-btn--primary { background: var(--accent, #2563eb); border-color: var(--accent, #2563eb); color: #fff; }
+    .fk-index-btn--primary:hover { background: #1d4ed8; color: #fff; border-color: #1d4ed8; }
+    .fk-index-btn--dark { background: var(--color-charcoal, #1a1a1a); color: #fff; border-color: var(--color-charcoal, #1a1a1a); }
+    .fk-index-btn--dark:hover { background: #000; color: #fff; border-color: #000; }
+    .fk-index-note { font-size: 12px; color: var(--text-tertiary, #9ca3af); }
+    .fk-index-note.status-processing { color: var(--color-copper, #b87333); }
+    .fk-index-note.status-success { color: var(--color-sage, #7c9082); }
+    .fk-index-note.status-error { color: var(--color-error, #c44536); }
+    .fk-index-progress {
+      margin-top: 8px;
+      height: 7px;
+      border-radius: 999px;
+      background: #ececec;
+      overflow: hidden;
+    }
+    .fk-index-progress.hidden { display: none; }
+    .fk-index-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #b87333 0%, #d4915a 100%);
+      transition: width 0.25s ease;
+    }
+    .fk-rag-failures { margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--border-primary, #e5e5e5); }
+    .fk-rag-failures.hidden { display: none; }
+    .fk-rag-failures h3 { margin: 0 0 6px; font-size: 12px; font-weight: 600; color: var(--text-primary, #111); }
+    .fk-rag-failures-list { max-height: 180px; overflow: auto; margin: 0; padding: 0; list-style: none; display: grid; gap: 5px; }
+    .fk-rag-failures-list li { font-size: 12px; color: var(--text-secondary, #4b5563); word-break: break-word; }
+    .fk-rag-failures-list code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; color: #111; }
+    .fk-sync-activity { margin-top: 10px; border-top: 1px dashed var(--border-primary, #e5e5e5); padding-top: 8px; }
+    .fk-sync-activity h3 { margin: 0 0 6px; font-size: 12px; font-weight: 600; color: var(--text-primary, #111); }
+    .fk-sync-activity-list { margin: 0; padding: 0; list-style: none; max-height: 190px; overflow: auto; display: grid; gap: 4px; }
+    .fk-sync-activity-list li { font-size: 11px; color: var(--text-secondary, #4b5563); line-height: 1.35; }
+    .fk-sync-activity-list .fk-sync-activity-time { color: var(--text-tertiary, #9ca3af); }
   </style>
   <script type="importmap">
   {
@@ -85,9 +202,9 @@
     }
   }
   </script>
-  <script type="module" crossorigin src="/assets/fredKnowledge-CAvxigtp.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/auth-ui-CKph4Agv.js">
-  <link rel="stylesheet" crossorigin href="/assets/design-system-in-MCC0p.css">
+  <script type="module" crossorigin src="/assets/fredKnowledge-B3KIZ8tL.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/auth-ui-BdyM06Px.js">
+  <link rel="stylesheet" crossorigin href="/assets/auth-ui-in-MCC0p.css">
   <link rel="stylesheet" crossorigin href="/assets/fred-instructions-FY8gt7VF.css">
 </head>
 <body>
@@ -98,15 +215,18 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </a>
         <span class="fi-navbar-divider"></span>
-        <span class="fi-navbar-title">Fred Knowledge Base</span>
+        <span class="fi-navbar-title">Knowledge &amp; Indexing</span>
       </div>
     </nav>
 
     <div class="fi-content" id="fk-content">
       <section class="fi-section">
         <div class="fi-section-header">
-          <h2>Upload Document</h2>
+          <h2>Knowledge Base Documents</h2>
           <p class="fi-section-desc">Upload files or paste text that Fred can reference when answering questions (policies, guides, FAQs, etc.).</p>
+        </div>
+        <div class="fk-datasheet-row">
+          <span class="fk-index-note">Impact scope: uploaded content influences Fred answers for all users.</span>
         </div>
 
         <div class="fk-drop-zone" id="fk-drop-zone">
@@ -139,11 +259,53 @@
 
       <section class="fi-section">
         <div class="fi-section-header">
+          <h2>Catalogue Indexing</h2>
+          <p class="fi-section-desc">Run high-impact indexing jobs used by catalogue search and datasheet RAG.</p>
+        </div>
+        <div class="fk-index-card">
+          <div class="fk-index-status" id="catalog-status">Checking catalogue index status...</div>
+          <div class="fk-index-actions">
+            <button type="button" class="fk-index-btn fk-index-btn--primary" id="catalog-reindex-btn" disabled>Force Re-index</button>
+            <button type="button" class="fk-index-btn fk-index-btn--dark" id="fk-sync-datasheets-btn" disabled>Regenerate RAG from Datasheets</button>
+          </div>
+          <div class="fk-index-note" id="catalog-msg"></div>
+          <div class="fk-index-progress hidden" id="fk-index-progress">
+            <div class="fk-index-progress-bar" id="fk-index-progress-bar"></div>
+          </div>
+          <div class="fk-datasheet-status" id="fk-datasheet-status">Checking datasheet RAG status...</div>
+          <div class="fk-rag-failures hidden" id="rag-failures-panel">
+            <h3>Failed Datasheet URLs</h3>
+            <ul class="fk-rag-failures-list" id="rag-failures-list"></ul>
+          </div>
+          <div class="fk-sync-activity">
+            <h3>Sync Activity</h3>
+            <ul class="fk-sync-activity-list" id="fk-sync-activity-list">
+              <li>No sync activity yet.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="fi-section">
+        <div class="fi-section-header">
           <h2>Documents</h2>
-          <p class="fi-section-desc">Fred will search these documents when answering questions.</p>
+          <p class="fi-section-desc">Fred will search these documents when answering questions. Large datasheet volumes are shown as a compact, searchable list.</p>
+        </div>
+        <div class="fk-file-toolbar">
+          <div class="fk-file-summary" id="fk-file-summary">Loading documents...</div>
+          <input type="search" id="fk-file-search" placeholder="Search by name or source URL">
+          <select id="fk-file-filter">
+            <option value="all">All documents</option>
+            <option value="datasheets">Datasheets only</option>
+            <option value="manual">Manual uploads only</option>
+          </select>
         </div>
         <div class="fk-file-list" id="fk-file-list">
           <div class="fk-empty">No documents uploaded yet.</div>
+        </div>
+        <div class="fk-file-footer">
+          <div id="fk-file-page-note"></div>
+          <div class="fk-pagination" id="fk-file-pagination"></div>
         </div>
       </section>
     </div>

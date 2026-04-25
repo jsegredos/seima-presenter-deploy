@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="header-right">
-        <button id="import-file-btn" class="btn-import-quote">Import File</button>
+        <button id="import-file-btn" class="btn-import-quote" style="display: none;">Import File</button>
         <button id="clear-all-btn" class="btn-clear-all">Clear All</button>
         <button id="settings-btn" class="btn-settings">Settings</button>
         <button id="download-btn" class="btn-create">Create</button>
@@ -27,6 +27,34 @@
       <div class="selection-summary">
         <span id="total-items">0</span> items, <span id="total-rooms">0</span> Rooms. Total <span id="total-value">$0.00</span>
       </div>
+    </div>
+  </div>
+
+  <div class="guided-assist-wrap">
+    <button id="guided-assist-toggle" class="guided-assist-toggle" type="button" aria-expanded="false">Browse full range</button>
+    <div id="guided-assist-panel" class="guided-assist-panel" style="display:none;">
+      <div class="guided-assist-controls">
+        <label class="guided-range-search-wrap">
+          Smart search
+          <input id="guided-range-search" type="text" placeholder="Search code, name, finish, style...">
+        </label>
+        <label>
+          Category
+          <select id="guided-category-select">
+            <option value="">Any category</option>
+          </select>
+        </label>
+        <label>
+          Group
+          <select id="guided-group-select">
+            <option value="">Any group</option>
+          </select>
+        </label>
+        <button id="guided-ask-fred" class="guided-fred-btn" type="button">Ask Fred</button>
+        <button id="guided-clear-filters" class="guided-clear-btn" type="button">Clear filters</button>
+      </div>
+      <p id="guided-selection-hint" class="guided-selection-hint">Open Range Explorer to browse the full catalog with images, filters, and smart search.</p>
+      <div id="guided-suggestions-list" class="guided-suggestions-list"></div>
     </div>
   </div>
 

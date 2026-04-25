@@ -290,6 +290,14 @@ function setupHelpButton() {
     });
   }
 
+  // Setup Pending Verifications button (staff/power/admin)
+  const pendingBtn = document.getElementById('pending-btn');
+  if (pendingBtn) {
+    pendingBtn.addEventListener('click', () => {
+      window.location.href = 'screens/admin-pending.html';
+    });
+  }
+
   // Setup Landscape button (staff-only)
   const landscapeBtn = document.getElementById('landscape-btn');
   if (landscapeBtn) {
@@ -340,14 +348,27 @@ function setupUserMenu() {
       if (userMenuContainer) userMenuContainer.style.display = 'block';
       if (signInBtn) signInBtn.style.display = 'none';
       const crosshairBtn = document.getElementById('crosshair-btn');
-      if (crosshairBtn) crosshairBtn.style.display = (CONFIG.CROSSHAIR?.ENABLED && authService.isStaffMode()) ? '' : 'none';
+      const pendingBtn = document.getElementById('pending-btn');
+      const isStaff = authService.isStaffMode();
+      const isPower = authService.isPowerUser();
+      const isAdmin = authService.isAdmin();
+      if (crosshairBtn) crosshairBtn.style.display = (CONFIG.CROSSHAIR?.ENABLED && isStaff) ? '' : 'none';
+      if (pendingBtn) pendingBtn.style.display = isStaff ? '' : 'none';
       const landscapeBtn = document.getElementById('landscape-btn');
-      if (landscapeBtn) landscapeBtn.style.display = (CONFIG.CROSSHAIR?.ENABLED && authService.isAdmin()) ? '' : 'none';
+      if (landscapeBtn) landscapeBtn.style.display = (CONFIG.CROSSHAIR?.ENABLED && (isAdmin || isPower)) ? '' : 'none';
       const adminBtn = document.getElementById('admin-btn');
-      if (adminBtn) adminBtn.style.display = authService.isAdmin() ? '' : 'none';
+      if (adminBtn) adminBtn.style.display = isAdmin ? '' : 'none';
       const staffDivider = document.getElementById('staff-divider');
-      const anyStaffVisible = crosshairBtn?.style.display !== 'none' || landscapeBtn?.style.display !== 'none' || adminBtn?.style.display !== 'none';
+      const anyStaffVisible = crosshairBtn?.style.display !== 'none'
+        || pendingBtn?.style.display !== 'none'
+        || landscapeBtn?.style.display !== 'none'
+        || adminBtn?.style.display !== 'none';
       if (staffDivider) staffDivider.style.display = anyStaffVisible ? '' : 'none';
+
+      // Import button is only visible for power users and above
+      document.querySelectorAll('#import-file-btn, #entry-import').forEach(el => {
+        if (el) el.style.display = isPower ? '' : 'none';
+      });
 
       // Update avatar and name
       const initials = getInitials(user.name);
@@ -474,8 +495,11 @@ function setupUserMenu() {
         
         document.getElementById('menu-logout')?.addEventListener('click', () => {
           userMenuDropdown.style.display = 'none';
-          // Clear saved contact details so next login uses new user's profile
           StorageManager.clearUserSettings();
+          competitorService.clearAllCaches();
+          if (window.productGridManager?.searchCache) {
+            window.productGridManager.searchCache.clear();
+          }
           authService.logout();
           updateAuthUI(null);
         });
@@ -484,6 +508,21 @@ function setupUserMenu() {
       // Logged out
       if (userMenuContainer) userMenuContainer.style.display = 'none';
       if (signInBtn) signInBtn.style.display = 'block';
+
+      // Hide import and staff features for logged-out users (treated as normal user)
+      document.querySelectorAll('#import-file-btn, #entry-import').forEach(el => {
+        if (el) el.style.display = 'none';
+      });
+      const crosshairBtn = document.getElementById('crosshair-btn');
+      if (crosshairBtn) crosshairBtn.style.display = 'none';
+      const pendingBtn = document.getElementById('pending-btn');
+      if (pendingBtn) pendingBtn.style.display = 'none';
+      const landscapeBtn = document.getElementById('landscape-btn');
+      if (landscapeBtn) landscapeBtn.style.display = 'none';
+      const adminBtn = document.getElementById('admin-btn');
+      if (adminBtn) adminBtn.style.display = 'none';
+      const staffDivider = document.getElementById('staff-divider');
+      if (staffDivider) staffDivider.style.display = 'none';
     }
   }
   
@@ -857,6 +896,7 @@ async function showChangelog() {
       return;
     }
 
+    const _esc = (s) => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     let html = '';
     lines.forEach(line => {
       if (line.trim()) {
@@ -868,9 +908,9 @@ async function showChangelog() {
           html += `
             <div style="margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                <h4 style="margin: 0; color: #a09484;">v${version}</h4>
+                <h4 style="margin: 0; color: #a09484;">v${_esc(version)}</h4>
               </div>
-              <p style="margin: 10px 0; color: #555; line-height: 1.5;">${changelogText}</p>
+              <p style="margin: 10px 0; color: #555; line-height: 1.5;">${_esc(changelogText)}</p>
             </div>
           `;
         }

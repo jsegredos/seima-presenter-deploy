@@ -12,24 +12,21 @@
     .admin-navbar-back { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-secondary, #4b5563); text-decoration: none; font-size: 0.9rem; }
     .admin-navbar-back:hover { color: var(--text-primary, #111); }
     .admin-title { font-size: 1.5rem; font-weight: 600; margin: 0; }
+    .admin-section { margin-bottom: 1.5rem; }
+    .admin-section h2 { font-size: 0.95rem; font-weight: 700; letter-spacing: 0.02em; color: var(--text-secondary, #4b5563); margin: 0 0 0.6rem; text-transform: uppercase; }
     .admin-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; }
     .admin-link { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; background: var(--bg-secondary, #f9fafb); border: 1px solid var(--border-primary, #e5e7eb); border-radius: 8px; color: var(--text-primary, #111); text-decoration: none; font-weight: 500; transition: background 0.15s, border-color 0.15s; }
     .admin-link:hover { background: var(--bg-tertiary, #f3f4f6); border-color: var(--border-secondary, #d1d5db); }
     .admin-link-desc { font-size: 0.85rem; font-weight: 400; color: var(--text-tertiary, #6b7280); margin-top: 0.25rem; }
+    .admin-link-meta { font-size: 0.76rem; color: var(--text-secondary, #4b5563); margin-top: 0.35rem; }
+    .admin-link-tags { display: inline-flex; gap: 0.35rem; margin-top: 0.35rem; flex-wrap: wrap; }
+    .admin-tag { display: inline-flex; align-items: center; border: 1px solid var(--border-primary, #e5e7eb); background: #fff; border-radius: 999px; font-size: 0.68rem; line-height: 1; padding: 0.22rem 0.45rem; color: var(--text-secondary, #4b5563); }
+    .admin-tag--admin { border-color: #dbeafe; color: #1d4ed8; background: #eff6ff; }
+    .admin-tag--staff { border-color: #dcfce7; color: #166534; background: #f0fdf4; }
+    .admin-tag--readonly { border-color: #fde68a; color: #92400e; background: #fffbeb; }
     .admin-link-inner { flex: 1; }
     .admin-link-arrow { color: var(--text-tertiary); }
     .admin-forbidden { text-align: center; padding: 3rem 2rem; color: var(--text-tertiary); }
-    .admin-catalog { margin-top: 2rem; padding: 1.25rem; background: var(--bg-secondary, #f9fafb); border: 1px solid var(--border-primary, #e5e7eb); border-radius: 8px; }
-    .admin-catalog h2 { font-size: 1.1rem; font-weight: 600; margin: 0 0 0.75rem; }
-    .admin-catalog-status { font-size: 0.9rem; color: var(--text-secondary, #4b5563); margin-bottom: 1rem; line-height: 1.6; }
-    .admin-catalog-status span { font-weight: 500; color: var(--text-primary, #111); }
-    .admin-catalog-actions { display: flex; gap: 0.75rem; align-items: center; }
-    .admin-catalog-btn { padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 500; border: 1px solid var(--border-primary, #e5e7eb); border-radius: 6px; cursor: pointer; background: white; color: var(--text-primary, #111); transition: background 0.15s; }
-    .admin-catalog-btn:hover { background: var(--bg-tertiary, #f3f4f6); }
-    .admin-catalog-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-    .admin-catalog-btn--primary { background: var(--accent, #2563eb); color: white; border-color: var(--accent, #2563eb); }
-    .admin-catalog-btn--primary:hover { background: #1d4ed8; }
-    .admin-catalog-msg { font-size: 0.85rem; color: var(--text-tertiary, #6b7280); }
   </style>
   <script type="importmap">
   {
@@ -38,9 +35,9 @@
     }
   }
   </script>
-  <script type="module" crossorigin src="/assets/admin-QEmtbevo.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/auth-ui-CKph4Agv.js">
-  <link rel="stylesheet" crossorigin href="/assets/design-system-in-MCC0p.css">
+  <script type="module" crossorigin src="/assets/admin-osD8cOZL.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/auth-ui-BdyM06Px.js">
+  <link rel="stylesheet" crossorigin href="/assets/auth-ui-in-MCC0p.css">
   <link rel="stylesheet" crossorigin href="/assets/fred-review-Dp4sXovk.css">
 </head>
 <body>
@@ -55,80 +52,91 @@
     </nav>
 
     <div id="admin-content">
-      <ul class="admin-list">
-        <li>
-          <a href="fred-instructions.html" class="admin-link">
-            <span class="admin-link-inner">
-              Fred Instructions
-              <div class="admin-link-desc">Edit Fred's personality, rules, examples, and response formatting</div>
-            </span>
-            <span class="admin-link-arrow" aria-hidden="true">&rarr;</span>
-          </a>
-        </li>
-        <li>
-          <a href="fred-review.html" class="admin-link">
-            <span class="admin-link-inner">
-              Fred Review
-              <div class="admin-link-desc">Review Fred's learning data, thumbs-up/down feedback, and top questions</div>
-            </span>
-            <span class="admin-link-arrow" aria-hidden="true">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="fred-knowledge.html" class="admin-link">
-            <span class="admin-link-inner">
-              Fred Knowledge Base
-              <div class="admin-link-desc">Upload documents (policies, guides, FAQs) that Fred can reference when answering questions</div>
-            </span>
-            <span class="admin-link-arrow" aria-hidden="true">&rarr;</span>
-          </a>
-        </li>
-        <li>
-          <a href="admin-synonyms.html" class="admin-link">
-            <span class="admin-link-inner">
-              Synonyms
-              <div class="admin-link-desc">Edit product search synonyms used by Fred and catalogue search (e.g. wall mounted ↔ wall hung)</div>
-            </span>
-            <span class="admin-link-arrow" aria-hidden="true">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="fred-evaluation.html" class="admin-link">
-            <span class="admin-link-inner">
-              Fred Evaluation
-              <div class="admin-link-desc">Run test cases against Fred to catch regressions after prompt changes</div>
-            </span>
-            <span class="admin-link-arrow" aria-hidden="true">&rarr;</span>
-          </a>
-        </li>
-        <li>
-          <a href="landscape.html" class="admin-link">
-            <span class="admin-link-inner">
-              Landscape
-              <div class="admin-link-desc">Category intelligence: matrix heatmap, gap analysis, product constellation, and grouping canvas</div>
-            </span>
-            <span class="admin-link-arrow" aria-hidden="true">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="admin-pending.html" class="admin-link">
-            <span class="admin-link-inner">
-              Pending Verifications
-              <div class="admin-link-desc">Review and approve community-submitted match verifications and disputes</div>
-            </span>
-            <span class="admin-link-arrow" aria-hidden="true">&rarr;</span>
-          </a>
-        </li>
-      </ul>
+      <section class="admin-section">
+        <h2>AI Configuration</h2>
+        <ul class="admin-list">
+          <li>
+            <a href="fred-console.html" class="admin-link">
+              <span class="admin-link-inner">
+                Fred Console
+                <div class="admin-link-desc">Prompt configuration, feedback dashboard, and regression test management in one console</div>
+                <div class="admin-link-tags">
+                  <span class="admin-tag admin-tag--admin">Admin</span>
+                  <span class="admin-tag admin-tag--readonly">Staff Read-only (feedback)</span>
+                </div>
+                <div class="admin-link-meta">Last editor: shown in prompt/version history • Impact scope: Fred behaviour and answer quality across all users</div>
+              </span>
+              <span class="admin-link-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </li>
+        </ul>
+      </section>
 
-      <div class="admin-catalog" id="admin-catalog">
-        <h2>Catalogue Index</h2>
-        <div class="admin-catalog-status" id="catalog-status">Checking status...</div>
-        <div class="admin-catalog-actions">
-          <button class="admin-catalog-btn admin-catalog-btn--primary" id="catalog-reindex-btn" disabled>Force Re-index</button>
-          <span class="admin-catalog-msg" id="catalog-msg"></span>
+      <section class="admin-section">
+        <h2>Data &amp; Search</h2>
+        <ul class="admin-list">
+          <li>
+            <a href="fred-knowledge.html" class="admin-link">
+              <span class="admin-link-inner">
+                Knowledge &amp; Indexing
+                <div class="admin-link-desc">Upload Fred reference docs and run catalogue/datasheet indexing controls</div>
+                <div class="admin-link-tags">
+                  <span class="admin-tag admin-tag--admin">Admin</span>
+                </div>
+                <div class="admin-link-meta">Last run: index timestamps shown on page • Impact scope: search and RAG quality for all users</div>
+              </span>
+              <span class="admin-link-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </li>
+          <li>
+            <a href="admin-synonyms.html" class="admin-link">
+              <span class="admin-link-inner">
+                Synonyms
+                <div class="admin-link-desc">Manage global search synonyms used by Fred and catalogue search</div>
+                <div class="admin-link-tags">
+                  <span class="admin-tag admin-tag--admin">Admin</span>
+                </div>
+                <div class="admin-link-meta">Last editor: captured on save payload • Impact scope: affects search ranking for all users immediately after save</div>
+              </span>
+              <span class="admin-link-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="admin-section">
+        <h2>Verification Ops</h2>
+        <ul class="admin-list">
+          <li>
+            <a href="admin-pending.html" class="admin-link">
+              <span class="admin-link-inner">
+                Pending Verifications
+                <div class="admin-link-desc">Review and resolve submitted match verifications and disputes</div>
+                <div class="admin-link-tags">
+                  <span class="admin-tag admin-tag--staff">Staff</span>
+                </div>
+                <div class="admin-link-meta">Last run: pending counts and queue state shown on page • Impact scope: competitor match quality and recommendation trust</div>
+              </span>
+              <span class="admin-link-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="admin-section">
+        <h2>Intelligence</h2>
+        <div class="admin-link" style="cursor:default;">
+          <span class="admin-link-inner">
+            Landscape
+            <div class="admin-link-desc">Category intelligence is now accessed directly from the main presenter navigation.</div>
+            <div class="admin-link-tags">
+              <span class="admin-tag admin-tag--staff">Staff</span>
+              <span class="admin-tag">Main Nav</span>
+            </div>
+            <div class="admin-link-meta">Impact scope: strategic category insights and competitor analysis</div>
+          </span>
         </div>
-      </div>
+      </section>
     </div>
 
     <div id="admin-forbidden" class="admin-forbidden" style="display: none;">

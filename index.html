@@ -5,6 +5,8 @@
   <!-- Import map for local development without Vite -->
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://presenter.seima.com.au https://*.workers.dev https://script.google.com https://script.googleusercontent.com https://docs.google.com https://*.googleusercontent.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdn.jsdelivr.net; worker-src 'self' blob:; base-uri 'self'; form-action 'self';">
   <title>Seima Product Selector</title>
   <!-- Resource hints for external origins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,21 +21,22 @@
     }
   }
   </script>
-  <link rel="modulepreload" href="/assets/app-Box93hX2.js">
+  <link rel="modulepreload" href="/assets/app-e9jewkFG.js">
   <link rel="icon" type="image/png" href="/assets/seima-logo-Ij4HpjUg.png">
-  <script type="module" crossorigin src="/assets/main-LkUCuhHa.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/auth-ui-CKph4Agv.js">
-  <link rel="modulepreload" crossorigin href="/assets/config-CzN9Lv3U.js">
+  <script type="module" crossorigin src="/assets/main-DR_dnwf1.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/auth-ui-BdyM06Px.js">
+  <link rel="modulepreload" crossorigin href="/assets/config-DcBu6QPE.js">
   <link rel="modulepreload" crossorigin href="/assets/vendor-fuse-Ch1WBRTM.js">
-  <link rel="modulepreload" crossorigin href="/assets/product-search-DFc_sNRK.js">
+  <link rel="modulepreload" crossorigin href="/assets/product-search-CeYNHdfP.js">
   <link rel="modulepreload" crossorigin href="/assets/product-synonyms-CeNdtqLO.js">
   <link rel="modulepreload" crossorigin href="/assets/vendor-idb-DwnyWBFG.js">
-  <link rel="modulepreload" crossorigin href="/assets/data-layer-CCxpaQK1.js">
+  <link rel="modulepreload" crossorigin href="/assets/data-layer-C5VcJsaC.js">
   <link rel="modulepreload" crossorigin href="/assets/pdf-layouts-BftXqYv_.js">
-  <link rel="modulepreload" crossorigin href="/assets/competitor-service-eL5jmCtR.js">
-  <link rel="modulepreload" crossorigin href="/assets/matching-engine-CiLt2jyw.js">
-  <link rel="stylesheet" crossorigin href="/assets/main-C0F5q-Ql.css">
-  <link rel="stylesheet" crossorigin href="/assets/design-system-in-MCC0p.css">
+  <link rel="modulepreload" crossorigin href="/assets/competitor-service-CvNbDbLJ.js">
+  <link rel="modulepreload" crossorigin href="/assets/product-matching-CsGMOakR.js">
+  <link rel="modulepreload" crossorigin href="/assets/matching-engine-CzbPxUHj.js">
+  <link rel="stylesheet" crossorigin href="/assets/auth-ui-in-MCC0p.css">
+  <link rel="stylesheet" crossorigin href="/assets/main-DEDYUUj8.css">
 </head>
 <body>
   <!-- Loading overlay - removed by JS once critical init completes -->
@@ -55,6 +58,7 @@
       <div class="navbar-actions">
         <!-- Staff tools (visible to staff/admin only) -->
         <button id="crosshair-btn" class="navbar-link navbar-link--staff" title="Validate competitor product matches" style="display: none;">Validator</button>
+        <button id="pending-btn" class="navbar-link navbar-link--staff" title="Review pending verifications and disputes" style="display: none;">Pending</button>
         <button id="landscape-btn" class="navbar-link navbar-link--staff" title="Category intelligence tool" style="display: none;">Landscape</button>
         <button id="admin-btn" class="navbar-link navbar-link--staff" title="Admin options" style="display: none;">Admin</button>
         <span id="staff-divider" class="navbar-divider" style="display: none;"></span>
@@ -115,7 +119,7 @@
     <!-- Toolbar - Actions & Controls -->
     <div class="app-toolbar">
       <div class="toolbar-left">
-        <button id="import-file-btn" class="toolbar-btn toolbar-btn-primary">
+        <button id="import-file-btn" class="toolbar-btn toolbar-btn-primary" style="display: none;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
             <polyline points="7 10 12 15 17 10"></polyline>
@@ -173,6 +177,34 @@
       </div>
     </div>
 
+    <div class="guided-assist-wrap">
+      <button id="guided-assist-toggle" class="guided-assist-toggle" type="button" aria-expanded="false">Browse full range</button>
+      <div id="guided-assist-panel" class="guided-assist-panel" style="display:none;">
+        <div class="guided-assist-controls">
+          <label class="guided-range-search-wrap">
+            Smart search
+            <input id="guided-range-search" type="text" placeholder="Search code, name, finish, style...">
+          </label>
+          <label>
+            Category
+            <select id="guided-category-select">
+              <option value="">Any category</option>
+            </select>
+          </label>
+          <label>
+            Group
+            <select id="guided-group-select">
+              <option value="">Any group</option>
+            </select>
+          </label>
+          <button id="guided-ask-fred" class="guided-fred-btn" type="button">Ask Fred</button>
+          <button id="guided-clear-filters" class="guided-clear-btn" type="button">Clear filters</button>
+        </div>
+        <p id="guided-selection-hint" class="guided-selection-hint">Open Range Explorer to browse the full catalog with images, filters, and smart search.</p>
+        <div id="guided-suggestions-list" class="guided-suggestions-list"></div>
+      </div>
+    </div>
+
     <!-- Grid Section -->
     <div class="grid-content">
       <div id="product-grid-empty" class="empty-state-hero" style="display: none;">
@@ -196,7 +228,7 @@
             </div>
             
             <div class="entry-actions">
-              <button class="entry-btn entry-btn-primary" id="entry-import">
+              <button class="entry-btn entry-btn-primary" id="entry-import" style="display: none;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                   <polyline points="7 10 12 15 17 10"></polyline>
@@ -476,7 +508,7 @@
     </div>
   </div>
 
-  <script defer src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js" integrity="sha384-weMABwrltA6jWR8DDe9Jp5blk+tZQh7ugpCsF3JwSA53WZM9/14PjS5LAJNHNjAI" crossorigin="anonymous"></script>
      <script>
      document.addEventListener('DOMContentLoaded', function() {
        var priceBox = document.getElementById('exclude-prices');

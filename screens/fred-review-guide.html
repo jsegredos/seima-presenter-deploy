@@ -163,10 +163,12 @@
       color: var(--text-secondary);
     }
   </style>
-  <link rel="stylesheet" crossorigin href="/assets/design-system-in-MCC0p.css">
+  <script type="module" crossorigin src="/assets/fredReviewGuide-D2v8gLpU.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/auth-ui-BdyM06Px.js">
+  <link rel="stylesheet" crossorigin href="/assets/auth-ui-in-MCC0p.css">
   <link rel="stylesheet" crossorigin href="/assets/fred-review-Dp4sXovk.css">
 </head>
-<body>
+<body style="visibility:hidden;">
   <div class="fr-app">
 
     <nav class="fr-navbar">
@@ -191,7 +193,7 @@
           <li><a href="#overview">How learning works</a></li>
           <li><a href="#dashboard">Using the Review dashboard</a></li>
           <li><a href="#where-stored">Where data is stored</a></li>
-          <li><a href="#cloudflare-kv">Reviewing data in Cloudflare</a></li>
+          <li><a href="#cloudflare-kv">Reviewing data in operations tools</a></li>
           <li><a href="#editing">Editing and deleting data</a></li>
           <li><a href="#improving">Improving Fred's responses</a></li>
           <li><a href="#cli">Using the command line</a></li>
@@ -286,18 +288,18 @@
       <p>The aggregated learning data lives in a Cloudflare Workers KV namespace called <strong>FRED_LEARNING</strong>. This is the "source of truth" that the Review dashboard reads from.</p>
 
       <!-- ─── Section 5 ──────────────────────────────────── -->
-      <h2 id="cloudflare-kv">5. Reviewing data in Cloudflare</h2>
+      <h2 id="cloudflare-kv">5. Reviewing data in operations tools</h2>
 
-      <p>You can browse and edit the raw KV data through the <strong>Cloudflare Dashboard</strong>:</p>
+      <p>Operational storage can be reviewed using Seima's internal operations tooling.</p>
 
       <ol>
-        <li>Click the <strong>Cloudflare KV</strong> button in the Fred Review navbar (or go to <a href="https://dash.cloudflare.com/6fb5df1b168e2c538fbfc7b6f31b390f/workers/kv/namespaces/4118f16373a244178acd1da59a04e208" target="_blank" rel="noopener">dash.cloudflare.com &rarr; Workers &amp; Pages &rarr; KV</a>).</li>
-        <li>You will see a list of keys. Each key holds a JSON value.</li>
-        <li>Click any key to view its content. Click <strong>Edit</strong> to modify the value directly.</li>
+        <li>Open the approved internal operations dashboard for this environment.</li>
+        <li>Review key/value records and validate JSON structure before changes.</li>
+        <li>Apply edits carefully and verify dashboard totals in Fred Review after refresh.</li>
       </ol>
 
       <div class="guide-callout">
-        <p><strong>Tip:</strong> You must be logged in to Cloudflare with the account <code>jim@seima.com.au</code> to access the dashboard.</p>
+        <p><strong>Tip:</strong> Access to operations tooling is restricted by your organization account and role.</p>
       </div>
 
       <!-- ─── Section 6 ──────────────────────────────────── -->
@@ -383,19 +385,19 @@
       <!-- ─── Section 8 ──────────────────────────────────── -->
       <h2 id="cli">8. Using the command line (advanced)</h2>
 
-      <p>If you prefer the terminal, you can use the <strong>Wrangler CLI</strong> to interact with KV. Run these from the <code>packages/ai-proxy</code> directory.</p>
+      <p>If you prefer the terminal, use your approved environment variables instead of hardcoded namespace IDs.</p>
 
       <h3>List all keys</h3>
-      <pre><code>npx wrangler kv key list --namespace-id="4118f16373a244178acd1da59a04e208"</code></pre>
+      <pre><code>npx wrangler kv key list --namespace-id="$FRED_LEARNING_NAMESPACE_ID"</code></pre>
 
       <h3>Read a key</h3>
-      <pre><code>npx wrangler kv key get --namespace-id="4118f16373a244178acd1da59a04e208" "stats:topQuestions"</code></pre>
+      <pre><code>npx wrangler kv key get --namespace-id="$FRED_LEARNING_NAMESPACE_ID" "stats:topQuestions"</code></pre>
 
       <h3>Update a key</h3>
-      <pre><code>npx wrangler kv key put --namespace-id="4118f16373a244178acd1da59a04e208" "stats:topQuestions" "[]"</code></pre>
+      <pre><code>npx wrangler kv key put --namespace-id="$FRED_LEARNING_NAMESPACE_ID" "stats:topQuestions" "[]"</code></pre>
 
       <h3>Delete a key</h3>
-      <pre><code>npx wrangler kv key delete --namespace-id="4118f16373a244178acd1da59a04e208" "feedback:some-id-here"</code></pre>
+      <pre><code>npx wrangler kv key delete --namespace-id="$FRED_LEARNING_NAMESPACE_ID" "feedback:some-id-here"</code></pre>
 
       <!-- ─── Section 9 ──────────────────────────────────── -->
       <h2 id="keys">9. KV key reference</h2>

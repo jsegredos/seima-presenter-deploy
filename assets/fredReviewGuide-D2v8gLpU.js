@@ -1,0 +1,1 @@
+import{a as i}from"./auth-ui-BdyM06Px.js";/* empty css                    */try{i.isAdmin()?document.body.style.visibility="visible":window.location.href="../index.html"}catch{window.location.href="../index.html"}
