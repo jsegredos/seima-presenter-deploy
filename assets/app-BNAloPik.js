@@ -369,6 +369,11 @@ function setupUserMenu() {
       document.querySelectorAll('#import-file-btn, #entry-import').forEach(el => {
         if (el) el.style.display = isPower ? '' : 'none';
       });
+      // Fred chat is available only to signed-in users.
+      const aiTrigger = document.getElementById('ai-chat-trigger');
+      if (aiTrigger) aiTrigger.style.display = '';
+      const askFredBtn = document.getElementById('guided-ask-fred');
+      if (askFredBtn) askFredBtn.style.display = '';
 
       // Update avatar and name
       const initials = getInitials(user.name);
@@ -513,6 +518,12 @@ function setupUserMenu() {
       document.querySelectorAll('#import-file-btn, #entry-import').forEach(el => {
         if (el) el.style.display = 'none';
       });
+      // Hide Fred entry points while logged out to avoid unauthorized calls.
+      const aiTrigger = document.getElementById('ai-chat-trigger');
+      if (aiTrigger) aiTrigger.style.display = 'none';
+      const askFredBtn = document.getElementById('guided-ask-fred');
+      if (askFredBtn) askFredBtn.style.display = 'none';
+      aiChatPanel.close();
       const crosshairBtn = document.getElementById('crosshair-btn');
       if (crosshairBtn) crosshairBtn.style.display = 'none';
       const pendingBtn = document.getElementById('pending-btn');
