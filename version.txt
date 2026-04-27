@@ -1,3 +1,4 @@
+0.0.1 - Version reset update
 4.4.1 - Auth compatibility hotfix: worker session validation now falls back to GET when Apps Script validateSession does not accept POST, restoring deployed authentication flows
 4.4.0 - Security hardening and deployment readiness: staff-only sensitive AI endpoints, safer Crosshair proxy auth boundaries, PDF-only datasheet ingestion, token transport cleanup, retention controls, and documentation updates
 4.3.1 - 4-tier user roles (User/Power/Staff/Admin): restrict competitor access and file import for basic users, power user role for external partners, server-side role enforcement, search dropdown positioning fix, session cache flush on logout
