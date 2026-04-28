@@ -249,9 +249,9 @@ class SeimaScanner {
 }
 
 // Initialize the application when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   window.seimaScanner = new SeimaScanner();
-  window.seimaScanner.init();
+  await window.seimaScanner.init();
 
   window._appVersion = CONFIG.VERSION;
   const versionFooter = document.getElementById('menu-version-footer');
