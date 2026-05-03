@@ -299,7 +299,7 @@ function setupHelpButton() {
     });
   }
 
-  // Setup Landscape button (staff-only)
+  // Setup Landscape button (power+: power, staff, admin)
   const landscapeBtn = document.getElementById('landscape-btn');
   if (landscapeBtn) {
     landscapeBtn.addEventListener('click', () => {
