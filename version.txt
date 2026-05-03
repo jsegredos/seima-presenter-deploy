@@ -30,9 +30,9 @@
 4.1.2 - Fixes and improvements: product detail modal on grid image click, missing long descriptions in PDF, selection restore (rooms and notes swap), and competitor RRP shown in the validator.
 4.1.1 - Improved Fred semantic search; small search bug fix.
 4.1.0 - Higher-quality, consistent search results in the Validator and OCR matcher.
-4.0.0 - Major upgrade: introducing Fred the AI Bot and the Validator. Redesigned Validator UX with perspective switcher (Competitor to Seima and reverse), pill-style status filters with live counts, onboarding guide, range hints management, quick-match suggestions, bulk reject, and inline progress tracking.
-3.2.0 - Landscape and Validator: Category intelligence with Matrix, Gaps, Constellation, and Canvas views; validator search fix; unified product detail panels; sticky detail column.
-3.1.0 - Fred Learning: persistent chat history, thumbs-up and thumbs-down feedback, dynamic FAQ suggestions, and the Fred Learning Review dashboard. Plus access updates for partner accounts.
+4.0.0 - Major upgrade: introducing Fred the AI Bot and the Validator, with onboarding guide and refined match workflows.
+3.2.0 - Category intelligence and validator improvements; refreshed product detail panels.
+3.1.0 - Fred chat history and feedback collection; access updates for partner accounts.
 3.0.0 - Unified Platform: shared experience across Presenter and Scanner with consistent PDF output.
 2.9.0 - Documentation and Guides: Interactive User Guide for Scanner, Presenter onboarding guide, Build with Confidence tagline across all outputs.
 2.8.0 - Fixes and polish: WELS star ratings display, support for multi-line CSV headers, improved search ranking, header logo aspect ratio, thinner footer.
