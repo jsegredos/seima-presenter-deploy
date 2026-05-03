@@ -22,6 +22,7 @@ import { CONFIG } from './config.js';
 import { competitorService } from './competitor-service.js';
 import { aiChatPanel } from './ai-chat.js';
 import { loadSynonymsFromBackend } from './product-synonyms.js';
+import { dataLayer } from './data-layer.js';
 
 /**
  * Main Application Class
@@ -534,6 +535,12 @@ function setupUserMenu() {
       if (adminBtn) adminBtn.style.display = 'none';
       const staffDivider = document.getElementById('staff-divider');
       if (staffDivider) staffDivider.style.display = 'none';
+    }
+
+    if (typeof dataLayer?.refreshCatalogAccessForRole === 'function') {
+      void dataLayer.refreshCatalogAccessForRole().catch((err) => {
+        console.warn('Catalog access refresh failed:', err?.message || err);
+      });
     }
   }
   

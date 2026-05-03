@@ -1,24 +1,47 @@
-0.0.1 - Version reset update
-4.4.1 - Auth compatibility hotfix: worker session validation now falls back to GET when Apps Script validateSession does not accept POST, restoring deployed authentication flows
-4.4.0 - Security hardening and deployment readiness: staff-only sensitive AI endpoints, safer Crosshair proxy auth boundaries, PDF-only datasheet ingestion, token transport cleanup, retention controls, and documentation updates
-4.3.1 - 4-tier user roles (User/Power/Staff/Admin): restrict competitor access and file import for basic users, power user role for external partners, server-side role enforcement, search dropdown positioning fix, session cache flush on logout
-4.3.0 - Security review & session-based authentication: server-validated, conversation ownership enforcement, performance optimisations, documentation overhaul
-4.2.0 - Performance & documentation: resource hints, event delegation, search optimisation, user guides for all 3 operating modes, changelog
-4.1.2 - Fixes & improvements: product detail modal on grid image click, fix missing long descriptions in PDF, fix selection restore (rooms/notes swap), refactor addProductToSelection to named options, competitor RRP in validator modal
-4.1.1 - Fred embedding search: server-side semantic product search using OpenAI embeddings, Fuse.js matchedTerms bug fix
-4.1.0 - Shared Fuse.js search: Validator and OCR matcher now use shared ProductSearch for consistent, higher-quality results
-4.0.0 - Major upgrade, the birth of Fred the AI Bot and the Validator: Browser-side BM25 matching engine (zero-cost, runs in-browser), redesigned Validator UX with perspective switcher (Competitor→Seima / Seima→Competitor), progressive disclosure toolbar, pill-style status filters with live counts, onboarding guide, Seima-view mode for reverse lookup, range hints management, quick-match suggestions, bulk reject, inline progress tracking
-3.2.0 - Landscape & Validator: Category intelligence tool with Matrix, Gaps, Constellation, and Canvas views; validator search fix, unified product detail panels, CORS fix for bulk actions, sticky detail column
-3.1.0 - Fred Learning & Roles: Persistent chat history, thumbs-up/down feedback with Cloudflare KV sync, dynamic FAQ suggestions, Fred Learning Review dashboard, User/Staff/Admin role hierarchy
-3.0.0 - Unified Platform: Single version across Presenter & Scanner, shared @seima/core PDF rendering, consolidated deployment pipeline
-2.9.0 - Documentation & Guides: Interactive User Guide for Scanner, Presenter onboarding guide, "Build with Confidence" tagline across all outputs
-2.8.0 - Fixes & Polish: WELS star ratings display, CSV parser for multi-line headers, product search scoring, header logo aspect ratio, thinner footer
-2.7.0 - PDF Optimisation: Parallel image preloading, compression, image deduplication, smart PNG/JPEG format selection, faster generation
-2.6.0 - Previous Selections: Load and edit previous customer selections, settings redesign, multi-word search, CSV export with metadata
-2.5.0 - OCR Scanning: Client-side text recognition via Tesseract.js, product label reading, spatial grouping, fuzzy matching, Web Worker support
-2.4.0 - Lead Management: Server-side builder/merchant lists, duplicate prevention, real-time suggestions, lead tracking and form improvements
-2.3.0 - Selection Recording: Comprehensive tracking to Google Sheets, mobile drag & drop reordering, email template redesign
-2.2.0 - Authentication & Security: Staff login with Google Sheets backend, password reset via EmailJS, session management with Remember Me
-2.1.0 - UX Overhaul: Smart home view, auto-save, context header with selection status, progress stepper, first-run onboarding overlay
-2.0.0 - Cloud Integration: Save/load selections to Google Sheets, staff-filtered access, replace/merge options, configurable imports (.xls/.csv)
-1.0.0 - Foundation: Product catalog from Google Sheets, barcode scanning, PDF generation with cover pages, email system, mobile-optimised UI
+# ---------------------------------------------------------------------------
+# Public changelog. Mirrored to the public deploy repos and rendered to all
+# users in the in-app changelog modal. Anyone on the internet can read this.
+#
+# RULES (assume bad actors and competitors read every line):
+#   * Describe USER-VISIBLE changes only (what users see, do, or experience).
+#   * NEVER mention: endpoints, URLs, auth models, role names, server vs.
+#     client splits, secrets, library names, search algorithms, deploy or
+#     build pipelines, or specific bug/security fixes that hint at past or
+#     present attack surface.
+#   * Internal commit messages and engineering docs stay in the private
+#     source repo and may remain technical.
+#   * When in doubt, write less. "Performance and reliability improvements"
+#     is always a safe entry.
+#   * Format per entry: a version like 4.5.0, then a literal
+#     space, hyphen, space, then a one-line description ending with a full
+#     stop. The parser silently ignores any line without that exact dash
+#     separator, which is why these comment lines do not render. Do not
+#     put a literal space-hyphen-space anywhere in this header.
+#   * Do not include HTML, angle brackets, ampersands, or quotation marks
+#     that could be misinterpreted by downstream renderers.
+# ---------------------------------------------------------------------------
+
+4.5.0 - Faster catalogue loading, cleaner product source labels, and small UI polish across the grid and PDF export.
+4.4.1 - Sign-in reliability improvements.
+4.4.0 - Stability and reliability improvements; datasheet handling improvements; documentation updates.
+4.3.1 - Search dropdown positioning fix; cleaner sign-out behaviour; access updates for partner accounts.
+4.3.0 - Performance and reliability improvements.
+4.2.0 - Performance improvements, faster search, user guides for all operating modes, and an in-app changelog.
+4.1.2 - Fixes and improvements: product detail modal on grid image click, missing long descriptions in PDF, selection restore (rooms and notes swap), and competitor RRP shown in the validator.
+4.1.1 - Improved Fred semantic search; small search bug fix.
+4.1.0 - Higher-quality, consistent search results in the Validator and OCR matcher.
+4.0.0 - Major upgrade: introducing Fred the AI Bot and the Validator. Redesigned Validator UX with perspective switcher (Competitor to Seima and reverse), pill-style status filters with live counts, onboarding guide, range hints management, quick-match suggestions, bulk reject, and inline progress tracking.
+3.2.0 - Landscape and Validator: Category intelligence with Matrix, Gaps, Constellation, and Canvas views; validator search fix; unified product detail panels; sticky detail column.
+3.1.0 - Fred Learning: persistent chat history, thumbs-up and thumbs-down feedback, dynamic FAQ suggestions, and the Fred Learning Review dashboard. Plus access updates for partner accounts.
+3.0.0 - Unified Platform: shared experience across Presenter and Scanner with consistent PDF output.
+2.9.0 - Documentation and Guides: Interactive User Guide for Scanner, Presenter onboarding guide, Build with Confidence tagline across all outputs.
+2.8.0 - Fixes and polish: WELS star ratings display, support for multi-line CSV headers, improved search ranking, header logo aspect ratio, thinner footer.
+2.7.0 - PDF optimisation: faster generation and smaller file sizes.
+2.6.0 - Previous Selections: load and edit previous customer selections, settings redesign, multi-word search, CSV export with metadata.
+2.5.0 - OCR Scanning: read product labels from photos, with spatial grouping and fuzzy matching.
+2.4.0 - Lead management: shared builder and merchant lists, duplicate prevention, real-time suggestions, and form improvements.
+2.3.0 - Selection recording, mobile drag and drop reordering, and an email template refresh.
+2.2.0 - Sign-in: staff login with password reset and Remember Me.
+2.1.0 - UX overhaul: Smart home view, auto-save, context header with selection status, progress stepper, and first-run onboarding overlay.
+2.0.0 - Cloud-saved selections, staff-filtered access, replace and merge options, and configurable imports (.xls and .csv).
+1.0.0 - Foundation: product catalogue, barcode scanning, PDF generation with cover pages, email, and mobile-optimised UI.
