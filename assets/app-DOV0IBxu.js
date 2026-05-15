@@ -299,7 +299,7 @@ function setupHelpButton() {
     });
   }
 
-  // Setup Landscape button (power+: power, staff, admin)
+  // Setup Landscape button (staff+: staff, admin)
   const landscapeBtn = document.getElementById('landscape-btn');
   if (landscapeBtn) {
     landscapeBtn.addEventListener('click', () => {
@@ -356,7 +356,7 @@ function setupUserMenu() {
       if (crosshairBtn) crosshairBtn.style.display = (CONFIG.CROSSHAIR?.ENABLED && isStaff) ? '' : 'none';
       if (pendingBtn) pendingBtn.style.display = isStaff ? '' : 'none';
       const landscapeBtn = document.getElementById('landscape-btn');
-      if (landscapeBtn) landscapeBtn.style.display = (CONFIG.CROSSHAIR?.ENABLED && (isAdmin || isPower)) ? '' : 'none';
+      if (landscapeBtn) landscapeBtn.style.display = (CONFIG.CROSSHAIR?.ENABLED && isStaff) ? '' : 'none';
       const adminBtn = document.getElementById('admin-btn');
       if (adminBtn) adminBtn.style.display = isAdmin ? '' : 'none';
       const staffDivider = document.getElementById('staff-divider');

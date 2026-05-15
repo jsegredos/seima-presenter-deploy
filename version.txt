@@ -21,6 +21,7 @@
 #     that could be misinterpreted by downstream renderers.
 # ---------------------------------------------------------------------------
 
+4.5.1 - Maintenance and reliability improvements.
 4.5.0 - Faster catalogue loading, cleaner product source labels, and small UI polish across the grid and PDF export.
 4.4.1 - Sign-in reliability improvements.
 4.4.0 - Stability and reliability improvements; datasheet handling improvements; documentation updates.
