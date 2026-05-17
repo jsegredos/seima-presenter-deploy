@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fred Console</title>
+  <link rel="icon" type="image/png" href="/assets/seima-logo-Ij4HpjUg.png">
+  <style>
+    .fc-app { max-width: 1100px; margin: 0 auto; padding: 1rem 1.25rem; }
+    .fc-navbar { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-primary, #e5e7eb); }
+    .fc-navbar-back { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-secondary, #4b5563); text-decoration: none; font-size: 0.9rem; }
+    .fc-navbar-back:hover { color: var(--text-primary, #111); }
+    .fc-title { font-size: 1.25rem; font-weight: 600; margin: 0; }
+    .fc-subtitle { font-size: 0.84rem; color: var(--text-secondary, #4b5563); margin: 0 0 0.9rem; }
+    .fc-tabs { display: flex; gap: 0.5rem; margin-bottom: 0.9rem; flex-wrap: wrap; }
+    .fc-tab { border: 1px solid var(--border-primary, #e5e7eb); background: #fff; color: var(--text-secondary, #4b5563); border-radius: 7px; padding: 0.5rem 0.85rem; font-size: 0.86rem; font-weight: 600; cursor: pointer; }
+    .fc-tab.active { background: var(--text-primary, #111); border-color: var(--text-primary, #111); color: #fff; }
+    .fc-panel { border: 1px solid var(--border-primary, #e5e7eb); border-radius: 10px; overflow: hidden; background: #fff; min-height: 72vh; }
+    .fc-frame { width: 100%; height: 72vh; border: 0; }
+    .fc-forbidden { text-align: center; padding: 3rem 2rem; color: var(--text-secondary, #4b5563); }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "@seima/core": "/core/js/index.js"
+    }
+  }
+  </script>
+  <script type="module" crossorigin src="/assets/fredConsole-Bla9BwP_.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/auth-ui-Duo2mTTr.js">
+  <link rel="stylesheet" crossorigin href="/assets/auth-ui-in-MCC0p.css">
+</head>
+<body>
+  <div class="fc-app">
+    <nav class="fc-navbar">
+      <a href="admin.html" class="fc-navbar-back" title="Back to Admin">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        Back to Admin
+      </a>
+      <span style="width:1px;height:20px;background:var(--border-primary,#e5e7eb);"></span>
+      <h1 class="fc-title">Fred Console</h1>
+    </nav>
+
+    <p class="fc-subtitle">Manage Fred prompt config, review feedback, and run regression tests.</p>
+
+    <div id="fc-content" style="display:none;">
+      <div class="fc-tabs" id="fc-tabs"></div>
+      <div class="fc-panel">
+        <iframe id="fc-frame" class="fc-frame" title="Fred Console"></iframe>
+      </div>
+    </div>
+
+    <div id="fc-forbidden" class="fc-forbidden" style="display:none;">
+      <p>You need Staff or Admin access to use Fred Console.</p>
+      <p><a href="../index.html">Return to Presenter</a></p>
+    </div>
+  </div>
+
+</body>
+</html>

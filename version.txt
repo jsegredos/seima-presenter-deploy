@@ -21,6 +21,7 @@
 #     that could be misinterpreted by downstream renderers.
 # ---------------------------------------------------------------------------
 
+4.5.3 - Fred Console reliability improvements and tidier suggested prompts on the Fred welcome screen.
 4.5.2 - New product grid and PDF sort options: Product Category and As Imported.
 4.5.1 - Maintenance and reliability improvements.
 4.5.0 - Faster catalogue loading, cleaner product source labels, and small UI polish across the grid and PDF export.
