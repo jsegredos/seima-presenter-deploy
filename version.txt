@@ -21,6 +21,7 @@
 #     that could be misinterpreted by downstream renderers.
 # ---------------------------------------------------------------------------
 
+4.6.0 - Builder/architect plan references (Ref) now flow through imports, the product grid, the PDF and CSV exports; smarter column detection on import and faster cross-reference refresh in the grid.
 4.5.3 - Fred Console reliability improvements and tidier suggested prompts on the Fred welcome screen.
 4.5.2 - New product grid and PDF sort options: Product Category and As Imported.
 4.5.1 - Maintenance and reliability improvements.
