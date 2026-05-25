@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layout Learning Review</title>
+  <link rel="icon" type="image/png" href="/assets/seima-logo-Ij4HpjUg.png">
+  <script type="importmap">
+  {
+    "imports": {
+      "@seima/core": "/core/js/index.js"
+    }
+  }
+  </script>
+  <script type="module" crossorigin src="/assets/layoutLearningReview-Yv7JbrFo.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-DK3Fl9T5.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-fuse-CT6aDlEj.js">
+  <link rel="modulepreload" crossorigin href="/assets/js-rE7a4d5c.js">
+  <link rel="stylesheet" crossorigin href="/assets/js-DZxo49cr.css">
+  <link rel="stylesheet" crossorigin href="/assets/fred-review-C8QasQdC.css">
+</head>
+<body>
+  <div class="fr-app">
+    <nav class="fr-navbar">
+      <div class="fr-navbar-brand">
+        <a href="admin.html" class="fr-navbar-back" title="Back to Admin">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </a>
+        <span class="fr-navbar-divider"></span>
+        <span class="fr-navbar-title">Tender Layout Learning Review</span>
+      </div>
+      <div class="fr-navbar-actions">
+        <button class="fr-navbar-btn" id="ll-refresh-btn">Refresh</button>
+      </div>
+    </nav>
+
+    <div class="fr-content">
+      <div class="fr-empty" style="margin-bottom: 1rem; text-align: left;">
+        Review reusable tender, CSV, and Excel field mappings remembered from the import wizard.
+        Approve mappings that are correct, demote mappings that should stop being reused, and delete mappings that are wrong or should not be retained.
+      </div>
+
+      <div class="fr-summary">
+        <div class="fr-card fr-card--total">
+          <div class="fr-card-value" id="ll-layout-count">--</div>
+          <div class="fr-card-label">Layouts</div>
+        </div>
+        <div class="fr-card fr-card--down">
+          <div class="fr-card-value" id="ll-flag-count">--</div>
+          <div class="fr-card-label">Flags</div>
+        </div>
+      </div>
+
+      <div class="fr-columns">
+        <div class="fr-panel">
+          <div class="fr-panel-header">
+            <h2>Saved Layouts</h2>
+          </div>
+          <div class="fr-list" id="ll-layouts-list">
+            <div class="fr-empty">Loading layouts...</div>
+          </div>
+        </div>
+        <div class="fr-sidebar">
+          <div class="fr-panel">
+            <div class="fr-panel-header">
+              <h2>Reported Issues</h2>
+            </div>
+            <div class="fr-list" id="ll-flags-list">
+              <div class="fr-empty">Loading flags...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="ll-loading" class="fr-loading hidden">Loading...</div>
+    </div>
+  </div>
+
+</body>
+</html>

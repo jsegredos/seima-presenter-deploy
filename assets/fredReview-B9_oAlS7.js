@@ -1,0 +1,29 @@
+import{P as e}from"./js-rE7a4d5c.js";/* empty css                    */var t=`https://seima-ai-proxy.seima.workers.dev`;function n(){return e.getAuthHeaders()}var r=[],i=`all`,a=!1,o=!1;async function s(){try{let t=new URLSearchParams(window.location.search);if(o=t.get(`readonly`)===`1`,t.get(`embed`)===`1`){let e=document.querySelector(`.fr-navbar-brand`);e&&(e.style.display=`none`),document.body.style.paddingTop=`0`}let n=e.isStaffMode(),r=e.isAdmin();if(!n&&!r){window.location.href=`../index.html`;return}a=r&&!o}catch(e){console.warn(`Fred Review auth check failed:`,e),window.location.href=`../index.html`;return}document.getElementById(`fr-refresh-btn`).addEventListener(`click`,c),document.querySelectorAll(`.fr-filter-btn`).forEach(e=>{e.addEventListener(`click`,()=>{document.querySelectorAll(`.fr-filter-btn`).forEach(e=>e.classList.remove(`active`)),e.classList.add(`active`),i=e.dataset.filter,m()})}),await c()}async function c(){let e=document.getElementById(`fr-loading`);e.classList.remove(`hidden`);try{let e=await fetch(`${t}/v1/feedback/dashboard`,{headers:n()});if(!e.ok)throw Error(`Failed to load (${e.status})`);let i=await e.json();r=i.recentFeedback||[],l(i.summary||{}),u(i.summary?.recentDown||[]),p(i.topQuestions||[]),m()}catch(e){console.error(`Failed to load dashboard:`,e),document.getElementById(`fr-total-up`).textContent=`!`,document.getElementById(`fr-total-down`).textContent=`!`,document.getElementById(`fr-rate`).textContent=`Error`,document.getElementById(`fr-total-feedback`).textContent=e.message}finally{e.classList.add(`hidden`)}}function l(e){let t=e.totalUp||0,n=e.totalDown||0,r=t+n,i=r>0?Math.round(t/r*100):0;document.getElementById(`fr-total-up`).textContent=t,document.getElementById(`fr-total-down`).textContent=n,document.getElementById(`fr-rate`).textContent=r>0?`${i}%`:`--`,document.getElementById(`fr-total-feedback`).textContent=r}function u(e){let t=document.getElementById(`fr-down-list`),n=document.getElementById(`fr-down-count`);if(!e.length){t.innerHTML=`<div class="fr-empty">No thumbs-down responses yet. Good news!</div>`,n.textContent=``;return}n.textContent=`${e.length} entries`,t.innerHTML=e.map((e,t)=>`
+    <div class="fr-item">
+      <div class="fr-item-header">
+        <span class="fr-item-rating fr-item-rating--down">Thumbs Down</span>
+        <span class="fr-item-time">${h(e.timestamp)}</span>
+      </div>
+      <div class="fr-item-question">${g(e.question||`Unknown question`)}</div>
+      <div class="fr-item-answer">${g(e.answer||`No answer recorded`)}</div>
+      ${a?`
+      <div class="fr-item-actions">
+        <button class="fr-action-btn" data-action="add-test" data-idx="${t}" title="Add this Q&A to the evaluation test suite">+ Add to Tests</button>
+        <button class="fr-action-btn" data-action="add-rule" data-idx="${t}" title="Create a new rule based on this failure">+ Add Rule</button>
+      </div>`:``}
+    </div>
+  `).join(``),a&&t.querySelectorAll(`.fr-action-btn`).forEach(t=>{t.addEventListener(`click`,()=>{let n=e[parseInt(t.dataset.idx)];n&&(t.dataset.action===`add-test`?d(n,t):t.dataset.action===`add-rule`&&f(n,t))})})}async function d(e,r){r.disabled=!0,r.textContent=`Adding...`;try{let i=(await(await fetch(`${t}/v1/eval/test-cases`,{headers:n()})).json()).testCases||[];i.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),question:e.question||``,expectedCodes:[],expectedBehavior:`User was unhappy with this response: "${(e.answer||``).slice(0,200)}"`}),await fetch(`${t}/v1/eval/test-cases`,{method:`PUT`,headers:{"Content-Type":`application/json`,...n()},body:JSON.stringify({testCases:i})}),r.textContent=`Added ✓`,r.style.color=`var(--color-sage, #7c9082)`}catch(e){console.error(`Failed to add test case:`,e),r.textContent=`Failed`,r.disabled=!1}}async function f(e,r){let i=prompt(`Enter a new rule for Fred based on this failure:`,`When asked "${(e.question||``).slice(0,80)}", Fred should...`);if(i){r.disabled=!0,r.textContent=`Adding...`;try{let e=await(await fetch(`${t}/v1/fred-config`,{headers:n()})).json(),a=e.rules||[];a.push(i),await fetch(`${t}/v1/fred-config`,{method:`PUT`,headers:{"Content-Type":`application/json`,...n()},body:JSON.stringify({...e,rules:a})}),r.textContent=`Added ✓`,r.style.color=`var(--color-sage, #7c9082)`}catch(e){console.error(`Failed to add rule:`,e),r.textContent=`Failed`,r.disabled=!1}}}function p(e){let t=document.getElementById(`fr-questions-list`);if(!e.length){t.innerHTML=`<div class="fr-empty">No question data yet. Questions are tracked as users interact with Fred.</div>`;return}t.innerHTML=e.map(e=>`
+    <div class="fr-question-item">
+      <span class="fr-question-text" title="${g(e.prompt)}">${g(e.prompt)}</span>
+      <span class="fr-question-count">${e.count}x</span>
+    </div>
+  `).join(``)}function m(){let e=document.getElementById(`fr-all-list`),t=i===`all`?r:r.filter(e=>e.rating===i);if(!t.length){e.innerHTML=`<div class="fr-empty">${i===`all`?`No feedback entries yet.`:`No "${i}" feedback entries.`}</div>`;return}e.innerHTML=t.map(e=>`
+      <div class="fr-item">
+        <div class="fr-item-header">
+          <span class="fr-item-rating ${e.rating===`up`?`fr-item-rating--up`:`fr-item-rating--down`}">${e.rating===`up`?`Helpful`:`Not Helpful`}</span>
+          <span class="fr-item-time">${h(e.timestamp)}</span>
+        </div>
+        <div class="fr-item-question">${g(e.question||`Unknown`)}</div>
+        <div class="fr-item-answer">${g(e.answer||``)}</div>
+      </div>
+    `).join(``)}function h(e){if(!e)return``;let t=new Date(e),n=new Date-t,r=Math.floor(n/6e4),i=Math.floor(n/36e5),a=Math.floor(n/864e5);return r<1?`just now`:r<60?`${r}m ago`:i<24?`${i}h ago`:a<7?`${a}d ago`:t.toLocaleDateString(`en-AU`,{day:`numeric`,month:`short`})}function g(e){let t=document.createElement(`div`);return t.textContent=e,t.innerHTML}document.addEventListener(`DOMContentLoaded`,s);

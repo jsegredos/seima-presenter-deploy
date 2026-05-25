@@ -39,12 +39,14 @@
     }
   }
   </script>
-  <script type="module" crossorigin src="/assets/adminSynonyms-DVbfk4jN.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/auth-ui-Duo2mTTr.js">
-  <link rel="modulepreload" crossorigin href="/assets/config-CJHCOSoC.js">
-  <link rel="modulepreload" crossorigin href="/assets/product-synonyms-CeNdtqLO.js">
-  <link rel="stylesheet" crossorigin href="/assets/auth-ui-in-MCC0p.css">
-  <link rel="stylesheet" crossorigin href="/assets/fred-review-Dp4sXovk.css">
+  <script type="module" crossorigin src="/assets/adminSynonyms-CzmJupie.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-DK3Fl9T5.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-fuse-CT6aDlEj.js">
+  <link rel="modulepreload" crossorigin href="/assets/js-rE7a4d5c.js">
+  <link rel="modulepreload" crossorigin href="/assets/preload-helper-xcllxmk8.js">
+  <link rel="modulepreload" crossorigin href="/assets/product-synonyms-IWc1qXVC.js">
+  <link rel="stylesheet" crossorigin href="/assets/js-DZxo49cr.css">
+  <link rel="stylesheet" crossorigin href="/assets/fred-review-C8QasQdC.css">
 </head>
 <body>
   <div class="syn-app">
@@ -57,7 +59,7 @@
       <h1 class="syn-title">Product search synonyms</h1>
     </nav>
 
-    <p class="syn-desc" id="syn-desc">These synonyms are used when users search for products (including Fred). For example, "wall mounted" and "wall hung" are treated as equivalent. Changes are saved globally and affect all users.</p>
+    <p class="syn-desc" id="syn-desc">These synonyms are used when users search for products (including Fred and imports). Each row is treated as a group: the term and every equivalent work in both directions. For example, one row for "above counter" can include "above-counter", "abovecounter", "bench mounted", "top mounted", and "vessel". Changes are saved globally and affect all users.</p>
 
     <div id="syn-content">
       <div class="syn-toolbar">
@@ -69,8 +71,8 @@
         <table class="syn-table">
           <thead>
             <tr>
-              <th style="width: 200px;">Term (e.g. wall-mounted)</th>
-              <th>Equivalents (comma-separated, e.g. wall, wall hung, mounted)</th>
+              <th style="width: 200px;">Group term (e.g. wall-mounted)</th>
+              <th>Equivalent group members (comma-separated, e.g. wall, wall hung, mounted)</th>
               <th style="width: 60px;"></th>
             </tr>
           </thead>
