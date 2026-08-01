@@ -21,6 +21,7 @@
 #     that could be misinterpreted by downstream renderers.
 # ---------------------------------------------------------------------------
 
+4.6.3 - Self-service product selection emails send more reliably.
 4.6.2 - Match This Product opens reliably from competitor product links on imported tender lines.
 4.6.1 - Tender imports now keep uncertain products for review, improve Seima alternative suggestions in the grid, and preserve more imported wording in manual product searches.
 4.6.0 - Builder/architect plan references now flow through imports, the product grid, the PDF and CSV exports; tender imports can review field mapping, remember reusable layouts, and use improved product synonym matching.
