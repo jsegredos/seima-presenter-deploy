@@ -1,0 +1,1 @@
+import{P as e}from"./js-CFqp5rIj.js";/* empty css                    */try{e.isAdmin()?document.body.style.visibility=`visible`:window.location.href=`../index.html`}catch{window.location.href=`../index.html`}
